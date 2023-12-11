@@ -799,7 +799,7 @@ console.log(originalArray); // আউটপুট: [1, 2, 3, 4, 5] (মৌলি
 এখানে, slice() মেথডটি originalArray থেকে ইনডেক্স 1 থেকে 3 পর্যন্ত সংশোধিত অথবা স্লাইস করে নতুন একটি অ্যারে তৈরি করেছে, তবে originalArray এর মান পরিবর্তন হয়নি।
 
   **[⬆ Back to Top](#table-of-contents)**
-  
+
 6. ### What is the purpose of the array splice method
 
    The **splice()** method is used either adds/removes items to/from an array, and then returns the removed item. The first argument specifies the array position for insertion or deletion whereas the optional second argument indicates the number of elements to be deleted. Each additional argument is added to the array.
@@ -819,6 +819,62 @@ console.log(originalArray); // আউটপুট: [1, 2, 3, 4, 5] (মৌলি
    **Note:** Splice method modifies the original array and returns the deleted array.
 
    **[⬆ Back to Top](#table-of-contents)**
+
+## splice() 
+মেথডটি JavaScript-এ অ্যারেকে মৌলিক থেকে একা বা একাধিক উপাদান সরাতে বা যোগ করতে ব্যবহৃত হয়। এটি একটি অ্যারের ইনডেক্স থেকে একাধিক উপাদান বা একটি সংখ্যার বিন্দু থেকে একাধিক উপাদান সরাতে এবং তাদের জায়গা পরিবর্তন করতে সহায়ক হয়।
+
+এই মেথডের সিনট্যাক্স হলো:
+
+```javascript
+
+array.splice(startIndex, deleteCount, item1, item2, ...);
+```
+## startIndex: 
+যে ইনডেক্স থেকে স্প্লাইস করা শুরু হবে, সেটি নির্দিষ্ট করে।
+
+## deleteCount: 
+কতগুলি উপাদান সরাতে হবে তা নির্দিষ্ট করে।
+item1, item2, ...: স্প্লাইস করার জন্য যে কোনো উপাদান যোগ করা যেতে পারে।
+এটি অ্যারের উপাদান সরাতে, যোগ করতে বা উপাদানের জায়গা পরিবর্তন করতে ব্যবহৃত হয়। এই মেথডের ব্যবহারের কিছু উদাহরণ:
+
+## উপাদান সরাতে:
+
+```javascript
+
+var fruits = ["apple", "orange", "banana", "grape"];
+
+// ইনডেক্স 1 থেকে দুটি উপাদান সরাতে
+fruits.splice(1, 2);
+
+console.log(fruits);
+// আউটপুট: ["apple", "grape"]
+```
+## উপাদান যোগ করতে:
+
+```javascript
+
+var fruits = ["apple", "grape"];
+
+// ইনডেক্স 1 তে "orange" এবং "banana" যোগ করতে
+fruits.splice(1, 0, "orange", "banana");
+
+console.log(fruits);
+// আউটপুট: ["apple", "orange", "banana", "grape"]
+```
+## উপাদান পরিবর্তন করতে:
+
+```javascript
+
+var fruits = ["apple", "orange", "banana", "grape"];
+
+// ইনডেক্স 2 তে "kiwi" পরিবর্তন করতে
+fruits.splice(2, 1, "kiwi");
+
+console.log(fruits);
+// আউটপুট: ["apple", "orange", "kiwi", "grape"]
+```
+splice() মেথডটি ব্যবহার করে আপনি অ্যারের মধ্যে উপাদানের সংখ্যা কমাতে বা বাড়াতে পারেন, এবং এটি অ্যারে পরিবর্তন করে। তবে, এটি ইনডেক্সের উপর ভিত্তি করে কাজ করে এবং অ্যারেকে স্প্লাইস করতে হলে মৌলিক অ্যারেটি পরিবর্তন হয়ে যায়।
+**[⬆ Back to Top](#table-of-contents)**
 
 7. ### What is the difference between slice and splice
 
