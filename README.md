@@ -23,18 +23,18 @@ Note: This is an easiest way to create an object.
 
 The Object() is a built-in constructor function so "new" keyword is not required. The above code snippet can be re-written as:
 var object = Object();
-c) Object's create method:অবজেক্ট.create মেথড:
+### c) Object's create method:অবজেক্ট.create মেথড:
 The create method of Object is used to create a new object by passing the specificied prototype object and properties as arguments. i.e., This pattern is helpful to create new objects based on existing objects. The second argument is optional and it is used to create properties on a newly created object.
 The following code creates a new empty object whose prototype is null.
 var object = Object.create(null);
-d) Function constructor:কনস্ট্রাক্টর ফাংশন:
+### d) Function constructor:কনস্ট্রাক্টর ফাংশন:
 In this approach, create any function and apply the new operator to create object instances.
 function Person(name) {
   this.name = name;
   this.age = 21;
 }
 var object = new Person("Sudheer");
-e) Function constructor with prototype:
+### e) Function constructor with prototype:
 This is similar to function constructor but it uses prototype for their properties and methods,
 function Person() {}
 Person.prototype.name = "Sudheer";
@@ -52,7 +52,7 @@ var result = func.call(newInstance, x, y, z),
 
 // If the result is a non-null object then use it otherwise just use the new instance.
 console.log(result && typeof result === 'object' ? result : newInstance);
-f) ES6 Class syntax:ক্লাস (ES6 এর সাথে):
+### f) ES6 Class syntax:ক্লাস (ES6 এর সাথে):
 ES6 introduces class feature to create the objects
 class Person {
   constructor(name) {
@@ -61,7 +61,7 @@ class Person {
 }
 
 var object = new Person("Sudheer");
-g) Singleton pattern:
+### g) Singleton pattern:
 A Singleton is an object which can only be instantiated one time. Repeated calls to its constructor return the same instance and this way one can ensure that they don't accidentally create multiple instances.
 var object = new (function () {
   this.name = "Sudheer";
@@ -70,6 +70,14 @@ var object = new (function () {
 
 
 ### 2. What is a prototype chain
+
+প্রোটোটাইপ চেইন হলো JavaScript-এ অবজেক্ট এবং তার প্রোটোটাইপ এর মধ্যে যা সংযোজন রয়েছে এবং যেখানে একটি অবজেক্ট অপারেটর (. বা []) একটি মেথড বা প্রপার্টি অ্যাক্সেস করতে চেষ্টা করলে যে ক্রমে সহায়ক হয়। প্রোটোটাইপ চেইন হলো একটি ইহুয়ারিষ্টিক বা উত্তরাধিকার পদ্ধতি যেখানে একটি অবজেক্ট তার প্রোটোটাইপ থেকে মেথড এবং প্রপার্টি পাওয়ার চেষ্টা করে। যদি প্রোপার্টি বা মেথড কোনো প্রোটোটাইপে পাওয়া না যায় তবে চেইন এর উপরে যাওয়ার চেষ্টা করা হয় এবং এটি প্রোটোটাইপ চেইনের সম্মুখীন মূল অবজেক্টের মেথড এবং প্রপার্টি পেতে সক্ষম হতে পারে।
+
+এই উদাহরণে, person অবজেক্টটির প্রোটোটাইপ হলো Object.prototype, এবং Object.prototype এর প্রোটোটাইপ হলো null। তাই, এই অবজেক্টের প্রোটোটাইপ চেইন হলো:
+
+person → Object.prototype → null
+
+এটি দেখাচ্ছে কীভাবে একটি অবজেক্ট এর প্রোটোটাইপ চেইন তৈরি হয় এবং একটি অবজেক্ট যদি কোনো প্রোপার্টি বা মেথড না থাকে তবে তা তার প্রোটোটাইপের মূল অবজেক্টে থেকে এনে নেতে পারে।
 
  Prototype chaining is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language.
 
