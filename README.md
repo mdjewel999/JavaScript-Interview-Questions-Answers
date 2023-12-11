@@ -1560,6 +1560,21 @@ switch (fruit) {
 
     **[⬆ Back to Top](#table-of-contents)**
 
+    ## টেম্পরাল ডেড জোন
+
+টেম্পরাল ডেড জোন হলো জাভাস্ক্রিপ্টের একটি বৈশিষ্ট্য যা `let` এবং `const` কীওয়ার্ড ব্যবহার করে ভ্যারিয়েবল ঘোষণা করলে হয়। ECMAScript 6-এ, একটি `let` বা `const` ভ্যারিয়েবলের ঘোষণা করার আগে (এর স্কোপের মধ্যে) যোগান করলে ReferenceError হয়। সেই সময়কাল, যা সেই ঘোষণার এবং ঘোষণার মধ্যে ঘটতে হয়ে থাকে, তাকে টেম্পরাল ডেড জোন বলে।
+
+একটি উদাহরণে এই আচরণটি দেখা যাক:
+
+```javascript
+function somemethod() {
+  console.log(counter1); // undefined
+  console.log(counter2); // ReferenceError
+  var counter1 = 1;
+  let counter2 = 2;
+}
+```
+
 22. ### What is an IIFE (Immediately Invoked Function Expression)
 
     IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined. The signature of it would be as below,
@@ -1582,19 +1597,23 @@ switch (fruit) {
 
     **[⬆ Back to Top](#table-of-contents)**
 
-## টেম্পরাল ডেড জোন
+## IIFE (তাত্ক্ষণিক ইনভোকড ফাংশন এক্সপ্রেশন)
 
-টেম্পরাল ডেড জোন হলো জাভাস্ক্রিপ্টের একটি বৈশিষ্ট্য যা `let` এবং `const` কীওয়ার্ড ব্যবহার করে ভ্যারিয়েবল ঘোষণা করলে হয়। ECMAScript 6-এ, একটি `let` বা `const` ভ্যারিয়েবলের ঘোষণা করার আগে (এর স্কোপের মধ্যে) যোগান করলে ReferenceError হয়। সেই সময়কাল, যা সেই ঘোষণার এবং ঘোষণার মধ্যে ঘটতে হয়ে থাকে, তাকে টেম্পরাল ডেড জোন বলে।
-
-একটি উদাহরণে এই আচরণটি দেখা যাক:
+IIFE (তাত্ক্ষণিক ইনভোকড ফাংশন এক্সপ্রেশন) হলো একটি জাভাস্ক্রিপ্ট ফাংশন যা সরাসরি সংজ্ঞান করা হয়। এর স্বাক্ষর নিম্নলিখিত হতে পারে,
 
 ```javascript
-function somemethod() {
-  console.log(counter1); // undefined
-  console.log(counter2); // ReferenceError
-  var counter1 = 1;
-  let counter2 = 2;
-}
+(function () {
+  // এখানে লজিক
+})();
+```
+IIFE ব্যবহার করার প্রাথমিক কারণ হলো ডেটা গোপনীয়তা অর্জন করা, কারণ IIFE এর ভিতরে ঘোষণা করা কোনও ভ্যারিয়েবল বাইরের পৃথিবী দ্বারা অ্যাক্সেস করা যায় না। অর্থাৎ, আপনি যদি IIFE থেকে ভ্যারিয়েবল অ্যাক্সেস করতে চান তবে তা ত্রুটি তৈরি করে যেতে হয়।
+
+```javascript
+(function () {
+  var message = "IIFE";
+  console.log(message);
+})();
+console.log(message); //Error: message is not defined
 ```
 
 23. ### How do you decode or encode a URL in JavaScript?
@@ -1668,6 +1687,49 @@ console.log(decodedString);
 
     **[⬆ Back to Top](#table-of-contents)**
 
+
+# Memoization (মেমোইজেশন)
+
+মেমোইজেশন হলো একটি প্রোগ্রামিং কনসেপ্ট যেখানে ইতিমধ্যে গণনা হয়েছে এমন আউটপুটগুলি সংরক্ষণ করা হয়, যাতে একই ইনপুটের জন্য আবার গণনা করতে হয় না। মেমোইজেশন ব্যবহার করা হয় পুনরাবৃত্তি করতে অথবা সময় কমাতে, যখন একই ইনপুটের জন্য আগের ক্যালকুলেশনের ফলাফল প্রযোজ্য।
+
+## উদাহরণ:
+
+একটি ফাংশনের মেমোইজেশন ব্যবহার করা হলে তার পুনরাবৃত্তি হবে দ্রুত এবং প্রযোজ্যক্রমে ফলাফল সংরক্ষণ করা হবে।
+
+```javascript
+// মেমোইজেশন ফাংশন
+function memoizedFunction() {
+  let cache = {};
+
+  return function (arg) {
+    if (arg in cache) {
+      console.log("Fetching from cache:", arg);
+      return cache[arg];
+    } else {
+      console.log("Calculating result");
+      let result = arg * 2;
+      cache[arg] = result;
+      return result;
+    }
+  };
+}
+
+// মেমোইজ ফাংশনের তৈরি
+const memoized = memoizedFunction();
+
+// প্রথম কল করার জন্য
+console.log(memoized(5));
+// Output: Calculating result
+//         10
+
+// দ্বিতীয় কলে একই আউটপুট প্রাপ্ত করার জন্য
+console.log(memoized(5));
+// Output: Fetching from cache: 5
+//         10
+```
+উপরের উদাহরণে, মেমোইজ ফাংশনের মধ্যে একটি অভিজ্ঞতা রয়েছে যে আমরা ইনপুটের জন্য আগের ফলাফল সংরক্ষণ করেছি এবং এটি পুনরাবৃত্তি করতে হয় না, এমনকি যদি একই ইনপুট একাধিক সময় প্রদান করা হয়। এটি সময় এবং রিসোর্স সংরক্ষণে সাহায্য করে এবং কোডটি দ্রুত করে কাজ করার মাধ্যমে পারফরম্যান্স বাড়ায়।
+
+
 25. ### What is Hoisting
 
     Hoisting is a JavaScript mechanism where variables, function declarations and classes are moved to the top of their scope before code execution. Remember that JavaScript only hoists declarations, not initialisation.
@@ -1699,6 +1761,30 @@ console.log(decodedString);
     This hoisting makes functions to be safely used in code before they are declared.
 
     **[⬆ Back to Top](#table-of-contents)**
+# হোইস্টিং (Hoisting)
+
+হোইস্টিং হলো জাভাস্ক্রিপ্টে একটি কোড রান করার আগে ভ্যারিয়েবল এবং ফাংশন ডিক্লেয়ার করা প্রক্রিয়া। জাভাস্ক্রিপ্টে, ভ্যারিয়েবলগুলি এবং ফাংশনগুলি হোইস্ট করা হয়। এর মাধ্যমে আমরা একটি ভ্যারিয়েবল বা ফাংশন ডিক্লেয়ার এবং ব্যবহার করতে পারি এবং তার আগের কোডের কোড চালাতে পারি।
+
+## উদাহরণ:
+
+```javascript
+console.log(x); // Output: undefined
+var x = 5;
+console.log(x); // Output: 5
+
+// ফাংশন হোইস্টিং
+sayHello(); // Output: "Hello, World!"
+function sayHello() {
+  console.log("Hello, World!");
+}
+
+// ভ্যারিয়েবলের ভ্যালু হোইস্ট হয় না
+console.log(y); // Output: ReferenceError: y is not defined
+let y = 10;
+```
+উপরের উদাহরণে, ভ্যারিয়েবল x এবং ফাংশন sayHello হোইস্ট করা হয়েছে তাই আমরা তাদের আগে ব্যবহার করতে পারছি। কিন্তু let কীও একই ভাবে হোইস্ট হয় না এবং ReferenceError তৈরি হয়।
+
+হোইস্টিং একটি মূল জাভাস্ক্রিপ্ট কনসেপ্ট, এটি মনে রাখা গুরুত্বপূর্ণ যাতে কোড রান করার আগে ডিক্লেয়ার করা ভ্যারিয়েবল এবং ফাংশনগুলির সাথে সঠিকভাবে কাজ করতে পারি।
 
 26. ### What are classes in ES6
 
