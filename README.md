@@ -88,7 +88,7 @@ var object = new (function () {
  ⬆ Back to Top
 
 
-###### 3. What is the difference between Call, Apply and Bind
+## 3. What is the difference between Call, Apply and Bind
 The difference between Call, Apply and Bind can be explained with below examples,
 Call: The call() method invokes a function with a given this value and arguments provided one by one
 var employee1 = { firstName: "John", lastName: "Rodson" };
