@@ -991,7 +991,7 @@ null === undefined; // false
 [] === [];          // false, বিভিন্ন অবজেক্ট মেমোরি উদ্ধার করে
 {} == {};           // false, বিভিন্ন অবজেক্ট মেমোরি উদ্ধার করে
 {} === {};          // false, বিভিন্ন অবজেক্ট মেমোরি উদ্ধার করে
-
+```
 
    **[⬆ Back to Top](#table-of-contents)**
 
@@ -1000,6 +1000,38 @@ null === undefined; // false
     An arrow function is a shorter syntax for a function expression and does not have its own **this, arguments, super, or new.target**. These functions are best suited for non-method functions, and they cannot be used as constructors.
 
     **[⬆ Back to Top](#table-of-contents)**
+
+## ল্যাম্বডা বা এরো ফাংশন
+জাভাস্ক্রিপ্টে, ল্যাম্বডা ফাংশন বা এরো ফাংশন হলো এমন একটি সাধারিত ফাংশন যা ES6 (ECMAScript 2015) এ যোগ হয়েছে। এই ফাংশনগুলির লেখার সিনট্যাক্স সহজ এবং এটি ফাংশন লেখার কোড কে কম ও স্পষ্ট করে তুলে আনে। এর মূল সুবিধা হলো কোড ব্লকের মধ্যে this এর মান পরিবর্তন হয় না।
+
+## সাধারিত ফাংশন সিনট্যাক্স:
+```javascript
+const add = function(x, y) {
+  return x + y;
+};
+
+```
+## ল্যাম্বডা বা এরো ফাংশন সিনট্যাক্স:
+```javascript
+const add = (x, y) => x + y;
+
+```
+উপরের উদাহরণে, ল্যাম্বডা ফাংশনটির কোড সংক্ষেপক্রমে সুনির্দিষ্ট এবং প্রকাশ্যে স্পষ্ট।
+
+## উদাহরণ:
+```javascript
+// সাধারিত ফাংশন
+const multiply = function(x, y) {
+  return x * y;
+};
+
+```
+```javascript
+// ল্যাম্বডা ফাংশন
+const multiplyArrow = (x, y) => x * y;
+
+```
+ল্যাম্বডা ফাংশনে কোন বড় বড় কোডব্লকের দরকার হয় না, এটি এক লাইনেই কোড লেখা যায়।
 
 11. ### What is a first class function
 
