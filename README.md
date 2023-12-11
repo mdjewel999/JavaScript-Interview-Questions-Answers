@@ -747,6 +747,7 @@ var concatenatedString = jsonString1 + jsonString2;
 ```
  // **এখানে স্ট্রিং গুলি যোগ করা হচ্ছে**
 **এই অপারেশনগুলি JSON এর সাথে ব্যবহার করা হয় ডেটা তৈরি, পার্স করা, পরিবর্তন করা, এবং বিভিন্ন মাধ্যমে ডেটা সংযোজন করার জন্য।**
+ **[⬆ Back to Top](#table-of-contents)**
 
 5. ### What is the purpose of the array slice method
 
@@ -765,6 +766,40 @@ var concatenatedString = jsonString1 + jsonString2;
 
    **[⬆ Back to Top](#table-of-contents)**
 
+## slice() 
+**মেথডটি JavaScript এর অ্যারে অবজেক্টের একটি মেথড যা নির্দিষ্ট ইনডেক্স রেঞ্জ থেকে নতুন একটি অ্যারে তৈরি করে। এই মেথডটি প্রায়ই অ্যারে এর সাব-অ্যারে তৈরি করার জন্য ব্যবহৃত হয়, যাতে মৌলিক অ্যারে পরিবর্তন হয় না।**
+
+**এই মেথডের সিনট্যাক্স হলো:**
+
+```javascript
+array.slice(startIndex, endIndex);
+
+```
+## startIndex: 
+স্লাইস শুরু হবে এই ইনডেক্সের পোজিশন থেকে।
+## endIndex: 
+স্লাইস শেষ হবে এই ইনডেক্সের পোজিশনে। এই ইনডেক্স এর মান একটি স্লাইস হিসেবে যোগ হয় না।
+এই মেথডটি অ্যারেকে বিশেষ ইনডেক্স রেঞ্জ থেকে সংশোধিত অথবা নতুন অ্যারে তৈরি করার জন্য ব্যবহার করা হয়। এটি কোনো অসুস্থতা সৃষ্টি করবেনা, কেবল মৌলিক অ্যারেকে কোনো পরিবর্তন করবেনা।
+
+একটি উদাহরণ দেখা যাক:
+
+
+```javascript
+var originalArray = [1, 2, 3, 4, 5];
+
+// ইনডেক্স 1 থেকে 3 পর্যন্ত একটি স্লাইস তৈরি করা
+
+var slicedArray = originalArray.slice(1, 4);
+
+console.log(slicedArray); // আউটপুট: [2, 3, 4]
+
+console.log(originalArray); // আউটপুট: [1, 2, 3, 4, 5] (মৌলিক অ্যারে পরিবর্তন হয়নি)
+```
+
+এখানে, slice() মেথডটি originalArray থেকে ইনডেক্স 1 থেকে 3 পর্যন্ত সংশোধিত অথবা স্লাইস করে নতুন একটি অ্যারে তৈরি করেছে, তবে originalArray এর মান পরিবর্তন হয়নি।
+
+  **[⬆ Back to Top](#table-of-contents)**
+  
 6. ### What is the purpose of the array splice method
 
    The **splice()** method is used either adds/removes items to/from an array, and then returns the removed item. The first argument specifies the array position for insertion or deletion whereas the optional second argument indicates the number of elements to be deleted. Each additional argument is added to the array.
