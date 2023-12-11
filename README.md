@@ -690,48 +690,62 @@
 
 ## অ্যারে তৈরি করা:
 **JSON এ একটি অ্যারে তৈরি করতে তার মধ্যে মৌলিক ডেটা দেয়া হয়।**
-
-
+```javascript
 ["apple", "orange", "banana"]
+
+```
+
 
 ## ডেটা পার্স করা (পার্সিং):
 **JSON ডেটা পার্স করার জন্য JavaScript এ বিল্ট-ইন JSON.parse() মেথডটি ব্যবহার করা হয়।**
-
+```javascript
 var jsonString = '{"name": "John", "age": 30, "city": "New York"}';
 var jsonData = JSON.parse(jsonString);
 
+```
+
 ## JSON স্ট্রিং তৈরি করা (স্ট্রিংিফাই):
 **JavaScript অবজেক্ট বা অ্যারেকে JSON স্ট্রিং তৈরি করার জন্য JSON.stringify() মেথডটি ব্যবহার করা হয়।**
-
+```javascript
 var jsonData = { "name": "John", "age": 30, "city": "New York" };
 var jsonString = JSON.stringify(jsonData);
+
+```
 
 ## মান পরিবর্তন করা (মিউটেট):
 **একটি JSON অবজেক্টের মান পরিবর্তন করতে বা তার সদস্য অ্যাক্সেস করতে JavaScript ব্যবহার করা হয়।**
 
-
+```javascript
 var jsonData = { "name": "John", "age": 30, "city": "New York" };
 jsonData.age = 31; 
 
+```
+
 ## স্ট্রিং ম্যানিপুলেশন:
 **JSON স্ট্রিংের মানিপুলেশনের জন্য JavaScript এ বিভিন্ন স্ট্রিং মেথড ব্যবহার করা হয়, যেমন substring, charAt, split ইত্যাদি।**
-
+```javascript
 var jsonString = '{"name": "John", "age": 30, "city": "New York"}';
 var subString = jsonString.substring(0, 20); 
 
+```
+
 ## সর্ট করা (সর্টিং):
 **JSON অ্যারে সহ ডেটা সর্ট করতে JavaScript এ sort() মেথডটি ব্যবহার করা হয়।**
-
+```javascript
 var jsonArray = [5, 2, 8, 1, 7];
 jsonArray.sort(); // এখানে সংখ্যা দ্বারা সর্ট করা হচ্ছে
+
+```
 
 ## সংযোজন (কনক্যাটিনেট):
 **JSON স্ট্রিং বা অবজেক্টে ডেটা সংযোজন করতে JavaScript এ কনক্যাটিনেট অপারেটর (+) বা স্ট্রিং মেথড concat() ব্যবহার করা হয়।**
 
-
+```javascript
 var jsonString1 = '{"name": "John", "age": 30}';
 var jsonString2 = '{, "city": "New York"}';
-var concatenatedString = jsonString1 + jsonString2; // **এখানে স্ট্রিং গুলি যোগ করা হচ্ছে**
+var concatenatedString = jsonString1 + jsonString2;
+```
+ // **এখানে স্ট্রিং গুলি যোগ করা হচ্ছে**
 **এই অপারেশনগুলি JSON এর সাথে ব্যবহার করা হয় ডেটা তৈরি, পার্স করা, পরিবর্তন করা, এবং বিভিন্ন মাধ্যমে ডেটা সংযোজন করার জন্য।**
 
 5. ### What is the purpose of the array slice method
