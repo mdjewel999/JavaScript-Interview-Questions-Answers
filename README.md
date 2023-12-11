@@ -73,11 +73,11 @@ var object = new (function () {
 
 ### a) প্রোটোটাইপ চেইন হলো JavaScript-এ অবজেক্ট এবং তার প্রোটোটাইপ এর মধ্যে যা সংযোজন রয়েছে এবং যেখানে একটি অবজেক্ট অপারেটর (. বা []) একটি মেথড বা প্রপার্টি অ্যাক্সেস করতে চেষ্টা করলে যে ক্রমে সহায়ক হয়। প্রোটোটাইপ চেইন হলো একটি ইহুয়ারিষ্টিক বা উত্তরাধিকার পদ্ধতি যেখানে একটি অবজেক্ট তার প্রোটোটাইপ থেকে মেথড এবং প্রপার্টি পাওয়ার চেষ্টা করে। যদি প্রোপার্টি বা মেথড কোনো প্রোটোটাইপে পাওয়া না যায় তবে চেইন এর উপরে যাওয়ার চেষ্টা করা হয় এবং এটি প্রোটোটাইপ চেইনের সম্মুখীন মূল অবজেক্টের মেথড এবং প্রপার্টি পেতে সক্ষম হতে পারে।
 
-এই উদাহরণে, person অবজেক্টটির প্রোটোটাইপ হলো Object.prototype, এবং Object.prototype এর প্রোটোটাইপ হলো null। তাই, এই অবজেক্টের প্রোটোটাইপ চেইন হলো:
+### এই উদাহরণে, person অবজেক্টটির প্রোটোটাইপ হলো Object.prototype, এবং Object.prototype এর প্রোটোটাইপ হলো null। তাই, এই অবজেক্টের প্রোটোটাইপ চেইন হলো:
 
-person → Object.prototype → null
+### person → Object.prototype → null
 
-এটি দেখাচ্ছে কীভাবে একটি অবজেক্ট এর প্রোটোটাইপ চেইন তৈরি হয় এবং একটি অবজেক্ট যদি কোনো প্রোপার্টি বা মেথড না থাকে তবে তা তার প্রোটোটাইপের মূল অবজেক্টে থেকে এনে নেতে পারে।
+### এটি দেখাচ্ছে কীভাবে একটি অবজেক্ট এর প্রোটোটাইপ চেইন তৈরি হয় এবং একটি অবজেক্ট যদি কোনো প্রোপার্টি বা মেথড না থাকে তবে তা তার প্রোটোটাইপের মূল অবজেক্টে থেকে এনে নেতে পারে।
 
  Prototype chaining is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language.
 
@@ -88,7 +88,7 @@ person → Object.prototype → null
  ⬆ Back to Top
 
 
-3. What is the difference between Call, Apply and Bind
+###### 3. What is the difference between Call, Apply and Bind
 The difference between Call, Apply and Bind can be explained with below examples,
 Call: The call() method invokes a function with a given this value and arguments provided one by one
 var employee1 = { firstName: "John", lastName: "Rodson" };
