@@ -1046,6 +1046,75 @@ const multiplyArrow = (x, y) => x * y;
 
     **[⬆ Back to Top](#table-of-contents)**
 
+## প্রথম শ্রেণীর ফাংশন
+জাভাস্ক্রিপ্টে, একটি ভাষা প্রথম শ্রেণীর ফাংশন হিসেবে পরিচিত। এটি বৈশিষ্ট্যগুলির মাধ্যমে অত্যন্ত কার্যকরী এবং পলিমর্ফিক ভাবে ফাংশনের ব্যবহারের সুযোগ সৃষ্টি করে।
+
+## প্রথম শ্রেণীর ফাংশনের বৈশিষ্ট্যগুলি:
+1. **ভ্যারিয়েবল হিসেবে সংরক্ষণ:**
+ ফাংশনগুলি ভ্যারিয়েবলে সংরক্ষণ করা যায় এবং ভ্যারিয়েবল থেকে ফাংশনকে কল করা যায়।
+
+ ```javascript
+ const greet = function(name) {
+  console.log(`Hello, ${name}!`);
+};
+
+greet('John'); // ফাংশন কল করা হচ্ছে
+
+ ```
+2. **ফাংশন প্যারামিটার হিসেবে পাস করা:**
+ একটি ফাংশন অন্য একটি ফাংশনকে ভ্যারিয়েবল হিসেবে পাস করতে পারে এবং এটি একটি ফাংশন প্যারামিটার হিসেবে ব্যবহৃত হতে পারে।
+```javascript
+const operation = function(func, a, b) {
+  return func(a, b);
+};
+
+const add = function(x, y) {
+  return x + y;
+};
+
+console.log(operation(add, 5, 3)); // ফাংশনকে প্যারামিটার হিসেবে পাস করা হচ্ছে
+
+```
+3.**ফাংশন থেকে ফাংশন রিটার্ন:**
+কটি ফাংশন অন্য একটি ফাংশন থেকে রিটার্ন করতে পারে।
+
+```javascript
+const multiplyBy = function(factor) {
+  return function(number) {
+    return number * factor;
+  };
+};
+
+const multiplyByTwo = multiplyBy(2);
+console.log(multiplyByTwo(5)); // 2 দিয়ে 5 গুণ করা হচ্ছে
+
+```
+4.**ফাংশন কে অন্য একটি ফাংশন থেকে বাড়ানো এবং কমানো:**
+ফাংশন কে একটি অন্য ফাংশন এর মধ্যে ডিফাইন করতে এবং একটি ফাংশন থেকে অন্য ফাংশনকে রিটার্ন করতে পারে।
+```javascript
+const operationGenerator = function(operation) {
+  if (operation === 'add') {
+    return function(x, y) {
+      return x + y;
+    };
+  } else if (operation === 'subtract') {
+    return function(x, y) {
+      return x - y;
+    };
+  }
+};
+
+const addFunction = operationGenerator('add');
+console.log(addFunction(7, 3)); // ফাংশনকে বাড়ানো হচ্ছে
+
+const subtractFunction = operationGenerator('subtract');
+console.log(subtractFunction(7, 3)); // ফাংশনকে কমানো হচ্ছে
+
+
+```
+এই গুলি হলো জাভাস্ক্রিপ্টে প্রথম শ্রেণীর ফাংশনের কিছু বৈশিষ্ট্য। এগুলি ফাংশনকে একটি কার্যকরী ভাষা এবং প্রোগ্রামিং প্যারাডাইম হিসেবে অপরিচিত করায় ফাংশনাল প্রোগ্রামিংয়ে জাভাস্ক্রিপ্ট দিয়ে কাজ করতে হতে পারে খুব সহজ।
+
+
 12. ### What is a first order function
 
     A first-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value.
@@ -1055,6 +1124,42 @@ const multiplyArrow = (x, y) => x * y;
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+
+
+## প্রথম শ্রেণীর ফাংশন
+জাভাস্ক্রিপ্টে, "প্রথম শ্রেণীর ফাংশন" হলো এমন একটি ফাংশন যা একটি ভ্যারিয়েবলে সংরক্ষিত করা, অন্য একটি ফাংশনে পাঠানো, এবং ফাংশন থেকে রিটার্ন করা যায়।
+
+## উদাহরণ:
+```javascript
+// ফাংশনটি একটি ভ্যারিয়েবলে সংরক্ষণ
+const greet = function(name) {
+  return `Hello, ${name}!`;
+};
+
+// একটি ফাংশনকে অন্য ফাংশনে পাঠানো
+const greetAnother = function(greetFunction, name) {
+  return greetFunction(name);
+};
+
+// একটি ফাংশন থেকে অন্য ফাংশন রিটার্ন
+const getGreetingFunction = function() {
+  return function(name) {
+    return `Hola, ${name}!`;
+  };
+};
+
+// এখন এই ফাংশনগুলি ব্যবহার করা হচ্ছে
+console.log(greet('John')); // "Hello, John!"
+console.log(greetAnother(greet, 'Alice')); // "Hello, Alice!"
+const spanishGreet = getGreetingFunction();
+console.log(spanishGreet('Carlos')); // "Hola, Carlos!"
+
+```
+**উপরের উদাহরণে,**
+ greet ফাংশনটি একটি ভ্যারিয়েবলে সংরক্ষণ করা হয়েছে, greetAnother ফাংশনে greet ফাংশনটি পাঠানো হয়েছে, এবং getGreetingFunction ফাংশন থেকে একটি নতুন ফাংশন রিটার্ন করা হয়েছে। এই ফাংশনগুলি প্রথম শ্রেণীর ফাংশন হিসেবে পরিচিত।
+
+**লক্ষণীয়:**
+ জাভাস্ক্রিপ্টে ফাংশনগুলি প্রথম শ্রেণীর ফাংশন, এবং এটা ফাংশনাল প্রোগ্রামিং এবং হাই-অর্ডার ফাংশনালিটির সাথে সাথে ব্যবহার করা যায় ভালোভাবে।
 
 13. ### What is a higher order function
 
@@ -1069,6 +1174,32 @@ const multiplyArrow = (x, y) => x * y;
 
     **[⬆ Back to Top](#table-of-contents)**
 
+
+## উচ্চতর শ্রেণীর ফাংশন
+উচ্চতর শ্রেণীর ফাংশন হলো এমন একটি ফাংশন যা একটি অথবা একাধিক ফাংশনকে আর্গুমেন্ট হিসেবে নেয় এবং/অথবা একটি ফাংশন রিটার্ন করতে পারে। ইতিমধ্যে জাভাস্ক্রিপ্টে ফাংশন প্রথম শ্রেণীর এবং একাধিক উচ্চতর শ্রেণীর ফাংশনও রয়েছে।
+
+## উদাহরণ:
+```javascript
+// উচ্চতর শ্রেণীর ফাংশন: ফাংশন যে অন্য ফাংশন গুলি নিয়ে আসে
+const operate = function(operation, x, y) {
+  return operation(x, y);
+};
+
+// উচ্চতর শ্রেণীর ফাংশন: একটি ফাংশন রিটার্ন করে
+const createMultiplier = function(factor) {
+  return function(number) {
+    return number * factor;
+  };
+};
+
+// উচ্চতর শ্রেণীর ফাংশন ব্যবহার
+console.log(operate(function(x, y) { return x + y; }, 5, 3)); // একটি ফাংশনকে আর্গুমেন্ট হিসেবে নেয়া হয়েছে
+const double = createMultiplier(2);
+console.log(double(7)); // একটি ফাংশন রিটার্ন করা হয়েছে
+
+```
+উচ্চতর শ্রেণীর ফাংশনের উদাহরণগুলির মাধ্যমে দেখা যায় কীভাবে একটি ফাংশন আর্গুমেন্ট হিসেবে নেয়া হয় এবং একটি ফাংশন কে রিটার্ন করা হয়। এই গুলি হলো উচ্চতর শ্রেণীর ফাংশন হিসেবে পরিচিত উদাহরণগুলি।
+
 14. ### What is a unary function
 
     A unary function (i.e. monadic) is a function that accepts exactly one argument. It stands for a single argument accepted by a function.
@@ -1080,6 +1211,25 @@ const multiplyArrow = (x, y) => x * y;
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+
+
+## ইউনারি ফাংশন
+ইউনারি ফাংশন হলো এমন একটি ফাংশন যা একটি আর্গুমেন্ট নেয়। অর্থাৎ, একটি ইউনারি ফাংশনের কেবল একটি ইনপুট থাকে।
+
+## উদাহরণ:
+```javascript
+// ইউনারি ফাংশন: সংখ্যা কে দ্বিগুণ করে ফেরত দেয়
+const double = function(x) {
+  return x * 2;
+};
+
+// এখন এই ফাংশন ব্যবহার করা হচ্ছে
+console.log(double(5)); // ইউনারি ফাংশন, 5 কে দ্বিগুণ করা হচ্ছে
+
+```
+উপরের উদাহরণে, double ফাংশনটি একটি ইউনারি ফাংশন, যেটি একটি সংখ্যা নেয় এবং একটি নতুন সংখ্যা তৈরি করে যা দিয়ে ইনপুট সংখ্যাটি দ্বিগুণ হয়েছে।
+
+
 
 15. ### What is the currying function
 
