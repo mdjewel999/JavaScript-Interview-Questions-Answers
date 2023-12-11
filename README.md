@@ -641,7 +641,7 @@
    Whereas Bind creates a new function that will have `this` set to the first parameter passed to bind().
 
    **[⬆ Back to Top](#table-of-contents)**
-   
+
 **JavaScript-এ call, apply, এবং bind হলো তিনটি মেথড, যা ফাংশনের কনটেক্সট (অথবা this মান) এবং আরও কিছু প্যারামিটার প্রদান করতে ব্যবহৃত হয়। এই তিনটি মেথডের মধ্যে প্রতিটির কাজ সম্পর্কে বিস্তারিত:**
 
 ## call মেথড:
@@ -654,6 +654,7 @@
 ## bind মেথড:
 
 **এটি call এবং apply এর মধ্যে একটি প্রধান পার্থক্য হলো, এটি ফাংশনকে ইমিডিয়েটলি কল করে না। বরং, এটি একটি নতুন ফাংশন তৈরি করে, যার কনটেক্সট এবং প্যারামিটার সেট স্থির করে দেয়।এই নতুন ফাংশনটি একবার তৈরি হলে সেটি ইমিডিয়েটলি কল করা যেতে পারে বা পরবর্তীতে ব্যবহৃত হতে পারে।**
+**[⬆ Back to Top](#table-of-contents)**
 
 4. ### What is JSON and its common operations
 
@@ -672,6 +673,66 @@
    ```
 
    **[⬆ Back to Top](#table-of-contents)**
+
+   **JSON (JavaScript Object Notation) হলো একটি লাইটও ডাটা ইন্টারচেঞ্জ ফরম্যাট, যা টেক্সট ভিত্তিক এবং মানুষের পঠনীয় ও লেখনীয় বোঝার জন্য সুবিধা প্রদান করে। JSON বোঝা, তৈরি এবং সম্পাদনা করা সহ অনেকগুলি সাধারিত অপারেশন রয়েছে:**
+
+## অবজেক্ট তৈরি করা:
+**JSON তে অবজেক্ট তৈরি করতে এটি সাধারিতভাবে কী-মান পেয়েছে তার আগে একটি বৈশিষ্ট্য এবং এর মান দিয়ে একটি অবজেক্ট তৈরি করতে হয়।**
+
+ ```javascript
+   {
+  "name": "John",
+  "age": 30,
+  "city": "New York"
+}
+   ```
+
+
+## অ্যারে তৈরি করা:
+**JSON এ একটি অ্যারে তৈরি করতে তার মধ্যে মৌলিক ডেটা দেয়া হয়।**
+
+
+["apple", "orange", "banana"]
+
+## ডেটা পার্স করা (পার্সিং):
+**JSON ডেটা পার্স করার জন্য JavaScript এ বিল্ট-ইন JSON.parse() মেথডটি ব্যবহার করা হয়।**
+
+var jsonString = '{"name": "John", "age": 30, "city": "New York"}';
+var jsonData = JSON.parse(jsonString);
+
+## JSON স্ট্রিং তৈরি করা (স্ট্রিংিফাই):
+**JavaScript অবজেক্ট বা অ্যারেকে JSON স্ট্রিং তৈরি করার জন্য JSON.stringify() মেথডটি ব্যবহার করা হয়।**
+
+var jsonData = { "name": "John", "age": 30, "city": "New York" };
+var jsonString = JSON.stringify(jsonData);
+
+## মান পরিবর্তন করা (মিউটেট):
+**একটি JSON অবজেক্টের মান পরিবর্তন করতে বা তার সদস্য অ্যাক্সেস করতে JavaScript ব্যবহার করা হয়।**
+
+
+var jsonData = { "name": "John", "age": 30, "city": "New York" };
+jsonData.age = 31; 
+
+## স্ট্রিং ম্যানিপুলেশন:
+**JSON স্ট্রিংের মানিপুলেশনের জন্য JavaScript এ বিভিন্ন স্ট্রিং মেথড ব্যবহার করা হয়, যেমন substring, charAt, split ইত্যাদি।**
+
+var jsonString = '{"name": "John", "age": 30, "city": "New York"}';
+var subString = jsonString.substring(0, 20); 
+
+## সর্ট করা (সর্টিং):
+**JSON অ্যারে সহ ডেটা সর্ট করতে JavaScript এ sort() মেথডটি ব্যবহার করা হয়।**
+
+var jsonArray = [5, 2, 8, 1, 7];
+jsonArray.sort(); // এখানে সংখ্যা দ্বারা সর্ট করা হচ্ছে
+
+## সংযোজন (কনক্যাটিনেট):
+**JSON স্ট্রিং বা অবজেক্টে ডেটা সংযোজন করতে JavaScript এ কনক্যাটিনেট অপারেটর (+) বা স্ট্রিং মেথড concat() ব্যবহার করা হয়।**
+
+
+var jsonString1 = '{"name": "John", "age": 30}';
+var jsonString2 = '{, "city": "New York"}';
+var concatenatedString = jsonString1 + jsonString2; // **এখানে স্ট্রিং গুলি যোগ করা হচ্ছে**
+**এই অপারেশনগুলি JSON এর সাথে ব্যবহার করা হয় ডেটা তৈরি, পার্স করা, পরিবর্তন করা, এবং বিভিন্ন মাধ্যমে ডেটা সংযোজন করার জন্য।**
 
 5. ### What is the purpose of the array slice method
 
