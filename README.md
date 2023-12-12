@@ -2660,7 +2660,19 @@ window.addEventListener('storage', function(event) {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+# ওয়েব স্টোরেজ সাপোর্ট চেক
 
+ব্রাউজার কি ওয়েব স্টোরেজ (localStorage এবং sessionStorage) সাপোর্ট করছে তা চেক করতে, আপনি নিচের জাভাস্ক্রিপ্ট কোডটি ব্যবহার করতে পারেন:
+
+```javascript
+if (typeof(Storage) !== "undefined") {
+  // ওয়েব স্টোরেজ সাপোর্ট হচ্ছে
+  console.log("ওয়েব স্টোরেজ সাপোর্ট হচ্ছে।");
+} else {
+  // ওয়েব স্টোরেজ সাপোর্ট হচ্ছে না
+  console.error("এই ব্রাউজারে ওয়েব স্টোরেজ সাপোর্ট হয়নি।");
+}
+```
 
 48. ### How do you check web workers browser support
 
@@ -2675,6 +2687,18 @@ window.addEventListener('storage', function(event) {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+
+    # ওয়েব ওয়ার্কার সাপোর্ট চেক
+
+ওয়েব ওয়ার্কার ব্রাউজার সাপোর্ট করছে কিনা তা চেক করার আগে, আপনি নিচের জাভাস্ক্রিপ্ট কোডটি ব্যবহার করতে পারেন:
+
+```javascript
+if (typeof Worker !== "undefined") {
+  // ওয়েব ওয়ার্কার সাপোর্ট কোড।
+} else {
+  // দুঃখিত! ওয়েব ওয়ার্কার সাপোর্ট নেই..
+}
+```
 
 49. ### Give an example of a web worker
 
@@ -2727,6 +2751,61 @@ window.addEventListener('storage', function(event) {
 
     **[⬆ Back to Top](#table-of-contents)**
 
+    # ওয়েব ওয়ার্কার উদাহরণ: গণনা
+
+নিম্নলিখিত ধাপগুলি অনুসরণ করুন এবং একটি গণনা উদাহরণের জন্য একটি ওয়েব ওয়ার্কার তৈরি করুন:
+
+1. **একটি ওয়েব ওয়ার্কার ফাইল তৈরি করুন:**
+   গণনা মানটি বাড়ানোর জন্য একটি স্ক্রিপ্ট লেখুন। এটির নাম করা হয়েছে `counter.js`।
+
+    ```javascript
+    let i = 0;
+
+    function timedCount() {
+      i = i + 1;
+      postMessage(i);
+      setTimeout("timedCount()", 500);
+    }
+
+    timedCount();
+    ```
+
+   এখানে `postMessage()` মেথডটি ব্যবহার করা হয়েছে যাতে একটি মেসেজটি HTML পৃষ্ঠায় পোস্ট হতে পারে।
+
+2. **একটি ওয়েব ওয়ার্কার অবজেক্ট তৈরি করুন:**
+   ব্রাউজার সাপোর্ট চেক করে আপনি একটি ওয়েব ওয়ার্কার অবজেক্ট তৈরি করতে পারেন। এটির নাম করা হয়েছে `web_worker_example.js`।
+
+    ```javascript
+    if (typeof w == "undefined") {
+      w = new Worker("counter.js");
+    }
+    ```
+
+   এবং আমরা ওয়েব ওয়ার্কার থেকে মেসেজ প্রাপ্ত করতে পারি
+
+    ```javascript
+    w.onmessage = function (event) {
+      document.getElementById("message").innerHTML = event.data;
+    };
+    ```
+
+3. **একটি ওয়েব ওয়ার্কার বন্ধ করুন:**
+   ওয়েব ওয়ার্কার সাথে মেসেজ শুনতে (বাইরের স্ক্রিপ্টটি শেষ হওয়ার পরেও) এটি শুনতে থাকবে। আপনি মেসেজ শোনা বন্ধ করতে `terminate()` মেথডটি ব্যবহার করতে পারেন।
+
+    ```javascript
+    w.terminate();
+    ```
+
+4. **ওয়েব ওয়ার্কার পুনঃব্যবহার করুন:**
+   আপনি যদি ওয়ার্কার ভেরিয়েবলকে `undefined` হিসেবে সেট করেন, তাদের একই কোডটি আবার ব্যবহার করতে পারেন
+
+    ```javascript
+    w = undefined;
+    ```
+
+**[⬆ উপরে যান](#table-of-contents)**
+
+
 50. ### What are the restrictions of web workers on DOM
 
     WebWorkers don't have access to below javascript objects since they are defined in an external files
@@ -2736,6 +2815,16 @@ window.addEventListener('storage', function(event) {
     3. Parent object
 
     **[⬆ Back to Top](#table-of-contents)**
+
+    # ওয়েব ওয়ার্কার DOM সীমাবদ্ধতা
+
+ওয়েব ওয়ার্কার কিছু জাভাস্ক্রিপ্ট অবজেক্টে অ্যাক্সেস নেই কারণ তারা একটি বাহ্যিক ফাইলে ডিফাইন করা হয়েছে:
+
+1. **Window অবজেক্ট**
+2. **Document অবজেক্ট**
+3. **Parent অবজেক্ট**
+
+**[⬆ উপরে যান](#table-of-contents)**
 
 51. ### What is a promise
 
@@ -2769,6 +2858,7 @@ window.addEventListener('storage', function(event) {
     ![Screenshot](images/promises.png)
 
     **[⬆ Back to Top](#table-of-contents)**
+
 
 52. ### Why do you need a promise
 
