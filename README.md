@@ -2860,11 +2860,76 @@ if (typeof Worker !== "undefined") {
     **[⬆ Back to Top](#table-of-contents)**
 
 
+## প্রমিস (Promise)
+
+একটি প্রমিস হলো একটি অবজেক্ট যা ভবিষ্যতে একটি মান তৈরি করতে পারে যা বা একটি সমাধানে পৌঁছাতে পারে অথবা একটি কারণে তা পৌঁছায় না (উদাহরণস্বরূপ, নেটওয়ার্ক ত্রুটি)। এটি একটি পূর্বনির্ধারিত স্থিতিতে থাকতে পারে: ফুলফিল্ড (fulfilled), রিজেক্টেড (rejected), অথবা পেন্ডিং (pending)।
+## প্রমিস তৈরি করতে সিনট্যাক্স
+```javascript
+const myPromise = new Promise((resolve, reject) => {
+  // একটি এসিঙ্ক্রোনাস কাজ সম্পাদন করুন
+
+  // যদি কাজটি সফল হয়, তাদের সাথে মূল্য সহ রেজল্ভ করুন
+  // উদাহরণস্বরূপ, মান 42 দিয়ে সম্পন্ন করা
+  resolve(42);
+
+  // যদি কোন ত্রুটি থাকে, তবে কারণ সহ রিজেক্ট করুন
+  // উদাহরণস্বরূপ, নেটওয়ার্ক ত্রুটি দিয়ে রিজেক্ট করা
+  // reject(new Error("নেটওয়ার্ক ত্রুটি"));
+});
+
+// প্রমিসের অবস্থা: সম্পন্ন, অসম্পন্ন, অথবা মূল্যনির্ধারণ হয়নি
+myPromise
+  .then((result) => {
+    // সম্পন্ন অবস্থা হ্যান্ডেল করুন
+    console.log("প্রমিস সম্পন্ন হয়েছে এবং মূল্য:", result);
+  })
+  .catch((reason) => {
+    // অসম্পন্ন অবস্থা হ্যান্ডেল করুন
+    console.error("প্রমিস অসম্পন্ন হয়েছে এবং কারণ:", reason);
+  });
+
+```
+এই কোডে, myPromise হলো একটি প্রমিস যা এখনো অসম্পন্ন অবস্থায় আছে। প্রমিসটি একটি এসিঙ্ক্রোনাস কাজ সম্পাদন করতে পারে এবং সে সম্পন্ন হলে মূল্য অথবা কারণ দিয়ে রেজল্ভ হতে পারে। এটির অবস্থা পরীক্ষা করার জন্য then এবং catch ব্যবহৃত হয়েছে।
+
 52. ### Why do you need a promise
 
     Promises are used to handle asynchronous operations. They provide an alternative approach for callbacks by reducing the callback hell and writing the cleaner code.
 
     **[⬆ Back to Top](#table-of-contents)**
+# প্রমিসের প্রয়োজন
+
+প্রমিসগুলি এসিঙ্ক্রোনাস অপারেশনগুলি হ্যান্ডেল করতে ব্যবহৃত হয়। এগুলি ক্যালব্যাকগুলির জন্য একটি বিকল্প প্রদান করে, ক্যালব্যাক হেল কমানো এবং স্বচ্ছ কোড লেখার সাধারিতা বাড়ানোর মাধ্যমে।
+
+
+## উদাহরণ:
+```javascript
+function fetchData() {
+  // একটি প্রমিস রিটার্ন করা
+  return new Promise((resolve, reject) => {
+    // এসিঙ্ক্রোনাস অপারেশন সম্পন্ন হলে রেজল্ভ করুন
+    setTimeout(() => {
+      resolve("Data fetched successfully");
+    }, 2000);
+    
+    // যদি কোন ত্রুটি হয়, তাদের জন্য রিজেক্ট করুন
+    // উদাহরণস্বরূপ, নেটওয়ার্ক ত্রুটি
+    // setTimeout(() => {
+    //   reject(new Error("Network error"));
+    // }, 2000);
+  });
+}
+
+// প্রমিস ব্যবহার করে ডেটা প্রাপ্ত করা
+fetchData()
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+```
+**[⬆ উপরে যান](#সূচিতে-ফিরেন)**
 
 53. ### What are the three states of promise
 
@@ -2875,6 +2940,14 @@ if (typeof Worker !== "undefined") {
     3. **Rejected:** This state indicates that the operation did not complete. In this case an error value will be thrown.
 
     **[⬆ Back to Top](#table-of-contents)**
+
+### প্রমিসের তিনটি অবস্থা
+
+    প্রমিসের তিনটি অবস্থা রয়েছে:
+
+    1. **মুলতুবি:** এটি একটি অপারেশন শুরু হওয়ার আগে প্রমিসের প্রাথমিক অবস্থা।
+    2. **পূর্ণকৃত:** এই অবস্থা প্রমিসে নির্দিষ্ট অপারেশনটি সম্পন্ন হয়েছে তা নির্দেশ করে।
+    3. **প্রতিকূল:** এই অবস্থা প্রমিস নির্দিষ্ট অপারেশনটি সম্পন্ন হয়নি বলে। এই ক্ষেত্রে একটি ত্রুটির মান ফেলা হবে।
 
 54. ### What is a callback function
 
@@ -2895,6 +2968,27 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### ক্যালব্যাক ফাংশন
+
+    একটি ক্যালব্যাক ফাংশন হলো একটি ফাংশন যা আরেকটি ফাংশনে একটি আর্গুমেন্ট হিসেবে পাঠানো হয়। এই ফাংশনটি বাইরের ফাংশনের মধ্যে আমল সম্পন্ন করতে এই ফাংশনটি চালানো হয়।
+    এটি কিভাবে একটি ক্যালব্যাক ফাংশন ব্যবহার করতে হয় তা দেখার জন্য একটি সাধারিত উদাহরণ নেয়া হয়েছে।
+
+    ```javascript
+    function callbackFunction(name) {
+      console.log("Hello " + name);
+    }
+
+    function outerFunction(callback) {
+      let name = prompt("Please enter your name.");
+      callback(name);
+    }
+
+    outerFunction(callbackFunction);
+    ```
+
+    **[⬆ উপরে ফিরুন](#table-of-contents)** বাংলায় লিখে দিন প্লিজ । README.md এ তা যোগ করতে হবে, তাই README.md কোড রূপে লিখে দিন প্লিজ ।
+    
+লক্ষ্যঃ উদাহরণের জন্য প্রয়োজন নেই
 
 55. ### Why do we need callbacks
 
@@ -2922,6 +3016,34 @@ if (typeof Worker !== "undefined") {
     As observed from the output, javascript didn't wait for the response of the first function and the remaining code block got executed. So callbacks are used in a way to make sure that certain code doesn’t execute until the other code finishes execution.
 
     **[⬆ Back to Top](#table-of-contents)**
+    ### কেন আমাদের ক্যালব্যাক প্রয়োজন
+
+    ক্যালব্যাকগুলি প্রয়োজন কারণ JavaScript একটি ইভেন্ট ড্রাইভেন ভাষা। এটা মানে হয় যে, জবাব প্রাপ্তির জন্য অপেক্ষা করার পরিস্থিতি না, JavaScript অন্যান্য ইভেন্টের জন্য শ্রবণ করবে।
+    প্রথম ফাংশনে API কল করা হচ্ছে (setTimeout দ্বারা সিমিউলেট করা হয়েছে) এবং পরবর্তী ফাংশনটি যা মেসেজ লগ করে তা দেখাতে একটি উদাহরণ নিন।
+
+    ```javascript
+    function firstFunction() {
+      // একটি কোড বিলম্ব সহন করতে সিমিউলেট করুন
+      setTimeout(function () {
+        console.log("First function called");
+      }, 1000);
+    }
+    function secondFunction() {
+      console.log("Second function called");
+    }
+    firstFunction();
+    secondFunction();
+
+    Output:
+    // Second function called
+    // First function called
+    ```
+
+    আউটপুট থেকে দেখা যায়, JavaScript প্রথম ফাংশনের জবাব প্রতীক্ষা করতেনি এবং অবশিষ্ট কোড ব্লকটি কার্যকর হয়েছিল। তাই ক্যালব্যাকগুলি ব্যবহৃত হয় এমনভাবে যাতে নির্দিষ্ট কোডটি অন্য কোড শেষ হওয়ার আগে চালাতে হয় না।
+
+    **[⬆ উপরে ফিরুন](#table-of-contents)** 
+
+
 
 56. ### What is a callback hell
 
@@ -2940,12 +3062,31 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### ক্যালব্যাক হেল
+
+    ক্যালব্যাক হেল হলো একটি অ্যান্টি-প্যাটার্ন যাতে একাধিক নেস্টেড ক্যালব্যাক থাকে, যা এসিঙ্ক্রোনাস লজিক সহ কাজ করতে সময় অপঠিত ও ডিবাগ করা কঠিন হয়। ক্যালব্যাক হেল নিম্নলিখিত মত দেখতে পারে,
+
+    ```javascript
+    async1(function(){
+        async2(function(){
+            async3(function(){
+                async4(function(){
+                    ....
+                });
+            });
+        });
+    });
+    ```
+
 
 57. ### What are server-sent events
 
     Server-sent events (SSE) is a server push technology enabling a browser to receive automatic updates from a server via HTTP connection without resorting to polling. These are a one way communications channel - events flow from server to client only. This has been used in Facebook/Twitter updates, stock price updates, news feeds etc.
 
     **[⬆ Back to Top](#table-of-contents)**
+### সার্ভার-সেন্ট ইভেন্টস
+
+    সার্ভার-সেন্ট ইভেন্টস (SSE) হলো একটি সার্ভার পুশ প্রযুক্তি, যা ব্রাউজারকে পোলিং ছাড়াই HTTP সংযোগের মাধ্যমে সার্ভার থেকে স্বয়ংক্রিয় আপডেট পাওয়ার সুযোগ দেয়। এটি একটি একদিকে যোগাযোগ চ্যানেল - ইভেন্টগুলি শুধুমাত্র সার্ভার থেকে ক্লায়েন্টে প্রবাহিত হয়। এটি ফেসবুক/টুইটার আপডেট, স্টক মূল্য আপডেট, নিউজ ফিড ইত্যাদি এইভাবে ব্যবহৃত হয়েছে।
 
 58. ### How do you receive server-sent event notifications
 
@@ -2961,6 +3102,21 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+    ### সার্ভার-সেন্ট ইভেন্ট বিজ্ঞপ্তি কীভাবে প্রাপ্ত করতে হয়
+
+    ইভেন্টসোর্স অবজেক্ট ব্যবহার করা হয় সার্ভার-সেন্ট ইভেন্ট বিজ্ঞপ্তি প্রাপ্ত করতে। উদাহরণস্বরূপ, আপনি নিম্নলিখিত মতে সার্ভার থেকে মেসেজ প্রাপ্ত করতে পারেন,
+
+    ```javascript
+    if (typeof EventSource !== "undefined") {
+      var source = new EventSource("sse_generator.js");
+      source.onmessage = function (event) {
+        document.getElementById("output").innerHTML += event.data + "<br>";
+      };
+    }
+    ```
+
+    **[⬆ উপরে ফিরুন](#table-of-contents)** 
+
 
 59. ### How do you check browser support for server-sent events
 
@@ -2975,6 +3131,19 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### ব্রাউজার সাপোর্ট চেক করা
+
+    সার্ভার-সেন্ট ইভেন্ট সাপোর্ট চেক করতে আপনি নিম্নলিখিত উপায়ে যাচাই করতে পারেন:
+
+    ```javascript
+    if (typeof EventSource !== "undefined") {
+      // সার্ভার-সেন্ট ইভেন্ট সাপোর্ট করে
+      // আপনি এখানে সার্ভার-সেন্ট ইভেন্ট সম্পর্কিত অতিরিক্ত কোড যোগ করতে পারেন
+    } else {
+      // সার্ভার-সেন্ট ইভেন্ট সাপোর্ট করে না
+      // এখানে যদি সার্ভার-সেন্ট ইভেন্ট সাপোর্ট না করলে একটি আপডেট বা বার্তা দেখাতে অন্য অ্যাপ্রোচ নিতে পারেন
+    }
+    ```
 
 60. ### What are the events available for server sent events
 
@@ -2986,7 +3155,16 @@ if (typeof Worker !== "undefined") {
     | onerror | It happens when an error occurs|
 
     **[⬆ Back to Top](#table-of-contents)**
+### সার্ভার সেন্ট ইভেন্টস জন্য পৌরাণিক ইভেন্টগুলি
 
+    নীচে সার্ভার-সেন্ট ইভেন্টস জন্য পৌরাণিক ইভেন্টগুলির তালিকা রয়েছে:
+    | ইভেন্ট | বর্ণনা |
+    |---- | ---------
+    | onopen | এটি ব্যবহৃত হয় যখন সার্ভারের সাথে একটি সংযোগ খোলা হয় |
+    | onmessage | এই ইভেন্টটি ব্যবহৃত হয় যখন একটি মেসেজ প্রাপ্ত হয় |
+    | onerror | এটি একটি ত্রুটি ঘটলে ঘটয়|
+
+    
 61. ### What are the main rules of promise
 
     A promise must follow a specific set of rules:
@@ -2997,6 +3175,16 @@ if (typeof Worker !== "undefined") {
     4. Once a promise is settled, the value must not change.
 
     **[⬆ Back to Top](#table-of-contents)**
+
+    ### প্রমিসের প্রধান নিয়ম
+
+    একটি প্রমিস একটি নির্দিষ্ট সেটের নিয়ম অনুসরণ করতে হবে:
+
+    1. একটি প্রমিস হলো একটি অবজেক্ট যা একটি মানক-সংগত `.then()` মেথড সরবরাহ করে
+    2. একটি মুলতুবি প্রমিস পূর্ণ বা প্রতিকূল অবস্থায় প্রবর্তন করতে পারে
+    3. একটি পূর্ণ বা প্রতিকূল প্রমিস সেটল হয়ে যাওয়া এবং এটি অন্য কোনও অবস্থায় প্রবর্তন করতে পারবে না।
+    4. একবার একটি প্রমিস সেটল হলে, মানটি পরিবর্তন হবে না।
+
 
 62. ### What is callback in callback
 
@@ -3018,6 +3206,30 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### কলব্যাক ইন কলব্যাক
+
+    "কলব্যাক ইন কলব্যাক" হলো একটি কলব্যাক ফাংশন, যা আরেকটি কলব্যাক ফাংশনকে আর্গুমেন্ট হিসেবে নেয়। এই ফাংশনটি অন্য ফাংশনের মধ্যে আবদ্ধ হয় এবং তার একটি কাজ সম্পন্ন করতে এই ফাংশনটি কল হয়।
+
+    উদাহরণ:
+
+    ```javascript
+    function outerCallback(callback) {
+      console.log("Outer Callback Start");
+      
+      callback(function innerCallback() {
+        console.log("Inner Callback");
+      });
+      
+      console.log("Outer Callback End");
+    }
+
+    outerCallback(function(callback) {
+      console.log("Callback Function");
+      callback();
+    });
+    ```
+
+    উপরের উদাহরণে, "outerCallback" একটি কলব্যাক ফাংশন এবং এটি "innerCallback" নামক অন্য কলব্যাক ফাংশনকে আর্গুমেন্ট হিসেবে নেয়। "outerCallback" কল হলে এটি "innerCallback" কল করতে পারে এবং তার কাজ সম্পন্ন করতে পারে।
 
 63. ### What is promise chaining
 
@@ -3049,6 +3261,15 @@ if (typeof Worker !== "undefined") {
     4. Finally the value passed to the last `.then` handler by logging the result(6) and return a promise with result \* 4.
 
     **[⬆ Back to Top](#table-of-contents)**
+### প্রমিস চেইনিং
+
+    প্রমিস চেইনিং হলো প্রমিস ব্যবহার করে একটি ক্রমাগত একাধিক অসমস্যাসমূহ সমাধান করার প্রক্রিয়া। এটির একটি উদাহরণ দেখানো হলো ফলাফল হিসেবে প্রমিস চেইনিং করার জন্য,
+
+  ## উপরের হ্যান্ডলারগুলিতে, ফলাফলটি চেইন অব .then() হ্যান্ডলারগুলিতে পাস করা হয় নিচের কাজ প্রক্রিয়ায়,
+
+    1. আসল প্রমিসটি 1 সেকেন্ডে সমাধান হয়,
+    2. এরপর এটি `.then` হ্যান্ডলারটি কল হয় এবং ফলাফল(1) লগ করে এবং তারপরে একটি মৌলিক ফলাফল \* 2 এর মান দিয়ে একটি প্রমিস রিটার্ন করে।
+    3. এরপর এটি পরবর্তী `.then` হ্যান্ডলারে পাস করা হয় এবং ফলাফল(2) লগ করে এবং তারপরে একটি প্রমিস রিটার্ন করে যাতে ফলাফল \* 3 হয়।
 
 64. ### What is promise.all
 
@@ -3061,6 +3282,24 @@ if (typeof Worker !== "undefined") {
     **Note:** Remember that the order of the promises(output the result) is maintained as per input order.
 
     **[⬆ Back to Top](#table-of-contents)**
+**Promise.all** একটি প্রমিস মেথড যা একই সাথে একাধিক প্রমিস অবজেক্টের একটি অ্যারেকে এক একটি সম্পন্ন করে। এটি প্রমিসগুলি প্রদান করা একটি প্রমিস প্রদান করে যা অনেক প্রমিস সম্পন্ন হলে সম্পন্ন হয় এবং এই সম্পন্ন প্রমিসে সম্ভাব্য সব প্রমিসগুলির ফলাফলের একটি অ্যারে দেয়।
+```javascript
+const promise1 = new Promise((resolve) => setTimeout(() => resolve('One'), 1000));
+const promise2 = new Promise((resolve) => setTimeout(() => resolve('Two'), 2000));
+const promise3 = new Promise((resolve) => setTimeout(() => resolve('Three'), 3000));
+
+const allPromises = Promise.all([promise1, promise2, promise3]);
+
+allPromises
+  .then((results) => {
+    console.log('All promises resolved:', results);
+  })
+  .catch((error) => {
+    console.error('An error occurred:', error);
+  });
+
+```
+এই কোডে, Promise.all ব্যবহার করা হয়েছে তিনটি প্রমিসের একটি অ্যারে সম্পন্ন করতে। যখন সব প্রমিস সম্পন্ন হয়, তাদের সব ফলাফলের একটি অ্যারে তৈরি হয় এবং সেটি হ্যান্ডল করতে then ব্যবহৃত হয়।
 
 65. ### What is the purpose of the race method in promise
 
@@ -3080,18 +3319,74 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+**Promise.race**
+ একটি প্রমিস মেথড যা একই সাথে একাধিক প্রমিস অবজেক্টের একটি অ্যারেকে সম্পন্ন করে এবং প্রথম সম্পন্ন হয়ে গেলা প্রমিসটি দ্বারা প্রদান করা হয়। যদি সম্পন্ন হওয়া প্রমিস অ্যারের মধ্যে কোনও একটি প্রমিস হয়, তবে সে প্রমিসটির ফলাফল বা কারণের সাথে সম্পন্ন হয়।
+```javascript
+const promise1 = new Promise((resolve) => setTimeout(() => resolve('One'), 1000));
+const promise2 = new Promise((resolve) => setTimeout(() => resolve('Two'), 2000));
+const promise3 = new Promise((resolve) => setTimeout(() => resolve('Three'), 3000));
+
+const racePromises = Promise.race([promise1, promise2, promise3]);
+
+racePromises
+  .then((result) => {
+    console.log('The first promise resolved:', result);
+  })
+  .catch((error) => {
+    console.error('An error occurred:', error);
+  });
+```
+ এই কোডে, Promise.race ব্যবহার করা হয়েছে তিনটি প্রমিসের একটি অ্যারে সম্পন্ন করতে। যখন একটি প্রমিস সম্পন্ন হয়, তাদের মধ্যে প্রথম সম্পন্ন হয়ে গেলা প্রমিসটির ফলাফল এবং এটি then মেথডের মাধ্যমে হ্যান্ডল করা হয়।
 
 66. ### What is a strict mode in javascript
 
     Strict Mode is a new feature in ECMAScript 5 that allows you to place a program, or a function, in a “strict” operating context. This way it prevents certain actions from being taken and throws more exceptions. The literal expression `"use strict";` instructs the browser to use the javascript code in the Strict mode.
 
     **[⬆ Back to Top](#table-of-contents)**
+### জাভাস্ক্রিপ্টে স্ট্রিক্ট মোড কি
+
+    স্ট্রিক্ট মোড হলো জাভাস্ক্রিপ্টের একটি একগুচ্ত বৈশিষ্ট্য, যা কোডে স্ট্রিক্ট মোড চালু করে। এটি কোড লেখার একটি সজীব পদক্ষেপ যা কিছু জনপ্রিয় কোডিং গোত্রের কোড ভুল দূর করতে সাহায্য করে এবং কিছু অম্বোহীন কোড জটিলতা দূর করতে সাহায্য করে।
+
+    স্ট্রিক্ট মোড চালু করতে আপনি কোডের শীর্ষে "use strict" স্টেটমেন্টটি যোগ করতে পারেন। উদাহরণ:
+
+    ```javascript
+    "use strict";
+
+    // এখানে আপনার জাভাস্ক্রিপ্ট কোড থামাতে হবে
+    ```
+
+    স্ট্রিক্ট মোড চালু হলে, কোডটি একটি বিশেষ স্কোপে চলতে থাকবে এবং কিছু প্রযুক্তি বা পদ্ধতি এর ব্যবহার করা হতে থাকবে না যেগুলি স্ট্রিক্ট মোডে সমর্থিত নয়। এটি ভুলের ধরণে কিছু ফ্রিকোয়েন্সি পূর্ণ ভুলগুলি ফাঁকা করতে সাহায্য করতে পারে এবং কোড গুলি প্রাথমিক মোডের তুলনায় একটি স্ট্রিক্ট মোডে সুধারিত করতে সাহায্য করতে পারে।
 
 67. ### Why do you need strict mode
 
     Strict mode is useful to write "secure" JavaScript by notifying "bad syntax" into real errors. For example, it eliminates accidentally creating a global variable by throwing an error and also throws an error for assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object.
 
     **[⬆ Back to Top](#table-of-contents)**
+
+# Strict Mode এর উদ্দেশ্য
+
+Strict Mode হলো একটি জাভাস্ক্রিপ্ট ফিচার যা দেবেলপারদের জন্য একটি উপকারী মোড। এটি ব্যবহার করা হয় ভুল থেকে নিরাপদে কোড লেখার জন্য এবং প্রোগ্রামিং ভুল গুলি প্রস্তুত করা হতে সাহায্য করে। এটি কিছু ভুলের কারণে নাম্বার, অবজেক্ট, ফাংশন ইত্যাদি সঠিকভাবে ব্যবহার করতে সাহায্য করে এবং কোডে প্রয়োজনীয় স্ট্রিক্ট রূপের ফর্ম্যাটিং অধিক চেক করে। এটি শুধুমাত্র ডেভেলপমেন্ট প্রোসেসে ব্যবহার করা হয় এবং প্রোডাকশন এনভায়রনমেন্টে এটি দিয়ে কোড পরিচালনা করা হয় না।
+
+**উদাহরণ:**
+
+```javascript
+"use strict";
+
+// এই কোডটি Strict Mode এর অধীনে নেই
+
+x = 10; // এটি ভুল, ভ্যারিয়েবল ডিক্লেয়ার করা হয়নি
+console.log(x);
+
+function myFunction() {
+  "use strict";
+  y = 20; // এটি ভুল, ভ্যারিয়েবল ডিক্লেয়ার করা হয়নি
+  console.log(y);
+}
+
+myFunction();
+```
+এই উদাহরণে, "use strict"; দ্বারা জাভাস্ক্রিপ্ট কোডটি Strict Mode এ চলতে বলানো হয়েছে। এবং এর ফলে ভুল ভুল ব্যবহারের ক্ষেত্রে সঠিক ভাবে ভুল তৈরি হয় এবং কোড রান করার সময় এরর প্রদর্শন হয়।
+
 
 68. ### How do you declare strict mode
 
@@ -3116,6 +3411,18 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### স্ট্রিক্ট মোড ঘোষণা
+
+জাভাস্ক্রিপ্টে স্ট্রিক্ট মোড চালু করতে, আপনি কোডের শীর্ষে "use strict" স্টেটমেন্টটি যোগ করতে পারেন। এটি একটি স্ক্রিপ্ট ফাইলের সৃষ্টির একটি অংশ হওয়া উচিত এবং এটি স্ক্রিপ্টের আবেগ অংশের পূর্বে থাকতে হবে।
+
+উদাহরণ:
+
+```javascript
+"use strict";
+
+// এখানে আপনার জাভাস্ক্রিপ্ট কোড থামাতে হবে
+```
+স্ট্রিক্ট মোড চালু করলে, এটি কোডের একটি বিশেষ স্কোপে চলতে থাকবে এবং কিছু প্রযুক্তি বা পদ্ধতি এর ব্যবহার করা হবে না যেগুলি স্ট্রিক্ট মোডে সমর্থিত নয়। এটি ভুলের ধরণে কিছু ফ্রিকোয়েন্সি পূর্ণ ভুলগুলি ফাঁকা করতে সাহায্য করতে পারে এবং কোড গুলি প্রাথমিক মোডের তুলনায় একটি স্ট্রিক্ট মোডে সুধারিত করতে সাহায্য করতে পারে।
 
 69. ### What is the purpose of double exclamation
 
@@ -3137,6 +3444,23 @@ if (typeof Worker !== "undefined") {
     **Note:** The expression !! is not an operator, but it is just twice of ! operator.
 
     **[⬆ Back to Top](#table-of-contents)**
+### ডবল এক্সক্লেমেশন এর উদ্দেশ্য
+
+জাভাস্ক্রিপ্টে, ডবল এক্সক্লেমেশন একটি বুলিয়ান মান তৈরি করতে ব্যবহৃত হয়। এটি মৌলিকভাবে একটি ভ্যালুকে বুলিয়ান মানে পরিণত করে।
+
+উদাহরণ:
+
+```javascript
+let value = "true";
+
+// ডবল এক্সক্লেমেশন ব্যবহার করে মানটি বুলিয়ান ভ্যালুতে পরিণত করা
+let booleanValue = !!value;
+
+console.log(booleanValue); // true
+```
+উপরের উদাহরণে, ভ্যালু "true" স্ট্রিং আছে, কিন্তু ডবল এক্সক্লেমেশন ব্যবহার করে সেটি সত্যিকারে বুলিয়ান ভ্যালু "true" হিসেবে প্রকাশ পায়।
+
+এটি একটি সাধারিত বুলিয়ান কনভার্টার হিসেবে ব্যবহৃত হয় এবং সময়ের সাথে এটি কোড পঠনে প্রকৃত বুলিয়ান ভ্যালু হিসেবে বুঝা হয়।
 
 70. ### What is the purpose of the delete operator
 
@@ -3150,6 +3474,33 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### ডিলিট অপারেটরের উদ্দেশ্য
+
+জাভাস্ক্রিপ্টে, ডিলিট অপারেটরটি একটি অবজেক্ট থেকে একটি প্রপার্টি অথবা একটি ইণ্ডেক্স মুছে ফেলতে ব্যবহৃত হয়। এটি একটি অবজেক্ট থেকে কোন প্রপার্টি মুছে ফেলতে বা একটি অ্যারে থেকে একটি ইণ্ডেক্স মুছে ফেলতে ব্যবহৃত হতে পারে। এটি একটি অবজেক্ট থেকে একটি প্রপার্টি বা একটি ইণ্ডেক্স মুছে ফেললে সেই অবজেক্টের কাছে সেই প্রপার্টি বা ইণ্ডেক্সটি অস্তিত্ব থাকবে না।
+
+উদাহরণ:
+
+```javascript
+let person = {
+  name: "John",
+  age: 30,
+  address: {
+    city: "New York",
+    zip: "10001"
+  }
+};
+
+// অবজেক্ট থেকে একটি প্রপার্টি মুছে ফেলতে ডিলিট অপারেটর ব্যবহার
+delete person.age;
+
+console.log(person.age); // undefined
+
+// এবং একটি উপপ্রপার্টি মুছে ফেলতেও ব্যবহার করা যায়
+delete person.address.zip;
+
+console.log(person.address.zip); // undefined
+```
+উপরের উদাহরণে, ডিলিট অপারেটরটি ব্যবহার করে অবজেক্ট থেকে "age" প্রপার্টি এবং "address" অবজেক্টের "zip" প্রপার্টি মুছে ফেলা হয়েছে।
 
 71. ### What is typeof operator
 
@@ -3162,6 +3513,30 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### typeof অপারেটর
+
+জাভাস্ক্রিপ্টে, `typeof` অপারেটরটি কোনও ভ্যালুর ডেটা টাইপ জানতে ব্যবহৃত হয়। এটি একটি ইউনারি অপারেটর, অর্থাৎ এটি একই সময়ে একটি অপারেন্ড নেয়।
+
+উদাহরণ:
+
+```javascript
+let stringValue = "Hello";
+let numberValue = 42;
+let booleanValue = true;
+let arrayValue = [1, 2, 3];
+let objectValue = { key: "value" };
+let functionValue = function () {
+  console.log("Hello, World!");
+};
+
+console.log(typeof stringValue); // "string"
+console.log(typeof numberValue); // "number"
+console.log(typeof booleanValue); // "boolean"
+console.log(typeof arrayValue); // "object"
+console.log(typeof objectValue); // "object"
+console.log(typeof functionValue); // "function"
+```
+উপরের উদাহরণে, typeof অপারেটরটি ব্যবহৃত হয়েছে যাতে একটি ভ্যালুর ডেটা টাইপ জানা যায়। স্ট্রিং, নাম্বার, বুলিয়ান, অ্যারে, অবজেক্ট, এবং ফাংশনের ডেটা টাইপ জানতে এটি ব্যবহৃত হয়েছে।
 
 72. ### What is undefined property
 
@@ -3179,6 +3554,22 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### অপরিভাষ্য প্রপার্টি
+
+জাভাস্ক্রিপ্টে, "অপরিভাষ্য" (undefined) হলো এমন একটি ভ্যালু যা যদি কোন ভ্যারিয়েবল বা অবজেক্টের প্রপার্টির মান অথবা ভ্যারিয়েবল নির্ধারণ না করা থাকে, অথবা কোন ফাংশন থেকে কোন রিটার্ন স্টেটমেন্ট না থাকলে তার মান "অপরিভাষ্য" হয়ে যায়।
+উদাহরণ:
+
+```javascript
+let person = {
+  name: "John",
+  age: 30
+};
+```
+console.log(person.name); // "John"
+console.log(person.address); // undefined
+উপরের উদাহরণে, person অবজেক্টে প্রপার্টি name সত্যিক এবং এর মান "John"। কিন্তু প্রপার্টি address অস্তিত্ব না থাকার জন্য এটি undefined।
+
+অবজেক্টে একটি প্রপার্টির মান সেট না করা বা প্রপার্টি নির্ধারিত না করা হলে সেই প্রপার্টি undefined হয়ে থাকে।
 
 73. ### What is null value
 
@@ -3191,6 +3582,37 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+# নাল মান
+
+নাল একটি জাভাস্ক্রিপ্ট প্রিমিটিভ ডেটা টাইপ, যা একটি মূল অবস্থা সংকেত করে যা কোনও মূল্য বা মান অস্তিত্ব করেনি এবং এটি নির্দিষ্ট না থাকলে এটির ডিফল্ট মান। এটি ডিভেলপারদের কোডে একটি মূল্য কিংবা অবস্থা নির্দেশ করার জন্য ব্যবহৃত হয়, এবং কোডে কোনও মূল্য বা অবস্থা নেই বলতে হলে নাল মানটি ব্যবহার করা হয়।
+
+**উদাহরণ:**
+
+```javascript
+// একটি ভেরিয়েবলে নাল মান রাখা
+let myVariable = null;
+
+// একটি অবজেক্ট প্রপার্টি যদি নাল হয়
+let person = {
+  name: 'John',
+  age: null,
+};
+
+// একটি ফাংশন যদি কোনও মূল্য ফেরত না দেয়
+function myFunction() {
+  // কোনও রিটার্ন নেই, অতএব এটি undefined হবে
+}
+
+// নাল অবস্থা নির্দিষ্ট করার জন্য
+let status = null;
+
+if (status === null) {
+  console.log('অবস্থা নির্দিষ্ট হয়নি');
+} else {
+  console.log('অবস্থা নির্দিষ্ট হয়েছে');
+}
+```
+এই উদাহরণগুলির মাধ্যমে নাল মানের ব্যবহার দেখানো হয়েছে। এটি অনেকবার একটি ভেরিয়েবল বা অবজেক্ট প্রপার্টির মূল্য অস্তিত্ব করতে এবং কোনও মূল্য নেই বলতে বা অবস্থা নির্দিষ্ট করতে ব্যবহৃত হয়।
 
 74. ### What is the difference between null and undefined
 
@@ -3206,6 +3628,21 @@ if (typeof Worker !== "undefined") {
 
     **[⬆ Back to Top](#table-of-contents)**
 
+### নাল এবং অপরিভাষ্য এর পার্থক্য
+
+নীচে নাল এবং অপরিভাষ্যের প্রধান পার্থক্য দেওয়া হলঃ
+
+| নাল                                                                                          | অপরিভাষ্য                                                                                                   |
+| --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| এটি একটি অ্যাসাইনমেন্ট ভ্যালু যা প্রমাণ করে যে একটি ভ্যারিয়েবল কোন অবজেক্টে পয়েন্ট করেনি।        | এটি একটি অ্যাসাইনমেন্ট ভ্যালু না যে একটি ভ্যারিয়েবল ডিক্লেয়ার হয়েছে কিন্তু এখনও কোনো মান নাই।               |
+| নালের ধরন হলো অবজেক্ট                                                                    | অপরিভাষ্যের ধরন হলো অপরিভাষ্য                                                                           |
+| নাল মানটি একটি প্রাথমিক মান যা নাল, খালি, অথবা অস্তিত্ব নেই রেফারেন্স প্রদান করে।    | অপরিভাষ্য মানটি একটি প্রাথমিক মান, যা একটি ভ্যারিয়েবলে কোনো মান অ্যাসাইন হয়নি তখন ব্যবহৃত হয়।                  |
+| একটি ভ্যারিয়েবলের জন্য মান অস্তিত্ব না দেখানোর জন্য ব্যবহৃত হয়।                        | একটি ভ্যারিয়েবল অস্তিত্ব না দেখানোর জন্য ব্যবহৃত হয়।                                                |
+| সোজা ভাষায়, একটি ভ্যারিয়েবলে মান নেই দেখাতে ব্যবহৃত হয়।                            | ভ্যারিয়েবল ইতিমধ্যে ডিক্লেয়ার হয়েছে কিন্তু এখনো কোনো মান অ্যাসাইন হয়নি দেখাতে ব্যবহৃত হয়।                     |
+| প্রাথমিক অপারেশন সময় সময় এটি শূন্য (0) এ রূপান্তর হয়।                            | প্রাথমিক অপারেশনে সময় সময় এটি NaN (Not a Number) এ রূপান্তর হয়।                                       |
+
+**[⬆ উপরে ফিরুন](#table-of-contents)** 
+
 75. ### What is eval
 
     The eval() function evaluates JavaScript code represented as a string. The string can be a JavaScript expression, variable, statement, or sequence of statements.
@@ -3215,6 +3652,13 @@ if (typeof Worker !== "undefined") {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### eval কি
+
+`eval()` ফাংশনটি জাভাস্ক্রিপ্ট কোডকে একটি স্ট্রিং হিসেবে প্রতিষ্ঠান করে। স্ট্রিংটি একটি জাভাস্ক্রিপ্ট এক্সপ্রেশন, ভ্যারিয়েবল, স্টেটমেন্ট, বা স্টেটমেন্টের সিকোয়েন্স হতে পারে।
+
+```javascript
+console.log(eval("1 + 2")); //  3
+```
 
 76. ### What is the difference between window and document
 
@@ -3227,6 +3671,18 @@ if (typeof Worker !== "undefined") {
     | It has methods like alert(), confirm() and properties like document, location | It provides methods like getElementById, getElementsByTagName, createElement etc              |
 
     **[⬆ Back to Top](#table-of-contents)**
+### window এবং document এর পার্থক্য
+
+নীচে window এবং document এর প্রধান পার্থক্য দেওয়া হলঃ
+
+| Window                                                                                         | Document                                                                                                      |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| এটি প্রতিটি ওয়েব পেজের রুট লেভেলের একটি উপাদান।                                     | এটি উইন্ডো অবজেক্টের ডিরেক্ট চাইল্ড। এটিও ডকুমেন্ট অবজেক্ট মডেল (Document Object Model - DOM) হিসেবে পরিচিত। |
+| ডিফল্টভাবে ওয়িন্ডো অবজেক্ট পৃষ্ঠায় স্বয়ংক্রিয়ভাবে উপস্থিত থাকে।                    | আপনি এটি window.document বা শুধুমাত্র document দ্বারা অ্যাকসেস করতে পারেন।                            |
+| এর মেথড হলো alert(), confirm() এবং প্রপার্টি হলো document, location                  | এর মেথড হলো getElementById, getElementsByTagName, createElement ইত্যাদি।                                  |
+
+**[⬆ উপরে ফিরুন](#table-of-contents)** 
+
 
 77. ### How do you access history in javascript
 
@@ -3244,6 +3700,25 @@ if (typeof Worker !== "undefined") {
     **Note:** You can also access history without window prefix.
 
     **[⬆ Back to Top](#table-of-contents)**
+### জাভাস্ক্রিপ্টে হিস্টোরি এক্সেস করার পদ্ধতি
+
+জাভাস্ক্রিপ্টে, হিস্টোরি এক্সেস করার জন্য আপনি `window.history` অবজেক্ট বা শুধুমাত্র `history` অবজেক্ট ব্যবহার করতে পারেন। এটি ব্রাউজার হিস্টোরি ম্যানেজমেন্ট করে এবং পৃষ্ঠার নেভিগেশন রেকর্ড করে।
+
+উদাহরণ:
+
+```javascript
+// ব্রাউজারে একটি নতুন পৃষ্ঠা যোগ করতে
+window.history.pushState({}, "Page Title", "/new-page");
+
+// হিস্টোরি পরিবর্তনের ইভেন্ট শোনার জন্য
+window.addEventListener("popstate", function(event) {
+  console.log("হিস্টোরি পরিবর্তন:", event.state);
+});
+
+// ব্যবহারকারীকে পূর্বের পৃষ্ঠায় ফিরতে
+window.history.back();
+```
+এই কোডে, pushState দিয়ে নতুন পৃষ্ঠা যোগ করা হয়েছে এবং ব্যবহারকারী হিস্টোরি নেভিগেট করতে পারেন। popstate ইভেন্ট হ্যান্ডলার ব্যবহার করে আপনি ব্যবহারকারীর হিস্টোরি নেভিগেট এর ইভেন্ট টি শোনতে পারেন।
 
 78. ### How do you detect caps lock key turned on or not
 
