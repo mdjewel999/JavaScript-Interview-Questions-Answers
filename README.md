@@ -2204,11 +2204,115 @@ request.onerror = (event) => {
 
     **[⬆ Back to Top](#table-of-contents)**
 
+
+## Web Storage কি
+ওয়েব স্টোরেজ হলো ব্রাউজারের লোকাল স্টোরেজে ডেটা সংরক্ষণের জন্য একটি সাধারিত এবং সোজাসুজি উপায়। এটি অ্যাসিনক্রোনাসলি কাজ করে এবং ছোট ভাড়ে ডেটা সংরক্ষণ করতে ব্যবহার হয়।
+
+## Web Storage এ দুইটি ধরনের স্টোরেজ থাকে:
+**localStorage:** এটি সেশন শেষ হওয়ার পরেও ডেটা সংরক্ষণ করতে ব্যবহার হয়, এবং এটি একটি স্থায়ী স্টোরেজ। ব্রাউজার বন্ধ হলেও এটি ডেটা রাখতে থাকে এবং এটি একই ডোমেইনের সকল পৃষ্ঠায় অ্যাক্সেস করা যায়।
+
+**sessionStorage:** এটি সেশন শেষ হওয়ার পরে ডেটা মুছে ফেলা হয়, অর্থাৎ সেশনের সময় মাত্র ডেটা সংরক্ষণ করতে ব্যবহার হয়। সেশন সমাপ্ত হলে সব ডেটা মুছে ফেলা হয়।
+
+## Web Storage ব্যবহার:
+Web Storage ব্যবহার করতে, আপনার জাভাস্ক্রিপ্ট কোডে মেথড ব্যবহার করুন:
+
+## localStorage ব্যবহার:
+```javaScript
+// ডেটা সংরক্ষণ করুন
+localStorage.setItem('key', 'value');
+
+// ডেটা পোস্ট করা
+const storedValue = localStorage.getItem('key');
+console.log(storedValue); // "value"
+
+// কোন কী মুছে ফেলা
+localStorage.removeItem('key');
+
+// সকল কী এবং মানের তালিকা
+for (let i = 0; i < localStorage.length; i++) {
+  const key = localStorage.key(i);
+  const value = localStorage.getItem(key);
+  console.log(`${key}: ${value}`);
+}
+
+```
+## sessionStorage ব্যবহার:
+```javaScript
+// ডেটা সংরক্ষণ করুন
+sessionStorage.setItem('key', 'value');
+
+// ডেটা পোস্ট করা
+const storedValue = sessionStorage.getItem('key');
+console.log(storedValue); // "value"
+
+// কোন কী মুছে ফেলা
+sessionStorage.removeItem('key');
+
+// সকল কী এবং মানের তালিকা
+for (let i = 0; i < sessionStorage.length; i++) {
+  const key = sessionStorage.key(i);
+  const value = sessionStorage.getItem(key);
+  console.log(`${key}: ${value}`);
+}
+
+```
+এই উদাহরণগুলি দেখায় যে, আপনি setItem, getItem, removeItem এবং সাধারিত জাভাস্ক্রিপ্ট মেথড ব্যবহার করে ডেটা সংরক্ষণ করতে এবং পোস্ট করতে পারেন। এছাড়াও, একই ডোমেইনের সকল পৃষ্ঠায় অ্যাক্সেস করতে পারেন।
+
 36. ### What is a post message
 
     Post message is a method that enables cross-origin communication between Window objects.(i.e, between a page and a pop-up that it spawned, or between a page and an iframe embedded within it). Generally, scripts on different pages are allowed to access each other if and only if the pages follow same-origin policy(i.e, pages share the same protocol, port number, and host).
 
     **[⬆ Back to Top](#table-of-contents)**
+
+## পোস্ট মেসেজ কি
+পোস্ট মেসেজ একটি ওয়েব পেজ থেকে অন্য একটি পেজে ডেটা প্রেরণ করতে ব্রাউজারের মধ্যে একটি মেথড। এটি একটি কমপ্লেক্স এবং পোস্টম্যান কমিউনিকেশন সিস্টেম সাধারিত করে এবং এটি একটি সিম্পল এবং সুরক্ষিত ভাবে একটি ডোমেইনের মধ্যে এবং একটি ডোমেইনের বাইরে ডেটা প্রেরণ করতে সাহায্য করে।
+
+## একটি পোস্ট মেসেজ প্রেরণ করা:
+```javaScript
+// প্রেরণ করতে
+const targetWindow = window.open('https://example.com', '_blank');
+targetWindow.postMessage('Hello, how are you?', 'https://example.com');
+
+```
+## মেসেজ রিসিভ করা:
+```javaScript
+// মেসেজ প্রাপ্ত করতে
+window.addEventListener('message', (event) => {
+  if (event.origin === 'https://example.com') {
+    console.log('Received message:', event.data);
+  }
+});
+
+```
+এখানে, postMessage মেথডটি ডেটা প্রেরণ করতে এবং message ইভেন্টটি মেসেজ রিসিভ করতে ব্যবহৃত হয়েছে। মেসেজ প্রেরণকারী পেজের অরিজিন যাচাই করার জন্য, আমরা event.origin ব্যবহার করেছি।
+
+অবশ্যই মনে রাখবেন: পোস্ট মেসেজ সুরক্ষিতভাবে ব্যবহৃত করা গুরুত্বপূর্ণ। অন্যান্য অনুমতির বিচারে প্রবেশ করার পরিস্থিতিতে ক্রিয়া করার জন্য সুরক্ষার জন্য ডোমেইনের জন্য সতর্ক থাকতে গুরুত্বপূর্ণ।
+
+## মেমোরাইজেশন কি
+মেমোরাইজেশন হলো একটি প্রোসেস যেখানে একটি ফাংশন একবার ক্যাল করা হলে তার আউটপুট কেবল মেমোরি তার ক্যাচে রাখে, যাতে একই ইনপুটের জন্য পুনরাবৃত্তি হলে পুনরাবৃত্তি না হওয়ার জন্য সময় ও কমায়।
+
+মেমোরাইজেশনের সাধারিত ধারাবাহিক ব্যবহার হয় ডাইনামিক প্রোগ্রামিং সমস্যার সলিউশনে, যেখানে একই সাবপ্রবলেমের সমাধান পুনরাবৃত্তি হয় বারবার এবং এটি ইনপুটের জন্য একই আউটপুট প্রদান করে।
+
+এটি উদাহরণ হিসেবে একটি ফিবোনাচি সংখ্যা নির্ণয় করতে একটি মেমোরাইজেশন ফাংশন দেখানো যাক:
+```javascript
+function fibMemoization(n, memo = {}) {
+  if (n in memo) {
+    return memo[n];
+  }
+
+  if (n <= 1) {
+    return n;
+  }
+
+  memo[n] = fibMemoization(n - 1, memo) + fibMemoization(n - 2, memo);
+  return memo[n];
+}
+
+console.log(fibMemoization(5)); // Output: 5
+
+```
+এই ফাংশনে, আমরা memo অবজেক্ট ব্যবহার করে পূর্বের ক্যালকুলেটেড রেজাল্টগুলি স্টোর করে রাখছি। যদি একবার ক্যালকুলেট হয়ে থাকে তাদের পুনরাবৃত্তি না হওয়ার জন্য, এই রেজাল্টগুলি ব্যবহার করা হয়।
+
 
 37. ### What is a Cookie
 
@@ -2222,6 +2326,21 @@ request.onerror = (event) => {
     ![Screenshot](images/cookie.png)
 
     **[⬆ Back to Top](#table-of-contents)**
+## কুকি (Cookie)
+কুকি হলো সাধারিতঃ ছোট একটি টেক্সট ফাইল, যা ওয়েব ব্রাউজারের ওপেন একটি ওয়েবসাইট দ্বারা ক্লায়েন্টের সিস্টেমে সংরক্ষিত হয়। এটি প্রধানত ইউজারের স্টেট বা পূর্বের কাজের ডেটা সংরক্ষণ করতে ব্যবহৃত হয়।
+
+## একটি কুকি সাধারিত সহজ স্ট্রাকচার:
+```javascript
+name=value; expires=expiration_time; path=path; domain=domain_name; secure
+
+```
+name: কুকির নাম।
+value: কুকির মান।
+expires: কোথায় কুকি মেয়াদ পূর্ণ হবে তার সময়।
+path: কুকির প্রযুক্তিগত রাস্তা বা পথ সংজ্ঞান করে।
+domain: কুকির জন্য কোনও ডোমেইনের মান সংজ্ঞান করে।
+secure: সতর্কবাণী। এটি সতর্কবাণী সহ ব্যবহৃত হবে কোনও স্কিউর কানেকশনে মাধ্যমে কুকি প্রেরণ করার জন্য।
+
 
 38. ### Why do you need a Cookie
 
@@ -2231,6 +2350,23 @@ request.onerror = (event) => {
     2. Next time the user visits the page, the cookie remembers the user profile.
 
     **[⬆ Back to Top](#table-of-contents)**
+## কুকি (Cookie): কেন প্রয়োজন?
+কুকি (Cookie) হলো ওয়েব ডেভেলপমেন্ট এবং ব্রাউজিং এ একটি গুরুত্বপূর্ণ অংশ। এটির ব্যবহারের মূল উদ্দেশ্য হলো ওয়েবসাইট সাথে ব্যক্তিগত তথ্য সংরক্ষণ এবং একাধিক পেজে তথ্য বা পর্যাপ্ত স্থায়িতা প্রদান করা। কুকির কারণে একটি ব্যবক্তি একবার লগইন করলে তার লগইন অবস্থা বজায় থাকে এবং বিভিন্ন পৃষ্ঠাগুলি মধ্যে তার সংবাদ সারগুলি সংরক্ষণ থাকে।
+
+## কুকির উপকারিতা:
+লগইন স্থায়িতা: ব্যবক্তি একবার লগইন করলে কুকি তার লগইন অবস্থা সংরক্ষণ করে থাকে, যা ব্রাউজিং সেশন সাথে সংবদ্ধ থাকে।
+
+ব্যক্তিগত অভিজ্ঞতা সংরক্ষণ: ব্যবক্তিগত পছন্দ, ভাষা পছন্দ, বা আপনার ওয়েবসাইটে কোন ধরণের কাস্টমাইজেশন সংরক্ষণ করতে কুকি ব্যবহৃত হয়।
+
+স্থানীয় ডেটা সংরক্ষণ: কুকি স্থানীয় ডেটা সংরক্ষণের জন্য ব্যবহৃত হয়, যা ব্যবক্তি একটি সাইটে কী ধরনের কাজ করে তা সংরক্ষণ করতে ব্যবহৃত হয়।
+
+ট্র্যাকিং এবং বিশেষাধিকার সংরক্ষণ: একটি ব্যবহারকারী একই সাইটে পুনঃপুনঃ আসলে তার পূর্বের ক্রিয়াগুলি সংরক্ষণ করা যায়, যা কুকি ব্যবহৃত হয়।
+
+ট্র্যাকিং এবং বিশেষাধিকার সংরক্ষণ: একটি ব্যবহারকারী একই সাইটে পুনঃপুনঃ আসলে তার পূর্বের ক্রিয়াগুলি সংরক্ষণ করা যায়, যা কুকি ব্যবহৃত হয়।
+
+কুকির মাধ্যমে ব্যবহারকারীদের সাথে বেশি ব্যক্তিগতকর এবং অবসান্ন অভিজ্ঞতা তৈরি করা হয়, এবং এটি ওয়েব অ্যাপ্লিকেশন ডেভেলপারদের জন্য একটি শক্তিশালী সরঞ্জাম হিসেবে কাজ করে।
+
+উদাহরণ ছাড়া বাংলায় লিখতে পারি, আপনি কি চান তা জানালে এর মধ্যে কোনো স্পেসিফিক উদাহরণ সহ বুঝাতে পারি।
 
 39. ### What are the options in a cookie
 
@@ -2250,6 +2386,46 @@ request.onerror = (event) => {
 
     **[⬆ Back to Top](#table-of-contents)**
 
+
+## কুকির বিকল্পগুলি (Cookie Options)
+কুকি একটি ওয়েব ডেভেলপমেন্ট এবং ব্রাউজিং জন্য একটি গুরুত্বপূর্ণ উপাদান। এটির সাথে যোগান কিছু বিকল্পও থাকে যা কুকি সংরক্ষণ এবং ব্যবহারে ব্যবহৃত হয়:
+
+**Expires (মেয়াদ):** এটি কুকির মেয়াদ নির্ধারণ করে, অর্থাৎ কুকি কতক্ষণ পর্যন্ত সক্রিয় থাকবে। যদি এই বৈশিষ্ট্যটি সেট না করা হয় তবে কুকি সেশন কুকি হিসেবে কাজ করবে এবং ব্রাউজার সেশন শেষ হলে মোছা হবে।
+```javascript
+document.cookie = "user=John; expires=Fri, 31 Dec 2023 23:59:59 GMT";
+
+```
+**Max-Age (সর্বাধিক মেয়াদ):** এটি কুকি মেয়াদ সেট করে যে কত সেকেন্ড ধরে কুকি বৈধ থাকবে।
+```javascript
+document.cookie = "user=John; max-age=3600"; // এটি 1 ঘণ্টা পর মোছা হবে
+
+```
+**Domain (ডোমেইন):** এটি কুকির জন্য কোন ডোমেইনে প্রযোজ্য হবে তা সেট করে।
+
+```javascript
+document.cookie = "user=John; domain=example.com";
+```
+
+**Path (পথ):** এটি কুকির জন্য কোন পথে প্রযোজ্য হবে তা সেট করে।
+
+```javascript
+document.cookie = "user=John; path=/";
+
+```
+**Secure (নিরাপদ):** এটি স্থানীয় সার্ভার থেকে যোগান কুকি কে কৃত্রিমভাবে নিরাপদ করে, অর্থাৎ এটি HTTPS সংযোগের সাথে মাত্র যোগান করা যায়।
+
+```javascript
+document.cookie = "user=John; secure";
+
+```
+**HttpOnly:** এটি স্থানীয় সার্ভার থেকে যোগান কুকি কে জাভাস্ক্রিপ্ট দ্বারা অ্যাক্সেস করা যাবে না, এটি হ্যাকিং প্রতিরোধে সাহায্য করতে পারে।
+
+```javascript
+document.cookie = "user=John; HttpOnly";
+
+```
+এই উদাহরণগুলি ব্যবহার করে কুকি নির্দিষ্ট বৈশিষ্ট্যগুলি সেট করা হয়েছে। এগুলি ব্রাউজার এবং সার্ভার মধ্যে ডাটা পাঠানোর জন্য সেট হয়ে থাকে।
+
 40. ### How do you delete a cookie
 
     You can delete a cookie by setting the expiry date as a passed date. You don't need to specify a cookie value in this case.
@@ -2259,10 +2435,15 @@ request.onerror = (event) => {
     document.cookie =
       "username=; expires=Fri, 07 Jun 2019 00:00:00 UTC; path=/;";
     ```
-
     **Note:** You should define the cookie path option to ensure that you delete the right cookie. Some browsers doesn't allow to delete a cookie unless you specify a path parameter.
 
     **[⬆ Back to Top](#table-of-contents)**
+  আপনি একটি ব্রাউজার কুকি মুছতে চান, তাদের সেটিংস এ গিয়ে বা ব্রাউজার ডেভেলপার টুলস ব্যবহার করে করতে পারেন। এটি জনপ্রিয় ব্রাউজার মাধ্যমে উদাহরণ দেওয়া হল:
+
+```javascript
+document.cookie = "yourCookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+```
+এই কোডটি ব্রাউজারে একটি কুকি মুছে ফেলবে। "yourCookieName" হলো মুছতে চানো কুকির নাম।
 
 41. ### What are the differences between cookie, local storage and session storage
 
@@ -2277,12 +2458,36 @@ request.onerror = (event) => {
 
     **[⬆ Back to Top](#table-of-contents)**
 
+## কুকি, লোকাল স্টোরেজ, এবং সেশন স্টোরেজের মধ্যে পার্থক্য
+
+নোট: নিচে কুকি, লোকাল স্টোরেজ, এবং সেশন স্টোরেজ এর মধ্যে কিছু পার্থক্য দেওয়া হয়েছে।
+
+| বৈশিষ্ট | কুকি | লোকাল স্টোরেজ | সেশন স্টোরেজ |
+| ---------- | ----- | --------------- | ----------------- |
+| ক্লায়েন্ট অথবা সার্ভার সাইডে অ্যাক্সেস | সার্ভার সাইড এবং ক্লায়েন্ট সাইড উভয়েই | ক্লায়েন্ট সাইড মাত্র | ক্লায়েন্ট সাইড মাত্র |
+| লাইফটাইম | Expires অপশন ব্যবহার করে কনফিগার করা হয় | মুছে ফেলা হলেই | ট্যাব বন্ধ হওয়ার পর পর্যন্ত |
+| SSL সাপোর্ট | সাপোর্ট করে | সাপোর্ট করে না | সাপোর্ট করে না |
+| ম্যাক্সিমাম ডেটা সাইজ | 4KB | 5 MB | 5 MB |
+
+এই তথ্যটি আপনার প্রজেক্ট বা ডকুমেন্টেশনে অন্যান্য ডেভেলপারদের সাথে ভাগ করতে ব্যবহার করা যেতে পারে।
+
 42. ### What is the main difference between localStorage and sessionStorage
 
     LocalStorage is the same as SessionStorage but it persists the data even when the browser is closed and reopened(i.e it has no expiration time) whereas in sessionStorage data gets cleared when the page session ends.
 
     **[⬆ Back to Top](#table-of-contents)**
+## localStorage এবং sessionStorage এর মধ্যে প্রধান পার্থক্য
 
+## নোট: নীচে localStorage এবং sessionStorage এর মধ্যে প্রধান পার্থক্য দেওয়া হয়েছে।
+
+| বৈশিষ্ট | localStorage | sessionStorage |
+| ---------- | ------------- | --------------- |
+| লাইফটাইম | ডেটা স্থায়ী রাখতে | ট্যাব/উইন্ডো বন্ধ হওয়ার পর মুছে ফেলতে |
+| অ্যাক্সেস স্কোপ | একটি ডোমেইনের সব পেজে অ্যাক্সেস করা যায় | একটি সেশনের সব পেজে অ্যাক্সেস করা যায় |
+| ডেটা ভাগাভাগি | একটি ডোমেইনের সব পেজে শেয়ার হয় | একটি সেশনের সব পেজে শেয়ার হয় |
+| সিকিউরিটি | একটি ডোমেইনের সব পেজে অ্যাক্সেস করা যায়, তাই সতর্কতা প্রয়োজন | একটি সেশনের সব পেজে অ্যাক্সেস করা যায়, তাই বিশেষ সতর্কতা প্রয়োজন |
+
+এই তথ্যটি দিয়ে আপনি localStorage এবং sessionStorage এর মধ্যে প্রধান পার্থক্যগুলি বুঝতে পারবেন এবং এটি README.md ফাইলে অন্যান্য ডেভেলপারদের সাথে শেয়ার করতে পারেন।
 43. ### How do you access web storage
 
     The Window object implements the `WindowLocalStorage` and `WindowSessionStorage` objects which has `localStorage`(window.localStorage) and `sessionStorage`(window.sessionStorage) properties respectively. These properties create an instance of the Storage object, through which data items can be set, retrieved and removed for a specific domain and storage type (session or local).
@@ -2294,6 +2499,58 @@ request.onerror = (event) => {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+
+    ## ওয়েব স্টোরেজে অ্যাক্সেস
+
+নোট: নীচে ওয়েব স্টোরেজে কিভাবে অ্যাক্সেস করতে হয় তার উদাহরণ দেওয়া হয়েছে।
+
+### localStorage অ্যাক্সেস
+
+
+```javaScript
+// ডেটা সেট করা
+localStorage.setItem('key', 'value');
+
+// ডেটা প্রাপ্ত করা
+const storedValue = localStorage.getItem('key');
+
+// সব ডেটা দেখা
+for (let i = 0; i < localStorage.length; i++) {
+  const key = localStorage.key(i);
+  const value = localStorage.getItem(key);
+  console.log(`${key}: ${value}`);
+}
+
+// ডেটা মুছে ফেলা
+localStorage.removeItem('key');
+
+// সব ডেটা মুছে ফেলা
+localStorage.clear();
+```
+## sessionStorage অ্যাক্সেস
+```javascript
+// ডেটা সেট করা
+sessionStorage.setItem('key', 'value');
+
+// ডেটা প্রাপ্ত করা
+const storedValue = sessionStorage.getItem('key');
+
+// সব ডেটা দেখা
+for (let i = 0; i < sessionStorage.length; i++) {
+  const key = sessionStorage.key(i);
+  const value = sessionStorage.getItem(key);
+  console.log(`${key}: ${value}`);
+}
+
+// ডেটা মুছে ফেলা
+sessionStorage.removeItem('key');
+
+// সব ডেটা মুছে ফেলা
+sessionStorage.clear();
+
+```
+এই উদাহরণগুলি ব্যবহার করে আপনি localStorage এবং sessionStorage এর সাথে কিভাবে অ্যাক্সেস করতে হয় তা শেখতে পারেন।
+
 
 44. ### What are the methods available on session storage
 
@@ -2314,6 +2571,25 @@ request.onerror = (event) => {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+
+## সেশন স্টোরেজ মেথড
+
+সেশন স্টোরেজ প্রদান করে পড়া, লেখা এবং সেশন ডেটা মুছে ফেলার মেথডগুলি।
+
+```javascript
+// সেশন স্টোরেজে ডেটা সংরক্ষণ করা
+sessionStorage.setItem("key", "value");
+
+// সেশন স্টোরেজ থেকে সংরক্ষিত ডেটা প্রাপ্ত করা
+let data = sessionStorage.getItem("key");
+
+// সেশন স্টোরেজ থেকে সংরক্ষিত ডেটা মুছে ফেলা
+sessionStorage.removeItem("key");
+
+// সেশন স্টোরেজ থেকে সংরক্ষিত সব ডেটা মুছে ফেলা
+sessionStorage.clear();
+```
+এই মেথডগুলি ব্যবহার করে আপনি সেশন স্টোরেজে ডেটা সংরক্ষণ, প্রাপ্তি, ডেটা মুছতে এবং সব ডেটা মুছতে পারেন।
 
 45. ### What is a storage event and its event handler
 
@@ -2342,11 +2618,34 @@ request.onerror = (event) => {
 
     **[⬆ Back to Top](#table-of-contents)**
 
+## স্টোরেজ ইভেন্ট এবং এর ইভেন্ট হ্যান্ডলার
+
+স্টোরেজ ইভেন্ট হলো একটি ইভেন্ট যা সেশন স্টোরেজ বা লোকাল স্টোরেজে কোন পরিবর্তন হলে পুরো ডোকুমেন্টে একটি সিগন্যাল প্রেরণ করে।
+
+### ইভেন্ট হ্যান্ডলার
+
+ইভেন্ট হ্যান্ডলার হলো একটি ফাংশন যা স্টোরেজ ইভেন্ট সংক্রান্ত ঘটনা স্কেচে করে। এই ফাংশনটি স্টোরেজ ইভেন্ট হওয়ার পর স্বয়ংক্রিয়ভাবে কল হবে।
+
+```javascript
+// স্টোরেজ ইভেন্ট হ্যান্ডলার
+window.addEventListener('storage', function(event) {
+  console.log('স্টোরেজ ইভেন্ট হয়েছে!');
+  console.log('কী:', event.key);
+  console.log('পুরানো মান:', event.oldValue);
+  console.log('নতুন মান:', event.newValue);
+  console.log('ইভেন্ট যোগকারী ডোমেন:', event.url);
+});
+```
+
 46. ### Why do you need web storage
 
     Web storage is more secure, and large amounts of data can be stored locally, without affecting website performance. Also, the information is never transferred to the server. Hence this is a more recommended approach than Cookies.
 
     **[⬆ Back to Top](#table-of-contents)**
+
+## ওয়েব স্টোরেজ এর প্রয়োজন
+
+ওয়েব স্টোরেজ ব্যবহার করা হয় কারণ এটি বেশি নিরাপদ এবং একটি ওয়েবসাইটের কার্যক্ষমতা প্রভাবিত করতে না হলেও স্থানীয়ভাবে বড় পরিমাণে ডেটা সংরক্ষণ করা যায়। এটি সার্ভারে ডেটা প্রেরণ হয়না। এই কারণে কুকি ব্যবহার করার চেয়ে এটি একটি প্রস্তুত পদক্ষেপ।
 
 47. ### How do you check web storage browser support
 
@@ -2361,6 +2660,7 @@ request.onerror = (event) => {
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+
 
 48. ### How do you check web workers browser support
 
