@@ -3745,6 +3745,20 @@ window.history.back();
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### ক্যাপস লক কী চালু কিনা তা ডিটেক্ট করার পদ্ধতি
+
+জাভাস্ক্রিপ্টে ক্যাপস লক কী চালু কিনা তা ডিটেক্ট করতে, আপনি নিম্নোক্ত উপায়ে এটি পরীক্ষা করতে পারেন।
+
+```javascript
+document.addEventListener("keydown", function(event) {
+  if (event.getModifierState("CapsLock")) {
+    console.log("ক্যাপস লক চালু আছে");
+  } else {
+    console.log("ক্যাপস লক চালু নেই");
+  }
+});
+```
+উপরের উদাহরণে, keydown ইভেন্টটি ক্যাপস লক কী চেক করতে ব্যবহার হচ্ছে। getModifierState("CapsLock") এই ফাংশনটি ব্যবহার করে আপনি চেক করতে পারেন ক্যাপস লক কী চালু আছে কিনা।
 
 79. ### What is isNaN
 
@@ -3756,7 +3770,14 @@ window.history.back();
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### isNaN কি
 
+`isNaN()` ফাংশনটি ব্যবহার হয় একটি মান কোনও অবৈধ সংখ্যা (Not-a-Number) কিনা তা নির্ধারণ করতে। অর্থাৎ, এই ফাংশনটি মান যদি NaN এর সমান হয় তবে এটি true রিটার্ন করে। অন্যথায় এটি false রিটার্ন করে।
+
+```javascript
+isNaN("Hello"); // true
+isNaN("100");   // false
+```
 80. ### What are the differences between undeclared and undefined variables
 
     Below are the major differences between undeclared(not defined) and undefined variables,
@@ -3767,6 +3788,16 @@ window.history.back();
     | If you try to read the value of an undeclared variable, then a runtime error is encountered | If you try to read the value of an undefined variable, an undefined value is returned. |
 
     **[⬆ Back to Top](#table-of-contents)**
+### অসংখ্যান এবং অপরিভাষিত ভেরিয়েবলের মধ্যে পার্থক্য
+
+নিম্নলিখিত হল অপরিভাষিত (ডিফাইন না করা) এবং অপরিভাষিত (ডিফাইন হয়েছে কিন্তু মান অ্যাসাইন হয়নি) ভেরিয়েবলের মধ্যে প্রধান পার্থক্যগুলি।
+
+| অপরিভাষিত                                                                                   | অপরিভাষিত                                                                      |
+| ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| এই ভেরিয়েবলগুলি একটি প্রোগ্রামে বিদ্যমান নেই এবং ঘোষণা হয়নি                                | এই ভেরিয়েবলগুলি একটি প্রোগ্রামে ঘোষণা হয়েছে, কিন্তু কোনও মান অ্যাসাইন হয়নি               |
+| যদি আপনি একটি অপরিভাষিত ভেরিয়েবলের মান পড়তে চান, তবে এটি একটি রানটাইম ত্রুটির সম্মুখীন হয়   | যদি আপনি একটি অপরিভাষিত ভেরিয়েবলের মান পড়তে চান, তবে এটি একটি অপরিভাষিত মান রিটার্ন হয়   |
+
+**[⬆ উপরে ফিরুন](#table-of-contents)** 
 
 81. ### What are global variables
 
@@ -3777,12 +3808,43 @@ window.history.back();
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### গ্লোবাল ভেরিয়েবল
+
+গ্লোবাল ভেরিয়েবল হচ্ছে এমন ভেরিয়েবল যা একটি প্রোগ্রামের সম্পূর্ণ ক্যানভাসে বিদ্যমান থাকে এবং যেটি কোনও ফাংশন বা ব্লকের বাইরে ডিক্লেয়ার করা হয়েছে।
+
+উদাহরণ:
+
+```javascript
+// গ্লোবাল ভেরিয়েবল
+var globalVariable = "আমি একটি গ্লোবাল ভেরিয়েবল";
+
+function printGlobalVariable() {
+  console.log(globalVariable);
+}
+
+// ফাংশন কল করার পরেও গ্লোবাল ভেরিয়েবল অ্যাক্সেস করা সম্ভব
+printGlobalVariable(); // আমি একটি গ্লোবাল ভেরিয়েবল
+```
+উপরের উদাহরণে globalVariable হচ্ছে একটি গ্লোবাল ভেরিয়েবল যা কোথাওই প্রোগ্রামের মূল ভূক্ত চলতে পারে। এটি যেকোনো ফাংশন বা ব্লকের বাইরে ডিক্লেয়ার করা হয়েছে, তাই এটিকে যেকোনো ফাংশন থেকে অ্যাক্সেস করা সম্ভব।
 
 82. ### What are the problems with global variables
 
     The problem with global variables is the conflict of variable names of local and global scope. It is also difficult to debug and test the code that relies on global variables.
 
     **[⬆ Back to Top](#table-of-contents)**
+### গ্লোবাল ভেরিয়েবলের সমস্যা
+
+গ্লোবাল ভেরিয়েবলগুলির সাথে কিছু সমস্যা সম্পর্কে নিম্নলিখিত তথ্য দেওয়া হয়েছে:
+
+1. **নামকরণের সমস্যা:** গ্লোবাল ভেরিয়েবলগুলির নাম একক হওয়ায় একটি ফাইলে একই নামের গুলির সমস্যা হয়তে পারে এবং এটি প্রোজেক্টে বিভিন্ন অংশগুলিতে কনফ্লিক্ট হয়তে পারে।
+  
+2. **মোডিফিকেশনের সমস্যা:** গ্লোবাল ভেরিয়েবলগুলি প্রোগ্রামের এর যে কোন অংশে মোডিফাই হয় তাই প্রোগ্রামে কোথাও মোডিফাই হয়েছে তা একটি ফাংশনের অভিজ্ঞানে দুটি স্থানে হতে পারে, যা বাগ এবং ডিবাগিং সময়ে সমস্যা তৈরি করতে পারে।
+
+3. **সোফটওয়্যার ডিজাইন সমস্যা:** গ্লোবাল ভেরিয়েবলগুলি সফটওয়্যার ডিজাইনে একটি সমস্যা হতে পারে, কারণ এটি অনেকটা অনিশ্চিতকর এবং এটি দুটি অংশের মধ্যে ডাটা পার্ষ্ব দানের দ্বারা সমাধান হয় না। 
+
+এই সমস্যাগুলির সমাধান হতে এবং কোড একটি ভাল স্ট্রাকচার ধারণ করতে, লোকাল ভেরিয়েবলগুলি এবং ফাংশন স্কোপ ব্যবহার করতে পারেন। 
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
 
 83. ### What is NaN property
 
@@ -3794,6 +3856,15 @@ window.history.back();
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### NaN প্রপার্টি
+
+যখন কোনও কারণে একটি সংখ্যা নির্দিষ্ট হয় না, তখন JavaScript-এ NaN (Not a Number) উত্পন্ন হয়। NaN একটি স্পেশাল নাম্বার ভ্যালু এবং NaN প্রপার্টি হলে সেটি একটি ভুল সূচনা করে। 
+
+```javascript
+console.log(Number("Hello")); // NaN
+```
+এই উদাহরণে, "Hello" একটি সংখ্যা না থাকায় Number("Hello") NaN হয়ে যাচ্ছে।
+  **[⬆ Back to Top](#table-of-contents)**
 
 84. ### What is the purpose of isFinite function
 
@@ -3808,6 +3879,18 @@ window.history.back();
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### isFinite ফাংশনের উদ্দেশ্য
+
+JavaScript এর `isFinite()` ফাংশনটি ব্যবহার করা হয় একটি সংখ্যা যাচাই করতে বা একটি সংখ্যার মান সীমাবদ্ধ কিনা তা যাচাই করতে।
+
+```javascript
+console.log(isFinite(10));     // true
+console.log(isFinite("Hello")); // false
+console.log(isFinite(1 / 0));   // false
+```
+উদাহরণে, isFinite(10) তথ্য যাচাই করে এবং এটি সীমাবদ্ধ সংখ্যা হওয়ায় true রিটার্ন করে। অপরদিকে, isFinite("Hello") একটি স্ট্রিং হওয়ায় এবং isFinite(1 / 0) অসীম সংখ্যা (Infinity) হওয়ায় false রিটার্ন করে।
+
+**[⬆ Back to Top](#table-of-contents)**
 
 85. ### What is an event flow
 
@@ -3818,18 +3901,72 @@ window.history.back();
     2. Bottom to Top (Event Bubbling)
 
     **[⬆ Back to Top](#table-of-contents)**
+### ইভেন্ট ফ্লো
+
+ইভেন্ট ফ্লো হলো এমন একটি ক্রম যার মাধ্যমে ওয়েব পেজে ইভেন্টগুলি পাওয়া যায়। যখন আপনি একটি উপাদানে ক্লিক করবেন যা বিভিন্ন অন্যান্য উপাদানে নেস্ট করা আছে, তখন আপনার ক্লিকটি আসলে তার গন্তব্য, বা লক্ষ্য উপাদানে পৌঁছানোর আগে, বা লক্ষ্য উপাদানে এটি সত্ত্বেও আপনার ক্লিক ইভেন্টটি সকল একে একে তার প্রারম্ভিক প্যারেন্ট উপাদানগুলির জন্য ট্রিগার করতে হবে, শূন্য থেকে শুরু করে এটি সার্বজনীন উইন্ডো অবজেক্ট দিয়ে।
+
+ইভেন্ট ফ্লোর দুইটি প্রকার আছে
+
+1. উপরে থেকে নিচে (ইভেন্ট ক্যাপচারিং)
+2. নিচে থেকে উপরে (ইভেন্ট বাবলিং)
+
+**[⬆ উপরে ফিরুন](#table-of-contents)** 
 
 86. ### What is event bubbling
 
     Event bubbling is a type of event propagation where the event first triggers on the innermost target element, and then successively triggers on the ancestors (parents) of the target element in the same nesting hierarchy till it reaches the outermost DOM element.
 
     **[⬆ Back to Top](#table-of-contents)**
+### ইভেন্ট বাবলিং
+
+ইভেন্ট বাবলিং হলো এমন একটি ইভেন্ট ফ্লো পদ্ধতি যার ক্রমে একটি ইভেন্ট শুরু হয় এবং তার গন্তব্য একে একে উপাদানে পৌঁছায়, এবং তারপর তার প্রারম্ভিক প্যারেন্ট উপাদানগুলির দিকে উন্মুক্ত হয়। অর্থাৎ, যখন আপনি একটি ইভেন্ট ট্রিগার করবেন, সেটি শুরু হয় আপনার লক্ষ্য উপাদানে এবং তারপর সেই ইভেন্টটি আপনার একক উপাদান থেকে সার্বজনীন উইন্ডো অবজেক্ট দিয়ে সব প্যারেন্ট উপাদানগুলির দিকে বাবলিং হয়।
+
+**উদাহরণ:**
+```javascript
+<div id="parent">
+  <button id="child">Click me</button>
+</div>
+
+<script>
+document.getElementById("parent").addEventListener("click", function() {
+  console.log("Parent Div Clicked");
+});
+
+document.getElementById("child").addEventListener("click", function() {
+  console.log("Child Button Clicked");
+});
+</script>
+```
+উদাহরণে, যখন আপনি "Click me" বাটনে ক্লিক করবেন, প্যারেন্ট ডিভ এবং চাইল্ড বাটন উভয়ই ক্লিক ইভেন্ট এর জন্য বাবল হয়ে উঠবে। প্যারেন্ট ডিভ থেকে শুরু হয় এবং চাইল্ড বাটন এ পৌঁছানো হয়।
+**[⬆ Back to Top](#table-of-contents)**
 
 87. ### What is event capturing
 
     Event capturing is a type of event propagation where the event is first captured by the outermost element, and then successively triggers on the descendants (children) of the target element in the same nesting hierarchy till it reaches the innermost DOM element.
 
     **[⬆ Back to Top](#table-of-contents)**
+### ইভেন্ট ক্যাপচারিং
+
+ইভেন্ট ক্যাপচারিং হলো এমন একটি ইভেন্ট প্রোপাগেশনের ধরণ যেখানে ইভেন্টটি প্রথমে সর্ববাহুল্য উপাদান দ্বারা ক্যাপচার হয়, এবং তারপর এটি লক্ষ্য উপাদানের সন্তানগুলিতে (সন্তানগুলি) অভিমুক্ত হয় এবং এটি একে একে সহজে আসে যে তার সীমানা পর্যন্ত।
+
+**উদাহরণ:**
+```html
+<div id="parent">
+  <button id="child">Click me</button>
+</div>
+
+<script>
+document.getElementById("parent").addEventListener("click", function() {
+  console.log("Parent Div Capturing");
+}, true);
+
+document.getElementById("child").addEventListener("click", function() {
+  console.log("Child Button Capturing");
+}, true);
+</script>
+```
+উদাহরণে, যখন আপনি "Click me" বাটনে ক্লিক করবেন, প্যারেন্ট ডিভ এবং চাইল্ড বাটন উভয়ই ক্যাপচারিং ইভেন্ট এর জন্য বাবল হয়ে উঠবে। প্যারেন্ট ডিভ থেকে শুরু হয় এবং চাইল্ড বাটন এ পৌঁছানো হয়।
+**[⬆ Back to Top](#table-of-contents)**
 
 88. ### How do you submit a form using JavaScript
 
@@ -3842,6 +3979,42 @@ window.history.back();
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### জাভাস্ক্রিপ্ট ব্যবহার করে একটি ফর্ম জমা দেয়া
+
+জাভাস্ক্রিপ্ট ব্যবহার করে একটি ফর্ম জমা দেয়া হলে, আপনি ফর্ম এর submit() মেথড বা জাভাস্ক্রিপ্ট এর ইভেন্ট হ্যান্ডলার ব্যবহার করতে পারেন।
+
+**মেথড 1: submit() মেথড ব্যবহার:**
+```html
+<form id="myForm">
+  <!-- Your form fields go here -->
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+document.getElementById("myForm").submit();
+</script>
+```
+## মেথড 2: ইভেন্ট হ্যান্ডলার ব্যবহার:
+```javascript
+<form id="myForm" onsubmit="submitForm(event)">
+  <!-- Your form fields go here -->
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+function submitForm(event) {
+  // Prevent the default form submission
+  event.preventDefault();
+  
+  // Your form submission logic goes here
+  
+  // Optionally, you can submit the form programmatically
+  // document.getElementById("myForm").submit();
+}
+</script>
+```
+উপরের উদাহরণে, দুটি মেথড দেখানো হয়েছে: প্রথমটি submit() মেথড ব্যবহার করে ফর্মটি সাবমিট হয়েছে এবং দ্বিতীয়টি একটি ইভেন্ট হ্যান্ডলার ব্যবহার করে সাবমিট হয়েছে।
+**[⬆ Back to Top](#table-of-contents)**
 
 89. ### How do you find operating system details
 
@@ -3852,12 +4025,25 @@ window.history.back();
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+    ### কিভাবে অপারেটিং সিস্টেমের বিবরণ পেতে হয়
+
+window.navigator অবজেক্টটি প্রবেশকারীর ব্রাউজার OS বিবরণ সম্পর্কিত তথ্য ধারণ করে। কিছু OS সম্পর্কিত বৈশিষ্ট্য platform প্রপার্টির অধীনে পাওয়া যায়,
+
+```javascript
+console.log(navigator.platform);
+```
+  **[⬆ Back to Top](#table-of-contents)**
 
 90. ### What is the difference between document load and DOMContentLoaded events
 
     The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, without waiting for assets(stylesheets, images, and subframes) to finish loading. Whereas The load event is fired when the whole page has loaded, including all dependent resources(stylesheets, images).
 
     **[⬆ Back to Top](#table-of-contents)**
+### ডকুমেন্ট লোড এবং DOMContentLoaded ইভেন্টের মধ্যে পার্থক্য
+
+`DOMContentLoaded` ইভেন্টটি ফায়ার হয় যখন আসল HTML ডকুমেন্টটি সম্পূর্ণভাবে লোড এবং পার্স করা হয়েছে, তবে এটি অ্যাসেট (স্টাইলশীট, ইমেজ, এবং সাবফ্রেম) লোড হতে অপেক্ষা করা হয় না। সম্পর্কিতভাবে, লোড ইভেন্টটি সম্পূর্ণ পৃষ্ঠা লোড হওয়ার সময় ফায়ার হয়, যার মধ্যে সম্পৃক্ত সমস্ত সহায়ক সংস্থান (স্টাইলশীট, ইমেজ) সহ থাকে।
+
+**[⬆ Back to Top](#table-of-contents)** 
 
 91. ### What is the difference between native, host and user objects
 
@@ -3866,6 +4052,13 @@ window.history.back();
     `User objects` are objects defined in the javascript code. For example, User objects created for profile information.
 
     **[⬆ Back to Top](#table-of-contents)**
+### নেটিভ, হোস্ট, এবং ইউজার অবজেক্ট মধ্যে পার্থক্য
+
+`নেটিভ অবজেক্ট` হলো ECMAScript স্পেসিফিকেশন দ্বারা সংজ্ঞানিত জাভাস্ক্রিপ্ট ভাষার অংশ। উদাহরণস্বরূপ, ECMAScript স্পেসিফিকেশনে সংজ্ঞানিত String, Math, RegExp, Object, Function ইত্যাদি কোর অবজেক্টগুলি।
+`হোস্ট অবজেক্ট` হলো ব্রাউজার বা রানটাইম এনভাইরনমেন্ট (নোড) দ্বারা প্রদান করা অবজেক্টগুলি। উদাহরণস্বরূপ, window, XmlHttpRequest, DOM নোড ইত্যাদি হোস্ট অবজেক্ট হতে পারে।
+`ইউজার অবজেক্ট` হলো জাভাস্ক্রিপ্ট কোডে সংজ্ঞানিত অবজেক্টগুলি। উদাহরণস্বরূপ, ব্যবহারকারী তথ্যের জন্য তৈরি ইউজার অবজেক্টগুলি।
+
+**[⬆ Back to Top](#table-of-contents)** 
 
 92. ### What are the tools or techniques used for debugging JavaScript code
 
@@ -3876,6 +4069,21 @@ window.history.back();
     3. Good old console.log statement
 
     **[⬆ Back to Top](#table-of-contents)**
+### জাভাস্ক্রিপ্ট কোড ডিবাগিং জন্য ব্যবহৃত সরঞ্জাম এবং টেকনিক
+
+জাভাস্ক্রিপ্ট কোড ডিবাগিং এর জন্য কিছু প্রমুখ সরঞ্জাম এবং টেকনিক রয়েছেঃ
+
+1. **ব্রাউজার ডেভেলপার টুলস**: মোজিলা ফায়াফক্স, গুগল ক্রোম, সাফারি, ওপেরা ইত্যাদি ব্রাউজারের ডেভেলপার টুলস ব্যবহার করে কোড ডিবাগিং করা যায়। এটি কোড ইন্সপেকশন, ব্রেকপয়েন্ট সেটিং, স্টেপ-বাই-স্টেপ রান, ওয়াচ এক্সপ্রেশন ইত্যাদি সাপোর্ট করে।
+
+2. **console.log()**: সহজ ও প্রাথমিক মেথড। কোডের যেখানেই হোক, সেখানেই `console.log()` ব্যবহার করে মান লগ করে দেখা যায়।
+
+3. **debugger statement**: কোডের কোন এক প্রান্তে `debugger;` স্টেটমেন্ট বসিয়ে রাখলে, ব্রাউজারের ডেভেলপার টুলস চালু করলে সেই স্থানে কোডের এক্সিকিউশন ব্রেক হয়ে থাকে।
+
+4. **try-catch ব্লক**: কোডের কোন অংশে যদি কোন এরর হয় তাদের ধরা নেয়া সহজ ও পর্যাপ্ত হয়।
+
+5. **Linting tools**: ESLint, JSHint, ইত্যাদি লিন্টিং টুলস ব্যবহার করে কোডের স্থিতি, ভুল, স্টাইল গাইডলাইন এবং অন্যান্য জোর করণীয় চেক করা যায়।
+
+**[⬆ Back to Top](#table-of-contents)** 
 
 93. ### What are the pros and cons of promises over callbacks
 
@@ -3894,6 +4102,21 @@ window.history.back();
     2. You need to load a polyfill if ES6 is not supported
 
     **[⬆ Back to Top](#table-of-contents)**
+### Promises vs Callbacks: Pros and Cons
+
+**সুবিধাসমূহ:**
+
+1. **Callback Hell এর দুরূপদ্ববধির অস্তির্ণ:** Promises এর ব্যবহার করা হলে callback hell বা অপঠিত কোড লেখার সময়ের পরিমাণ কম হয়।
+2. **.then() ব্যবহার করে সহজে এসিঙ্ক্রোনাস কোড লেখা:** .then() ব্যবহার করে সিকোয়েন্সিয়াল এসিঙ্ক্রোনাস কোড লেখা খুব সহজ হয়।
+3. **Promise.all() দিয়ে প্যারালেল এসিঙ্ক্রোনাস কোড লেখা:** Promise.all() এর মাধ্যমে প্যারালেল এসিঙ্ক্রোনাস অপারেশন কোড লেখা খুব সহজ হয়।
+4. **কলব্যাকের সাধারিতা সমস্যাগুলি সমাধান:** Promises এর ব্যবহার করে সাধারিতা সমস্যাগুলি (কলব্যাক টা অতিরিক্ত বার বলানো, অতিরিক্ত সময় অথবা ত্রুটি না দেখানো) সহজে সমাধান করা যায়।
+
+**Cons:**
+
+1. **কিছুটু কমপ্লেক্স কোড:** Promises ব্যবহার করলে কোড কিছুটু কমপ্লেক্স হয়ে যেতে পারে।
+2. **ES6 সমর্থন না থাকলে পলিফিল লোড করতে হবে:** ES6 সমর্থন না থাকলে পলিফিল লোড করতে হতে পারে।
+
+**[⬆ Back to Top](#table-of-contents)** লিঙ্কে ফিরে যান।
 
 94. ### What is the difference between an attribute and a property
 
@@ -3919,12 +4142,51 @@ window.history.back();
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
+### Attribute vs Property: পার্থক্য
 
+**বৈশিষ্ট্য (Attribute):**
+
+1. **HTML এট্রিবিউট:** এট্রিবিউট হলো HTML এলিমেন্টের একটি বৈশিষ্ট্য যা এলিমেন্টের ট্যাগের মধ্যে দেওয়া হয়। এগুলি HTML দ্বারা নির্ধারিত হয়। এট্রিবিউট মান হতে পারে স্ট্রিং বা স্ট্রিং হয়না। উদাহরণঃ `<input type="text" value="Hello">` এখানে `type` এবং `value` এট্রিবিউট।
+
+2. **JavaScript এট্রিবিউট:** কিছু HTML এট্রিবিউট গুলি JavaScript দ্বারা এক্সেস করা যায় এবং এগুলি DOM এট্রিবিউট হিসেবে পরিচিত। এট্রিবিউট মান পরিবর্তন হতে পারে, তাতে এক্সেস করা হয় `getAttribute` এবং `setAttribute` মেথডের মাধ্যমে।
+
+**গুণ (Property):**
+
+1. **JavaScript গুণ:** এটি DOM এলিমেন্টের স্ট্যান্ডার্ড জাভাস্ক্রিপ্ট প্রোপার্টি, যা এলিমেন্টের অবস্থা বা বৈশিষ্ট্য নির্দেশ করে। গুণের মাধ্যমে এলিমেন্ট এবং তার স্থিতি সম্পর্কে তথ্য প্রাপ্ত করা যায়। গুণ হিসেবে তার বৈশিষ্ট্য বা বৈশিষ্ট্যগুলির মানগুলি অ্যাসাইন করা হয়, পরিবর্তন করা হয় এবং এগুলি প্রতিস্থান করা যায় স্ট্যান্ডার্ড জাভাস্ক্রিপ্ট মেথড বা প্রোপার্টি দ্বারা।
+
+**উদাহরণ:**
+
+HTML এলিমেন্টের উদাহরণ হিসেবে একটি `<input>` এলিমেন্ট নিয়ে চলুন:
+
+```html
+<input id="myInput" type="text" value="Hello">
+```
+## JavaScript কোডে এট্রিবিউট এবং গুণ এক্সেস করা হলে:
+```javascript
+// এট্রিবিউট এক্সেস
+const typeAttribute = document.getElementById("myInput").getAttribute("type");
+const valueAttribute = document.getElementById("myInput").getAttribute("value");
+
+// গুণ এক্সেস
+const typeProperty = document.getElementById("myInput").type;
+const valueProperty = document.getElementById("myInput").value;
+
+```
 95. ### What is same-origin policy
 
     The same-origin policy is a policy that prevents JavaScript from making requests across domain boundaries. An origin is defined as a combination of URI scheme, hostname, and port number. If you enable this policy then it prevents a malicious script on one page from obtaining access to sensitive data on another web page using Document Object Model(DOM).
 
     **[⬆ Back to Top](#table-of-contents)**
+
+### Same-Origin Policy (সেম অরিজিন নীতি):
+
+সেম অরিজিন নীতি হলো একটি নীতি যা জাভাস্ক্রিপ্টকে ডোমেইনের মধ্যে করা অনুরোধের বাইরে অনুরোধ করতে বা ডাটা প্রাপ্ত করতে প্রতিষ্ঠিত করে। একটি অরিজিন হলো URI স্কিম, হোস্টনেম, এবং পোর্ট নম্বরের একটি সংমিলিত সেট। এই নীতি যদি চালু থাকে তবে এটি ব্যবহারকারীর ডাটা রক্ষণাত্মক ভাবে সুরক্ষিত থাকার জন্য যাতে একটি জনপ্রিয় হ্যাক হারায় না যায় এবং একটি সাইট অন্য সাইটের ডাটা বা রিসোর্সে অ্যাক্সেস না করতে বাধাবে।
+
+**উদাহরণ:**
+
+যদি একটি সাইট থেকে ডাটা অনুরোধ করার চেষ্টা করা হয় অন্য একটি ডোমেইন থেকে তাদের জাভাস্ক্রিপ্ট ব্যবহৃত হওয়ার মাধ্যমে, তাদের ডোমেইনের বাইরে থেকে যেতে এটি প্রযোজ্য হবে না। এই নীতি আপনি একটি সাইট থেকে অন্য একটি সাইটের ডাটা এবং রিসোর্সের দিকে সীমাবদ্ধ রাখতে সহাযক হয় এবং ম্যালিশাস স্ক্রিপ্ট থেকে একটি ডোমেইনে অপর ডোমেইনে ডেটা চুরি করার হারামি প্রয়াসগুলি রোধ করে।
+
+**[⬆ Back to Top](#table-of-contents)** লিঙ্কে ফিরে যান।
 
 96. ### What is the purpose of void 0
 
@@ -3939,11 +4201,32 @@ window.history.back();
 
     **[⬆ Back to Top](#table-of-contents)**
 
+    ### প্রয়োজন ও ব্যবহার: `void 0`
+
+`void(0)` এটি ব্যবহার করা হয় পৃষ্ঠাটি পুনরায় লোড করতে বা পৃষ্ঠা পুনরায় তার প্রস্তুত অবস্থানে ফিরতে প্রতিরোধ করতে। এটি অপ্রয়োজনীয় পার্যায়ক্রমিক প্রভাব মোকাবিলার জন্য দরকার, কারণ এটি অপরিচিত প্রাথমিক মান ফিরিয়ে দেয়। এটি সাধারিতভাবে `<a>` উপাদানে href="JavaScript:void(0);" ব্যবহার করা হয়। অর্থাৎ, আপনি একটি লিঙ্কে ক্লিক করলে, ব্রাউজার একটি নতুন পৃষ্ঠা লোড করতে অথবা একই পৃষ্ঠা পুনরায় পুনরায় লোড করতে। কিন্তু এই প্রকৃতি থাকতে পারে না এই অভ্যন্তরীণ দৃষ্টিকোণ ব্যবহার করতে।
+
+**উদাহরণ:**
+
+```html
+<a href="JavaScript:void(0);" onclick="alert('Well done!')">
+  Click Me!
+</a>
+```
+উপরের লিঙ্কটি পৃষ্ঠাটি পুনরায় লোড করতে বা পৃষ্ঠা পুনরায় তার প্রস্তুত অবস্থানে ফিরতে অনুমতি দেয়না, তবে লিঙ্কে ক্লিক করলে একটি বার্তা প্রদান করতে সাহায্য করে বিনা পৃষ্ঠা পুনরায় লোড করা।
+**[⬆ Back to Top](#table-of-contents)**
+
 97. ### Is JavaScript a compiled or interpreted language
 
     JavaScript is an interpreted language, not a compiled language. An interpreter in the browser reads over the JavaScript code, interprets each line, and runs it. Nowadays modern browsers use a technology known as Just-In-Time (JIT) compilation, which compiles JavaScript to executable bytecode just as it is about to run.
 
     **[⬆ Back to Top](#table-of-contents)**
+
+### JavaScript: কোম্পাইলড না ইন্টারপ্রেটেড?
+
+জাভাস্ক্রিপ্ট একটি ইন্টারপ্রেটেড ভাষা, কোম্পাইলড নয়। ব্রাউজারের মধ্যে একটি ইন্টারপ্রেটার জাভাস্ক্রিপ্ট কোডটি পড়তে থাকে, প্রতিটি লাইনকে ব্যাখ্যা করে এবং এটি চালাতে থাকে। বর্তমানে আধুনিক ব্রাউজারগুলি Just-In-Time (JIT) কম্পাইলেশন ব্যবহার করে, যা জাভাস্ক্রিপ্টকে পরিচালনা হতে বা রান হতে চলার আগে এক্সিকিউটেবল বাইটকোডে কম্পাইল করে।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 98. ### Is JavaScript a case-sensitive language
 
@@ -3951,11 +4234,19 @@ window.history.back();
 
     **[⬆ Back to Top](#table-of-contents)**
 
+
 99. ### Is there any relation between Java and JavaScript
 
     No, they are entirely two different programming languages and have nothing to do with each other. But both of them are Object Oriented Programming languages and like many other languages, they follow similar syntax for basic features(if, else, for, switch, break, continue etc).
 
     **[⬆ Back to Top](#table-of-contents)**
+
+### JavaScript: ক্যাস-সেন্সিটিভ কি?
+
+হ্যা, জাভাস্ক্রিপ্ট একটি ক্যাস-সেন্সিটিভ ভাষা। এই ভাষার কীওয়ার্ড, ভেরিয়েবল, ফাংশন এবং অন্যান্য শনাক্তকারীগুলি সবসময় একটি ধারাবাহিক অক্ষরের সাথে টাইপ করতে হবে।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 100.  ### What are events
 
@@ -3985,11 +4276,31 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### ইভেন্ট (Events)
+
+ইভেন্ট হলো HTML এলিমেন্টগুলিতে ঘটিত "ঘটনার" সময়গুলি। যখন HTML পৃষ্ঠায় JavaScript ব্যবহৃত হয়, তখন জাভাস্ক্রিপ্ট এই ইভেন্টগুলির উপর "রিয়েক্ট" করতে পারে। HTML ইভেন্টের কিছু উদাহরণ হল,
+
+1. ওয়েব পৃষ্ঠা লোড হয়েছে
+2. ইনপুট ফিল্ড পরিবর্তন হয়েছে
+3. বাটন ক্লিক হয়েছে
+
+একটি বাটন এর ক্লিক ইভেন্টের জন্য ব্যবহার হলে, তার ব্যাবহারিক ক্রিয়াটি নিচে বর্ণনা করা হয়ছে।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
+
 101.  ### Who created javascript
 
       JavaScript was created by Brendan Eich in 1995 during his time at Netscape Communications. Initially it was developed under the name `Mocha`, but later the language was officially called `LiveScript` when it first shipped in beta releases of Netscape.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### জাভাস্ক্রিপ্ট কে কেন বানানো হয়েছিল
+
+জাভাস্ক্রিপ্টটি 1995 সালে ব্রেন্ডান আইকের দ্বারা তৈরি হয়েছিল তার নেটসকেপ কমিউনিকেশন্সের সময়ে। এটি শুরুতে একটি নামে `Mocha` হিসেবে উন্মুক্ত সংস্করণে উন্নত করা হয়েছিল, তবে পরবর্তীতে এই ভাষাটি অফিসিয়ালভাবে `LiveScript` নামে পরিচিত হয়েছিল তা নেটসকেপের বেটা রিলিজেসে।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 102.  ### What is the use of preventDefault method
 
@@ -4006,6 +4317,20 @@ window.history.back();
       **Note:** Remember that not all events are cancelable.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### preventDefault মেথডের ব্যবহার
+
+preventDefault() মেথডটি ইভেন্টটি যদি বাতিলযোগ্য হয়, তাদের মানে যে ইভেন্টের মূল ক্রিয়া বা আচরণ ঘটতে যাচ্ছে সেটি ঘটবে না। উদাহরণস্বরূপ, সাবমিট বোতামে ক্লিক করলে ফর্ম সাবমিট হওয়ার বিরুদ্ধে এবং হাইপারলিঙ্কে ক্লিক করলে পৃষ্ঠা URL খোলার বিরুদ্ধে ব্যবহৃত হয়।
+
+```javascript
+document
+  .getElementById("link")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+  });
+```
+মন্তব্য: মনে রাখবেন যে সব ইভেন্ট বাতিলযোগ্য নয়।
+ **[⬆ Back to Top](#table-of-contents)**
 
 103.  ### What is the use of stopPropagation method
 
@@ -4031,6 +4356,27 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### stopPropagation মেথডের ব্যবহার
+
+stopPropagation() মেথডটি ইভেন্ট বোঝানোর জন্য ব্যবহৃত হয়, যদি ইভেন্টটি বোঝানোর পর আরও অন্য কোনও ইভেন্ট স্থানান্তর হতে চায় না। এটি সাধারণভাবে বুড়ি আমাদের ইভেন্ট লিসেনারের জন্য ব্যবহৃত হয় যাতে একটি ইভেন্টের কারণে অন্যান্য ইভেন্টগুলি তার স্থানান্তর হতে না পারে। 
+
+```javascript
+document
+  .getElementById("parent")
+  .addEventListener("click", function (event) {
+    event.stopPropagation();
+    console.log("Parent Clicked");
+  });
+
+document
+  .getElementById("child")
+  .addEventListener("click", function (event) {
+    console.log("Child Clicked");
+  });
+```
+উপরের উদাহরণে, যদি শিশু এলিমেন্টে ক্লিক করা হয়, তবে কেবল "Child Clicked" প্রিন্ট হবে, "Parent Clicked" প্রিন্ট হবে না। এটি তার স্থানান্তর হতে রোধ করতে সাহায্য করে।
+ **[⬆ Back to Top](#table-of-contents)**
+
 104.  ### What are the steps involved in return false usage
 
       The return false statement in event handlers performs the below steps,
@@ -4041,6 +4387,17 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+  ### return false ব্যবহারে যে পদক্ষেপগুলি রয়েছে
+
+return false স্টেটমেন্টটি ইভেন্ট হ্যান্ডলারে ব্যবহৃত হলে তা নিম্নলিখিত পদক্ষেপগুলি অতএব করেঃ
+
+1. প্রথমত, এটি ব্রাউজারের ডিফল্ট অ্যাকশন বা আচরণ বন্ধ করে।
+2. এটি ইভেন্টটি ডোমে প্রচার হতে প্রতিরোধ করে।
+3. যখন এটি কল হয়, তখন কলব্যাক কার্যান্বয়ন বন্ধ হয় এবং তার সাথে তারা তাতে ফিরে যায় না।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
+
 105.  ### What is BOM
 
       The Browser Object Model (BOM) allows JavaScript to "talk to" the browser. It consists of the objects navigator, history, screen, location and document which are children of the window. The Browser Object Model is not standardized and can change based on different browsers.
@@ -4048,6 +4405,15 @@ window.history.back();
       ![Screenshot](images/bom.png)
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### BOM (ব্রাউজার অবজেক্ট মডেল)
+
+ব্রাউজার অবজেক্ট মডেল (BOM) জাভাস্ক্রিপ্টকে ব্রাউজারে "কথা বলতে" দেয়। এটি navigator, history, screen, location এবং document অবজেক্টগুলির সমৃদ্ধি, যা উইন্ডোর সন্তান, থাকে। ব্রাউজার অবজেক্ট মডেলটি মান প্রমাণিত নয় এবং পৃথিবীর বিভিন্ন ব্রাউজারের উপর নির্ভর করে পরিবর্তন করতে পারে।
+
+![Screenshot](images/bom.png)
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 106.  ### What is the use of setTimeout
 
@@ -4061,6 +4427,17 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### setTimeout এর ব্যবহার
+
+setTimeout() মেথডটি একটি ফাংশন বা একটি অভিব্যক্তির মান একটি নির্দিষ্ট মিলিসেকেন্ডের পরে কল করতে ব্যবহৃত হয়। উদাহরণস্বরূপ, একটি মেসেজ লগ করা হোক 2 সেকেন্ড পরে setTimeout মেথডটি ব্যবহার করে,
+
+```javascript
+setTimeout(function () {
+  console.log("Good morning");
+}, 2000);
+```
+ **[⬆ Back to Top](#table-of-contents)**
+
 107.  ### What is the use of setInterval
 
       The setInterval() method is used to call a function or evaluate an expression at specified intervals (in milliseconds). For example, let's log a message after 2 seconds using setInterval method,
@@ -4072,12 +4449,30 @@ window.history.back();
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+    
+### setInterval এর ব্যবহার
+
+setInterval() মেথডটি নির্দিষ্ট ব্যবধানে (মিলিসেকেন্ডে) একটি ফাংশন বা একটি অভিব্যক্তি কল করতে ব্যবহৃত হয়। উদাহরণস্বরূপ, একটি মেসেজ লগ করা হোক 2 সেকেন্ড পরে setInterval মেথডটি ব্যবহার করে,
+
+```javascript
+setInterval(function () {
+  console.log("Good morning");
+}, 2000);
+```
+**[⬆ Back to Top](#table-of-contents)**
 
 108.  ### Why is JavaScript treated as Single threaded
 
       JavaScript is a single-threaded language. Because the language specification does not allow the programmer to write code so that the interpreter can run parts of it in parallel in multiple threads or processes. Whereas languages like java, go, C++ can make multi-threaded and multi-process programs.
 
-      **[⬆ Back to Top](#table-of-contents)**
+**[⬆ Back to Top](#table-of-contents)**
+
+### কেন JavaScript কে একক থ্রেডে হিসেবে চিহ্নিত করা হয়
+
+JavaScript একটি একক থ্রেডে ভাষা। কারণ ভাষার স্পেসিফিকেশন প্রোগ্রামারকে কোডটি লেখার জন্য অনুমতি দেয় না যে ইন্টারপ্রেটার এটি একাধিক থ্রেড বা প্রসেসে পার্টগুলি পার্যায় চালাতে। এর বিপরীতে, যেমন জাভা, গো, সি++ এমন ভাষাগুলি বহুথ্রেডেড এবং বহুপ্রসেস প্রোগ্রাম তৈরি করতে পারে।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 109.  ### What is an event delegation
 
@@ -4101,17 +4496,61 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+      ### ইভেন্ট ডিলেগেশন কি
+
+ইভেন্ট ডিলেগেশন হলো এমন একটি প্রযুক্তি যার মাধ্যমে আপনি ইভেন্ট শোনার জন্য একটি প্যারেন্ট উপাদানকে সুনির্দিষ্ট ইভেন্টগুলির জন্য শোনার মাধ্যমে একটি প্যারেন্ট উপাদানকে উপস্থাপন করতে পারেন।
+
+উদাহরণস্বরূপ, আপনি যদি একটি স্পষ্ট ফর্মের মধ্যে ক্ষেত্রের পরিবর্তন দেখতে চান তবে আপনি ইভেন্ট ডিলেগেশন টেকনিক ব্যবহার করতে পারেন,
+
+```javascript
+var form = document.querySelector("#registration-form");
+
+// ফর্মের মধ্যে ফিল্ডের পরিবর্তনের জন্য শোনার জন্য শোনার জন্য
+form.addEventListener(
+  "input",
+  function (event) {
+    // পরিবর্তিত ক্ষেত্রটি লগ করুন
+    console.log(event.target);
+  },
+  false
+);
+```
+   **[⬆ Back to Top](#table-of-contents)**
+
 110.  ### What is ECMAScript
 
       ECMAScript is the scripting language that forms the basis of JavaScript. ECMAScript standardized by the ECMA International standards organization in the ECMA-262 and ECMA-402 specifications. The first edition of ECMAScript was released in 1997.
 
       **[⬆ Back to Top](#table-of-contents)**
+    
+### ইসমাস্ক্রিপ্ট কি
+
+ইসমাস্ক্রিপ্ট হলো স্ক্রিপ্টিং ভাষা, যা জাভাস্ক্রিপ্টের ভিত্তি তৈরি। ইসমাস্ক্রিপ্টটি ECMA ইন্টারন্যাশনাল স্ট্যান্ডার্ডস অর্গানাইজেশন দ্বারা ECMA-262 এবং ECMA-402 স্পেসিফিকেশনে মান প্রাপ্ত করে। ECMAScript এর প্রথম সংস্করণটি 1997 সালে প্রকাশিত হয়।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 111.  ### What is JSON
 
       JSON (JavaScript Object Notation) is a lightweight format that is used for data interchanging. It is based on a subset of JavaScript language in the way objects are built in JavaScript.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### JSON কি
+
+JSON (JavaScript Object Notation) হলো একটি ভাষা-অবজেক্ট নোটেশন ফরম্যাট, যা ডেটা স্টোর এবং ডেটা ট্রান্সফারের জন্য ব্যবহৃত হয়। JSON এ ডেটা নিয়ে কাজ করতে গল্পশোনা ওবজেক্ট, এরে, স্ট্রিং, নাম্বার, বুলিয়ান, এবং নাল ভ্যালু থাকতে পারে। জাভাস্ক্রিপ্ট অবজেক্ট নোটেশন সিনট্যাক্সের মডেল হিসেবে এটির ব্যবহার একটি উপায় করে হয়েছে।
+
+উদাহরণ:
+
+```json
+{
+  "name": "John Doe",
+  "age": 30,
+  "isStudent": false,
+  "courses": ["Math", "English", "History"]
+}
+```
+ **[⬆ Back to Top](#table-of-contents)**
 
 112.  ### What are the syntax rules of JSON
 
@@ -4123,6 +4562,18 @@ window.history.back();
       4.  Square brackets hold arrays
 
       **[⬆ Back to Top](#table-of-contents)**
+
+      ### JSON এর সিনট্যাক্স নিয়ম
+
+JSON এর সিনট্যাক্স নিয়ম গুলি হলো:
+
+1. ডেটা হলো নাম/মান জোড়া
+2. ডেটা গুলি কমা দ্বারা আলাদা করা থাকে
+3. কার্লি ব্রেসেস অবজেক্ট ধারণ করে
+4. স্কোয়ার ব্রেসেস অ্যারে ধারণ করে
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 113.  ### What is the purpose JSON stringify
 
@@ -4136,6 +4587,22 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### JSON.stringify এর উদ্দেশ্য
+
+`JSON.stringify` একটি বিল্ট-ইন ফাংশন যা জাভাস্ক্রিপ্ট অবজেক্ট বা অ্যারেকে JSON স্ট্রিং এ রূপান্তর করে। এটি ব্যবহার হয় ডেটা স্টোর করার সময় অথবা ডেটা সার্ভারে পাঠানোর সময় জাভাস্ক্রিপ্ট অবজেক্ট বা অ্যারেকে স্ট্রিং এ রূপান্তর করতে। 
+
+উদাহরণ:
+
+```javascript
+const person = { name: "John", age: 30, city: "New York" };
+const jsonString = JSON.stringify(person);
+console.log(jsonString);
+```
+## এটি আউটপুট দেবে:
+{"name":"John","age":30,"city":"New York"}
+
+**[⬆ Back to Top](#table-of-contents)**
+
 114.  ### How do you parse JSON string
 
       When receiving the data from a web server, the data is always in a string format. But you can convert this string value to a javascript object using parse() method.
@@ -4148,17 +4615,46 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কিভাবে JSON স্ট্রিং পার্স করতে হয়
+
+JSON স্ট্রিং থেকে ডেটা পার্স করতে জাভাস্ক্রিপ্টে `JSON.parse` ব্যবহার করা হয়। এটি একটি স্ট্রিংকে জাভাস্ক্রিপ্ট অবজেক্টে রূপান্তর করে। 
+
+উদাহরণ:
+
+```javascript
+const jsonString = '{"name":"John","age":30,"city":"New York"}';
+const person = JSON.parse(jsonString);
+console.log(person);
+```
+## এটি আউটপুট দেবে:
+```javascript
+{ name: 'John', age: 30, city: 'New York' }
+
+```
 115.  ### Why do you need JSON
 
       When exchanging data between a browser and a server, the data can only be text. Since JSON is text only, it can easily be sent to and from a server, and used as a data format by any programming language.
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### JSON এর প্রয়োজন
+
+যখন ব্রাউজার এবং সার্ভার মধ্যে ডেটা অবদান করা হয়, তখন ডেটা কেবল টেক্সট হতে পারে। এমনকি JSON টেক্সটের মাধ্যমেই তা সহজে এবং যে কোন প্রোগ্রামিং ভাষায় ডেটা ফরম্যাট হিসেবে ব্যবহার করা যায়।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 116.  ### What are PWAs
 
       Progressive web applications (PWAs) are a type of mobile app delivered through the web, built using common web technologies including HTML, CSS and JavaScript. These PWAs are deployed to servers, accessible through URLs, and indexed by search engines.
 
       **[⬆ Back to Top](#table-of-contents)**
+  
+  ### পি ডাব্লিউ এ (PWAs) কি
+
+প্রোগ্রেসিভ ওয়েব অ্যাপ্লিকেশন (PWAs) হলো এমন এক ধরণের মোবাইল অ্যাপ্লিকেশন যা ওয়েব মাধ্যমে ডেলিভার করা হয়, যা সাধারিত ওয়েব প্রযুক্তি ব্যবহার করে তৈরি করা হয়। এই PWAs গুলি সার্ভারে ডিপ্লয় হয়, URL এর মাধ্যমে অ্যাক্সেস করা যায়, এবং সার্চ ইঞ্জিন দ্বারা ইনডেক্স করা হয়।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 117.  ### What is the purpose of clearTimeout method
 
@@ -4185,6 +4681,29 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+      ### clearTimeout মেথডের উদ্দেশ্য
+
+clearTimeout() ফাংশনটি জাভাস্ক্রিপ্টে ব্যবহার হয় যেটি setTimeout() ফাংশন দ্বারা সেট করা টাইমআউটটি মুছে ফেলতে। অর্থাৎ, setTimeout() ফাংশনের রিটার্ন ভ্যালুটি একটি ভ্যারিয়েবলে স্টোর করা হয় এবং এটি clearTimeout() ফাংশনে পাঠানো হয় যাতে টাইমারটি বাতিল হয়।
+
+উদাহরণস্বরূপ, নিচের setTimeout মেথডটি 3 সেকেন্ড পরে মেসেজ দেখানোর জন্য ব্যবহৃত হয়েছে। এই টাইমআউটটি clearTimeout() মেথড দ্বারা বাতিল করা যায়।
+
+```javascript
+<script>
+var msg;
+function greeting() {
+   alert('Good morning');
+}
+function start() {
+  msg = setTimeout(greeting, 3000);
+}
+
+function stop() {
+  clearTimeout(msg);
+}
+</script>
+```
+ **[⬆ Back to Top](#table-of-contents)**
+
 118.  ### What is the purpose of clearInterval method
 
       The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function. i.e, The return value returned by setInterval() function is stored in a variable and it’s passed into the clearInterval() function to clear the interval.
@@ -4210,6 +4729,29 @@ window.history.back();
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### clearInterval মেথডের উদ্দেশ্য
+
+clearInterval() ফাংশনটি জাভাস্ক্রিপ্টে ব্যবহার হয় যেটি setInterval() ফাংশন দ্বারা সেট করা ইন্টারভালটি মুছে ফেলতে। অর্থাৎ, setInterval() ফাংশনের রিটার্ন ভ্যালুটি একটি ভ্যারিয়েবলে স্টোর করা হয় এবং এটি clearInterval() ফাংশনে পাঠানো হয় যাতে ইন্টারভালটি বাতিল হয়।
+
+উদাহরণস্বরূপ, নিচের setInterval মেথডটি 3 সেকেন্ড পরে প্রতি সেকেন্ডে একটি মেসেজ দেখানোর জন্য ব্যবহৃত হয়েছে। এই ইন্টারভালটি clearInterval() মেথড দ্বারা বাতিল করা যায়।
+
+```javascript
+<script>
+var msg;
+function greeting() {
+  alert('Good morning');
+}
+function start() {
+  msg = setInterval(greeting, 1000);
+}
+
+function stop() {
+  clearInterval(msg);
+}
+</script>
+```
+ **[⬆ Back to Top](#table-of-contents)**
+
 119.  ### How do you redirect new page in javascript
 
       In vanilla javascript, you can redirect to a new page using the `location` property of window object. The syntax would be as follows,
@@ -4219,8 +4761,18 @@ window.history.back();
         window.location.href = "newPage.html";
       }
       ```
+      ### জাভাস্ক্রিপ্টে নতুন পৃষ্ঠায় রিডাইরেক্ট কীভাবে করতে হয়
 
-      **[⬆ Back to Top](#table-of-contents)**
+নতুন একটি পৃষ্ঠায় রিডাইরেক্ট করতে, আপনি `window.location` অবজেক্ট বা `window.location.href` প্রোপার্টি ব্যবহার করতে পারেন। নিম্নলিখিত একটি উদাহরণ দেখুন,
+
+```javascript
+// কোডের মাধ্যমে রিডাইরেক্ট
+function redirectToNewPage() {
+  window.location.href = "নতুন-পৃষ্ঠার-URL";
+}
+```
+
+**[⬆ Back to Top](#table-of-contents)**
 
 120.  ### How do you check whether a string contains a substring
 
@@ -4251,6 +4803,37 @@ window.history.back();
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কিভাবে একটি স্ট্রিংটি একটি সাবস্ট্রিং অবশ্যই থাকবে তা চেক করতে হয়
+
+এটি যাচাই করার জন্য ৩টি সম্ভাব্য উপায় রয়েছে,
+
+1. **ইনক্লুডস ব্যবহার করা:** ES6 সরবরাহ করে `String.prototype.includes` মেথডটি যাচাই করতে যে একটি স্ট্রিং একটি সাবস্ট্রিং অবশ্যই থাকবে
+
+    ```javascript
+    var mainString = "hello",
+      subString = "hell";
+    mainString.includes(subString);
+    ```
+
+2. **আইনডেক্স অবশ্যই থাকবে:** ES5 বা তার আগের পরিবেশে, আপনি `String.prototype.indexOf` ব্যবহার করতে পারেন যা একটি সাবস্ট্রিং এর ইনডেক্স প্রদান করে। যদি ইনডেক্সের মান -1 এর সমান না হয় তবে এটি মানে সাবস্ট্রিংটি মূল স্ট্রিংটিতে অবস্থিত আছে।
+
+    ```javascript
+    var mainString = "hello",
+      subString = "hell";
+    mainString.indexOf(subString) !== -1;
+    ```
+
+3. **রেগুলার এক্সপ্রেশন ব্যবহার করা:** উন্নত সমাধানটি হলো রেগুলার এক্সপ্রেশনের টেস্ট মেথড (`RegExp.test`) ব্যবহার করা, যা রেগুলার এক্সপ্রেশনগুলির বিরুদ্ধে পরীক্ষা করার জন্য অনুমতি দেয়।
+
+    ```javascript
+    var mainString = "hello",
+      regex = /hell/;
+    regex.test(mainString);
+    ```
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 121.  ### How do you validate an email in javascript
 
