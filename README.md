@@ -3206,7 +3206,7 @@ fetchData()
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
-### কলব্যাক ইন কলব্যাক
+**কলব্যাক ইন কলব্যাক**
 
     "কলব্যাক ইন কলব্যাক" হলো একটি কলব্যাক ফাংশন, যা আরেকটি কলব্যাক ফাংশনকে আর্গুমেন্ট হিসেবে নেয়। এই ফাংশনটি অন্য ফাংশনের মধ্যে আবদ্ধ হয় এবং তার একটি কাজ সম্পন্ন করতে এই ফাংশনটি কল হয়।
 
@@ -4847,9 +4847,22 @@ function redirectToNewPage() {
       }
       ```
 
-      **[⬆ Back to Top](#table-of-contents)**
+**[⬆ Back to Top](#table-of-contents)**
 
       The above regular expression accepts unicode characters.
+
+### কিভাবে জাভাস্ক্রিপ্টে ইমেইল যাচাই করবেন
+
+আপনি জাভাস্ক্রিপ্টে রেগুলার এক্সপ্রেশন ব্যবহার করে ইমেইল যাচাই করতে পারেন। সার্ভার সাইডে করা যাচ্ছে তা ক্লায়েন্ট সাইডে করার পরামর্শ দেওয়া হয়নি কারণ ক্লায়েন্ট সাইডে জাভাস্ক্রিপ্ট অক্ষম করা হতে পারে।
+
+```javascript
+function validateEmail(email) {
+  var re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+```
+**[⬆ Back to Top](#table-of-contents)**
 
 122.  ### How do you get the current url with javascript
 
@@ -4860,6 +4873,15 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### জাভাস্ক্রিপ্টে বর্তমান URL কীভাবে পাওয়া যায়
+
+আপনি `window.location.href` এক্সপ্রেশন ব্যবহার করে বর্তমান URL পাওয়া যায় এবং আপনি একই এক্সপ্রেশনটি ব্যবহার করে URL এর মাধ্যমে তা আপডেট করতে পারেন। আপনি একইভাবে `document.URL` ব্যবহার করতে পারেন শুধুমাত্র পঠনের উদ্দেশ্যে, কিন্তু এই সমাধানটি FF এ সমস্যার সাথে।
+
+```javascript
+console.log("location.href", window.location.href); // Returns full URL
+```
+  **[⬆ Back to Top](#table-of-contents)**
 
 123.  ### What are the various url properties of location object
 
@@ -4876,6 +4898,22 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### লোকেশন অবজেক্টের বিভিন্ন URL প্রপার্টিগুলি কি
+
+নিচের `Location` অবজেক্ট প্রপার্টিগুলি ব্যবহার করে পৃষ্ঠার URL এর বিভিন্ন অংশে অ্যাক্সেস করা যায়,
+
+1.  href - পূর্ণ URL
+2.  protocol - URL এর প্রোটোকল
+3.  host - URL এর হোস্টনেম এবং পোর্ট
+4.  hostname - URL এর হোস্টনেম
+5.  port - URL এর পোর্ট নাম্বার
+6.  pathname - URL এর পাথ নেম
+7.  search - URL এর অনুসন্ধান অংশ
+8.  hash - URL এর এঙ্কর অংশ
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
+
 124.  ### How do get query string values in javascript
 
       You can use URLSearchParams to get query string values in javascript. Let's see an example to get the client code value from URL query string,
@@ -4886,6 +4924,16 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+  
+### জাভাস্ক্রিপ্টে কোয়েরি স্ট্রিং মান কিভাবে পেতে হয়
+
+আপনি URLSearchParams ব্যবহার করে জাভাস্ক্রিপ্টে কোয়েরি স্ট্রিং মান পেতে পারেন। একটি উদাহরণ দেখা যাক কোয়েরি স্ট্রিং থেকে ক্লায়েন্ট কোড মান পেতে,
+
+```javascript
+const urlParams = new URLSearchParams(window.location.search);
+const clientCode = urlParams.get("clientCode");
+```
+   **[⬆ Back to Top](#table-of-contents)**
 
 125.  ### How do you check if a key exists in an object
 
@@ -4922,6 +4970,39 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+      ### জটিল কোড অবস্থানে কীভাবে একটি কী অস্তিত্ব পরীক্ষা করতে হয়
+
+আপনি তিনটি উপায়ে চেক করতে পারেন একটি অবজেক্টে একটি কী অস্তিত্ত্ব প্রমাণ করতে,
+
+1. **in অপারেটর ব্যবহার:** আপনি in অপারেটর ব্যবহার করতে পারেন একটি অবজেক্টে একটি কী অস্তিত্ত্ব প্রমাণ করতে
+
+```javascript
+   "key" in obj;
+```
+এবং আপনি যদি চেক করতে চান যে কোনও কী অস্তিত্ত্ব নেই, তবে মনে রাখতে হবে উদাহরণস্বরূপে প্রয়োজনে মন্যতা ব্যবহার করতে,
+
+```javascript
+!("key" in obj);
+
+```
+## hasOwnProperty মেথড ব্যবহার: আপনি hasOwnProperty ব্যবহার করতে পারেন বিশেষভাবে অবজেক্ট ইনস্ট্যান্সের বৈশিষ্ট্যগুলির জন্য টেস্ট করতে
+
+```javascript
+obj.hasOwnProperty("key"); // true
+undefined তুলনা ব্যবহার: যদি আপনি একটি অস্তিত্ব নেই এমন একটি বৈশিষ্ট্যে অ্যাক্সেস করেন, তবে ফলাফলটি undefined হয়। এই বৈশিষ্ট্যটির সাথে তুলনা করতে undefined প্রতি বৈশিষ্ট্য বিপরীতে ব্যবহৃত হতে পারে।
+
+```
+
+```javascript
+const user = {
+  name: "John",
+};
+console.log(user.name !== undefined); // true
+console.log(user.nickName !== undefined); // false
+
+```
+ **[⬆ Back to Top](#table-of-contents)**
+
 126.  ### How do you loop through or enumerate javascript object
 
       You can use the `for-in` loop to loop through javascript object. You can also make sure that the key you get is an actual property of an object, and doesn't come from the prototype using `hasOwnProperty` method.
@@ -4941,6 +5022,40 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কিভাবে JavaScript অবজেক্ট লুপ বা ইনুমারেট করতে পারেন
+
+আপনি JavaScript অবজেক্ট লুপ বা ইনুমারেট করতে বিভিন্ন পদ্ধতি ব্যবহার করতে পারেন।
+
+1. **for...in লুপ:** এটি অবজেক্টের সকল ইনুমারেবল প্রপার্টির জন্য লুপ চালিয়ে যায়।
+
+```javascript
+   for (let key in obj) {
+     if (obj.hasOwnProperty(key)) {
+       console.log(key, obj[key]);
+     }
+   }
+```
+এটি hasOwnProperty ব্যবহার করে আপনি শুধুমাত্র অবজেক্টের নিজস্ব বৈশিষ্ট্যগুলি দেখতে সতর্ক হতে সাহায্য করে।
+
+**Object.keys এবং forEach ব্যবহার:**
+ Object.keys ব্যবহার করে অবজেক্টের সকল কী পেতে পারেন এবং সেই কীগুলির জন্য forEach লুপ চালিয়ে যাতে কোনও একক প্রপার্টির জন্য hasOwnProperty চেক করা যায়।
+
+```javascript
+Object.keys(obj).forEach(function (key) {
+  console.log(key, obj[key]);
+});
+```
+**Object.entries এবং forEach ব্যবহার:**
+ Object.entries ব্যবহার করে আপনি অবজেক্টের সকল কী-মান জোড়াগুলি পেতে পারেন এবং সেগুলির জন্য forEach লুপ চালিয়ে যাতে আপনি কোনও একক প্রপার্টির জন্য hasOwnProperty চেক করতে পারেন।
+
+```javascript
+Object.entries(obj).forEach(function ([key, value]) {
+  console.log(key, value);
+});
+
+```
+**[⬆ Back to Top](#table-of-contents)**
 
 127.  ### How do you test for an empty object
 
@@ -4974,6 +5089,39 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কীভাবে আপনি একটি খালি অবজেক্ট টেস্ট করতে পারেন
+
+ECMAScript সংস্করণের উপরে ভিত্তি করে বিভিন্ন সমাধান রয়েছে
+
+1. **Object entries ব্যবহার (ECMA 7+):** আপনি অবজেক্ট এন্ট্রিস দৈর্ঘ্য এবং কনস্ট্রাক্টর প্রকারের সাথে ব্যবহার করতে পারেন।
+
+    ```javascript
+    Object.entries(obj).length === 0 && obj.constructor === Object; // কারণ ডেট অবজেক্টের দৈর্ঘ্য 0, তাই আপনাকে কনস্ট্রাক্টর চেকও করতে হবে
+    ```
+
+2. **Object keys ব্যবহার (ECMA 5+):** আপনি অবজেক্ট কীগুলির দৈর্ঘ্য এবং কনস্ট্রাক্টর প্রকারের সাথে ব্যবহার করতে পারেন।
+
+    ```javascript
+    Object.keys(obj).length === 0 && obj.constructor === Object; // কারণ ডেট অবজেক্টের দৈর্ঘ্য 0, তাই আপনাকে কনস্ট্রাক্টর চেকও করতে হবে
+    ```
+
+3. **for-in এর সাথে hasOwnProperty (ECMA 5 পূর্বে):** আপনি hasOwnProperty সহ for-in লুপ ব্যবহার করতে পারেন।
+
+    ```javascript
+    function isEmpty(obj) {
+      for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          return false;
+        }
+      }
+
+      return JSON.stringify(obj) === JSON.stringify({});
+    }
+    ```
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
+
 128.  ### What is an arguments object
 
       The arguments object is an Array-like object accessible inside functions that contains the values of the arguments passed to that function. For example, let's see how to use arguments object inside sum function,
@@ -4998,6 +5146,28 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### আর্গুমেন্টস অবজেক্ট কি
+
+আর্গুমেন্টস অবজেক্ট হলো একটি অ্যারে-মত অবজেক্ট, যা ফাংশনগুলির মধ্যে অ্যাক্সেস করা যায় এবং যা ঐ ফাংশনে পাঠানো আর্গুমেন্টগুলির মানগুলি ধারণ করে। উদাহরণস্বরূপ, আসুন দেখা যাক কীভাবে সাম ফাংশনে আর্গুমেন্টস অবজেক্ট ব্যবহার করা হয়,
+
+```javascript
+function sum() {
+  var total = 0;
+  for (var i = 0, len = arguments.length; i < len; ++i) {
+    total += arguments[i];
+  }
+  return total;
+}
+
+sum(1, 2, 3); // ফলাফল 6
+```
+**নোট:** আপনি আর্গুমেন্টস অবজেক্টে অ্যারে মেথড প্রয়োগ করতে পারবেন না। কিন্তু আপনি এটি একটি নিয়মিত অ্যারেতে রূপান্তর করতে পারেন নিম্নলিখিত মডিউলটি ব্যবহার করে।
+
+```javascript
+var argsArray = Array.prototype.slice.call(arguments);
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 129.  ### How do you make first letter of the string in an uppercase
 
       You can create a function which uses a chain of string methods such as charAt, toUpperCase and slice methods to generate a string with the first letter in uppercase.
@@ -5009,6 +5179,17 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কিভাবে স্ট্রিংটির প্রথম অক্ষরটি বড় হাতের করবেন
+
+আপনি একটি ফাংশন তৈরি করতে পারেন যা charAt, toUpperCase এবং slice মেথডগুলির একটি শ্রেণি ব্যবহার করে স্ট্রিংটি তৈরি করতে পারে, যাতে প্রথম অক্ষরটি বড় হাতের হয়।
+
+```javascript
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+```
+  **[⬆ Back to Top](#table-of-contents)**
 
 130.  ### What are the pros and cons of for loop
 
@@ -5027,6 +5208,24 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### ফর লুপের সুবিধা ও সমস্যা
+
+ফর-লুপটি জাভাস্ক্রিপ্টে একটি সাধারিত বৃদ্ধি সিনট্যাক্স। এর সুবিধা এবং সমস্যাগুলি রয়েছে
+
+#### সুবিধা
+
+1. প্রতিটি পরিবেশে কাজ করে
+2. আপনি ব্রেক এবং কন্টিনিউ ফ্লো নিয়ন্ত্রণ অবস্থান করতে পারেন
+
+#### সমস্যা
+
+1. খুবই বিস্তারিত
+2. ইমপেরেটিভ
+3. আপনি একটি একটি ভুল সম্মুখীন হতে পারেন
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
+
 131.  ### How do you display the current date in javascript
 
       You can use `new Date()` to generate a new Date object containing the current date and time. For example, let's display the current date in mm/dd/yyyy
@@ -5043,6 +5242,21 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### জাভাস্ক্রিপ্টে বর্তমান তারিখ কিভাবে প্রদর্শন করবেন
+
+আপনি `new Date()` ব্যবহার করতে পারেন একটি নতুন তারিখ অবজেক্ট তৈরি করতে যা বর্তমান তারিখ এবং সময় ধারণ করে। উদাহরণস্বরূপ, চলুন বর্তমান তারিখটি mm/dd/yyyy স্তরে প্রদর্শন করি
+
+```javascript
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, "0");
+var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + "/" + dd + "/" + yyyy;
+document.write(today);
+```
+ **[⬆ Back to Top](#table-of-contents)**
+
 132.  ### How do you compare two date objects
 
       You need to use date.getTime() method to compare date values instead of comparison operators (==, !=, ===, and !== operators)
@@ -5056,6 +5270,24 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কিভাবে দুটি তারিখ অবজেক্ট তুলনা করতে হয়
+
+তারিখের মানগুলি তুলনা করতে হলে তারিখ.getTime() মেথড ব্যবহার করতে হবে, পোর্টির বন্ধনী অপারেটর (==, !=, ===, এবং !== অপারেটর) ব্যবহার করা যাবে না
+
+```javascript
+var date1 = new Date("2023-12-31");
+var date2 = new Date("2023-12-30");
+
+if (date1.getTime() > date2.getTime()) {
+  console.log("date1 is later than date2");
+} else if (date1.getTime() < date2.getTime()) {
+  console.log("date1 is earlier than date2");
+} else {
+  console.log("Both dates are equal");
+}
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 133.  ### How do you check if a string starts with another string
 
       You can use ECMAScript 6's `String.prototype.startsWith()` method to check if a string starts with another string or not. But it is not yet supported in all browsers. Let's see an example to see this usage,
@@ -5066,6 +5298,16 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কিভাবে চেক করতে হয় যে একটি স্ট্রিং অন্য একটি স্ট্রিং দিয়ে শুরু হয়েছে
+
+ECMAScript 6 এর `String.prototype.startsWith()` মেথড ব্যবহার করলে আপনি চেক করতে পারবেন যে একটি স্ট্রিং অন্য একটি স্ট্রিং দিয়ে শুরু হয়েছে কিনা তা। কিন্তু এটি এখনো সব ব্রাউজারে সমর্থিত নয়। এর ব্যবহার দেখতে একটি উদাহরণ,
+
+```javascript
+"Good morning".startsWith("Good"); // true
+"Good morning".startsWith("morning"); // false
+```
+**[⬆ Back to Top](#table-of-contents)**
 
 134.  ### How do you trim a string in javascript
 
@@ -5088,8 +5330,12 @@ function redirectToNewPage() {
         })();
       }
       ```
+### জাভাস্ক্রিপ্টে কিভাবে একটি স্ট্রিংকে ট্রিম করতে হয়
 
-      **[⬆ Back to Top](#table-of-contents)**
+আপনি `String.prototype.trim()` মেথড ব্যবহার করে একটি স্ট্রিংকে ট্রিম করতে পারেন। এটি স্ট্রিংটির শুরু এবং শেষের স্পেস, ট্যাব, নিউলাইন চর গুলি বিল্কুল সরিয়ে ফেলবে। একটি উদাহরণ,
+
+
+  **[⬆ Back to Top](#table-of-contents)**
 
 135.  ### How do you add a key value pair in javascript
 
@@ -5116,6 +5362,26 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### জাভাস্ক্রিপ্টে কী-মান যোগ করার উপায়
+
+একটি অবজেক্টে নতুন প্রোপার্টি যোগ করতে দুটি সম্ভাব্য উপায় আছে। এই উপায়গুলি বুঝাতে একটি সাধারিত অবজেক্ট নেই।
+
+```javascript
+var object = {
+  key1: value1,
+  key2: value2,
+};
+```
+1. **ডট নোটেশন ব্যবহার:** এই সমাধানটি কার্যত আসে যখন আপনি প্রপার্টির নামটি জানেন
+```javascript
+object.key3 = "value3";
+```
+2. **স্কোয়ার ব্র্যাকেট নোটেশন ব্যবহার:** এই সমাধানটি কার্যত আসে যখন প্রপার্টির নামটি ডায়নামিকভাবে নির্ধারণ করা হয়।
+```javascript
+obj["key3"] = "value3";
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 136.  ### Is the !-- notation represents a special operator
 
       No,that's not a special operator. But it is a combination of 2 standard operators one after the other,
@@ -5126,6 +5392,18 @@ function redirectToNewPage() {
       At first, the value decremented by one and then tested to see if it is equal to zero or not for determining the truthy/falsy value.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### `!--` নোটেশনটি কি কোনো বিশেষ অপারেটর প্রতিষ্ঠান করে না
+
+না, এটি কোনো বিশেষ অপারেটর নয়। তাতে দুটি মানচিত্রের স্ট্যান্ডার্ড অপারেটরের সংমিশ্রণ,
+
+1. একটি লজিকাল নট (!)
+2. একটি প্রিফিক্স ডিক্রিমেন্ট (--)
+
+প্রথমে, মানটি এক কমিয়ে নেয়া হয় এবং তারপরে তা দেখা হয় যে এটি শূন্যের সমান কিনা, যাতে ট্রুথি/ফলসি মান নির্ধারণ করা যায়।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 137.  ### How do you assign default values to variables
 
@@ -5138,6 +5416,16 @@ function redirectToNewPage() {
       As per the above expression, variable 'a 'will get the value of 'c' only if 'b' is falsy (if is null, false, undefined, 0, empty string, or NaN), otherwise 'a' will get the value of 'b'.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### ভেরিয়েবলে ডিফল্ট মান অ্যাসাইন করার জন্য কিভাবে কাজ করা হয়
+
+আপনি একটি ডিফল্ট মান সরবরাহ করতে একটি লজিক্যাল অথবা অপারেটর `||` ব্যবহার করতে পারেন একটি অ্যাসাইনমেন্ট অভ্যন্তর। এর সিনট্যাক্স নিম্নের মত,
+
+```javascript
+var a = b || c;
+```
+উপরের এক্সপ্রেশন অনুযায়ী, যদি 'b' ফলসি হয় (যেমন, যদি এটি নাল, ফলস, অসত্ত্বেও, 0, খালি স্ট্রিং, বা NaN হয়), তাদের 'a' এর মান শুধু এবং কেবল 'c' হবে, অন্যথায় 'a' তে 'b' এর মান চলবে।
+**[⬆ Back to Top](#table-of-contents)**
 
 138.  ### How do you define multiline strings
 
@@ -5154,11 +5442,30 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কিভাবে মাল্টিলাইন স্ট্রিং ডিফাইন করতে হয়
+
+আপনি ES6 এর মোডার্ন জাভাস্ক্রিপ্ট ব্যবহার করে মাল্টিলাইন স্ট্রিং ডিফাইন করতে পারেন এবং এটি কোডের কাজ করবে। আপনি ব্যবহার করতে পারেন backticks (\`) এবং স্ট্রিংটির মধ্যে লেখা হবে মাল্টিলাইনে। এটি নিম্নলিখিত মত হতে পারে,
+
+```javascript
+var multilineString = `This is a
+multiline
+string in JavaScript`;
+```
+উপরের উদাহরণে, স্ট্রিংটির মাঝে নতুন লাইনে লেখা হয়েছে এবং এটি একটি ভেরিয়েবলে সংরক্ষিত হয়েছে।
+**[⬆ Back to Top](#table-of-contents)**
+
 139.  ### What is an app shell model
 
       An application shell (or app shell) architecture is one way to build a Progressive Web App that reliably and instantly loads on your users' screens, similar to what you see in native applications. It is useful for getting some initial HTML to the screen fast without a network.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কি হলো একটি অ্যাপ শেল মডেল
+
+অ্যাপ্লিকেশন শেল (বা অ্যাপ শেল) আর্কিটেকচারটি একটি প্রোগ্রেসিভ ওয়েব অ্যাপ তৈরি করার একটি উপায়, যা আপনার ব্যবহারকারীদের স্ক্রিনে নির্ভরযোগ্যভাবে এবং তাদের পৌঁছানো হয় স্থানীয় অ্যাপ্লিকেশনে দেখতে যায়। এটি হলো একটি উপকরণ যা নেটওয়ার্ক ছাড়াই দ্রুত কিছু আদি HTML টি স্ক্রিনে প্রদান করার জন্য দান করতে সাহায্যোক্ত।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 140.  ### Can we define properties for functions
 
@@ -5178,6 +5485,28 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কি ফাংশনের জন্য প্রপার্টি ডিফাইন করতে পারি
+
+হ্যাঁ, ফাংশনের জন্য আমরা প্রোপার্টি ডিফাইন করতে পারি। ফাংশনগুলি অবজেক্ট হিসেবে ধরা হয় এবং তার মেথড হিসেবে প্রপার্টি অ্যাক্সেস করা যায়। এটির একটি উদাহরণ দেওয়া হলো,
+
+```javascript
+// একটি ফাংশন ডিফাইন করা
+function greet(name) {
+  // প্রপার্টি ডিফাইন করা
+  greet.counter = (greet.counter || 0) + 1;
+  console.log(`Hello, ${name}!`);
+}
+
+// ফাংশনটি কল করা
+greet("Alice"); // "Hello, Alice!"
+greet("Bob");   // "Hello, Bob!"
+
+// ফাংশনের প্রপার্টি অ্যাক্সেস করা
+console.log(greet.counter); // 2
+```
+উপরে, greet ফাংশনে counter নামক একটি প্রপার্টি ডিফাইন করা হয়েছে এবং ফাংশনের প্রতিটি কলে এর মান বাড়ছে।
+  **[⬆ Back to Top](#table-of-contents)**
+
 141.  ### What is the way to find the number of parameters expected by a function
 
       You can use `function.length` syntax to find the number of parameters expected by a function. Let's take an example of `sum` function to calculate the sum of numbers,
@@ -5191,11 +5520,37 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### একটি ফাংশন দ্বারা প্রত্যাশিত প্যারামিটারের সংখ্যা বের করার উপায়
+
+একটি ফাংশনের প্যারামিটারের সংখ্যা বের করার উপায় হলো `length` প্রপার্টির মাধ্যমে। ফাংশনের `length` প্রপার্টি দেয় সেই ফাংশনের প্যারামিটারের সংখ্যা যায়গা করে।
+
+উদাহরণ:
+
+```javascript
+function exampleFunction(param1, param2, param3) {
+  // কোড লজিক
+}
+
+// ফাংশনের প্যারামিটারের সংখ্যা বের করা
+const numberOfParameters = exampleFunction.length;
+
+console.log(numberOfParameters); // 3
+```
+উপরের উদাহরণে, exampleFunction ফাংশনে তিনটি প্যারামিটার রয়েছে, তাই numberOfParameters এর মান ৩ হয়েছে।
+**[⬆ Back to Top](#table-of-contents)**
+
 142.  ### What is a polyfill
 
       A polyfill is a piece of JS code used to provide modern functionality on older browsers that do not natively support it. For example, Silverlight plugin polyfill can be used to mimic the functionality of an HTML Canvas element on Microsoft Internet Explorer 7.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### পলিফিল কি
+
+একটি পলিফিল হলো এমন একটি জাভাস্ক্রিপ্ট কোড, যা ব্রাউজারের সাথে সাথে আসতে থাকে এবং যা নাইভলি সাপোর্ট করা হয়নি সেই সব নতুন ফাংশনালিটি প্রদান করতে হয় যা মূলত নতুন বা এক্ষেত্রে স্ট্যান্ডার্ড হওয়ার জন্য ব্রাউজার সাপোর্ট করে না। উদাহরণস্বরূপ, আপনি যদি Microsoft Internet Explorer 7 ব্যবহার করা থাকেন তাদের জন্য HTML Canvas এলিমেন্টের ফাংশনালিটি মিমিক করতে Silverlight প্লাগইন পলিফিল ব্যবহার করতে পারেন।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 143.  ### What are break and continue statements
 
@@ -5223,6 +5578,29 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### break এবং continue স্টেটমেন্ট কি
+
+`break` স্টেটমেন্টটি একটি লুপ থেকে "বের হয়ে যাওয়া"র জন্য ব্যবহৃত হয়। অর্থাৎ, এটি লুপটি ভেঙ্গে দেয় এবং লুপের পরে কোডটি চালিয়ে যায়।
+
+```javascript
+for (i = 0; i < 10; i++) {
+  if (i === 5) {
+    break;
+  }
+  text += "Number: " + i + "<br>";
+}
+```
+continue স্টেটমেন্টটি একটি লুপে এক ইটারেশন "ওভার জামা"র জন্য ব্যবহৃত হয়। অর্থাৎ, এটি একটি নির্দিষ্ট শর্ত সত্ত্বে (লুপের মধ্যে) একটি ইটারেশন বিচ্ছিন্ন করে এবং পরবর্তী ইটারেশনে চলে যায়।
+```javascript
+for (i = 0; i < 10; i++) {
+  if (i === 5) {
+    continue;
+  }
+  text += "Number: " + i + "<br>";
+}
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 144.  ### What are js labels
 
       The label statement allows us to name loops and blocks in JavaScript. We can then use these labels to refer back to the code later. For example, the below code with labels avoids printing the numbers when they are same,
@@ -5247,6 +5625,24 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কি হলো JavaScript এর লেবেল
+
+লেবেল স্টেটমেন্ট দিয়ে আমরা JavaScript এ লুপ এবং ব্লকগুলির নাম দিতে পারি। তারপর আমরা এই লেবেলগুলি পরবর্তীতে কোডে পুনরাবৃত্তি করার জন্য ব্যবহার করতে পারি। উদাহরণস্বরূপ, নিচের কোডে লেবেল ব্যবহার করে যখন সংখ্যাগুলি একই হলে সেগুলি প্রিন্ট করা হয়নি।
+
+```javascript
+var i, j;
+
+loop1: for (i = 0; i < 3; i++) {
+  loop2: for (j = 0; j < 3; j++) {
+    if (i === j) {
+      continue loop1;
+    }
+    console.log("i = " + i + ", j = " + j);
+  }
+}
+```
+**[⬆ Back to Top](#table-of-contents)**
+
 145.  ### What are the benefits of keeping declarations at the top
 
       It is recommended to keep all declarations at the top of each script or function. The benefits of doing this are,
@@ -5258,6 +5654,18 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### ডিক্লারেশনগুলি কেন শীর্ষে রাখতে ভালো
+
+প্রতিটি স্ক্রিপ্ট বা ফাংশনে সমস্ত ডিক্লারেশনগুলি শীর্ষে রাখা প্রস্তুতি করা হতে সুপরিচিত। এটি করলে কোডের জন্য একটি সাফটি স্থান পাওয়া যায়। এটির সুবিধাগুলি হলো,
+
+1. কোডটি সাফটি হয়
+2. লোকাল ভ্যারিয়েবলগুলি খোঁজার জন্য একটি একক স্থান প্রদান করে
+3. অবাঞ্ছিত গ্লোবাল ভ্যারিয়েবলগুলি এডভান্স করা যায়
+4. অবাঞ্ছিত পুনরাবৃত্তির সম্ভাবনা কমায়
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
+
 146.  ### What are the benefits of initializing variables
 
       It is recommended to initialize variables because of the below benefits,
@@ -5267,6 +5675,17 @@ function redirectToNewPage() {
       3.  Avoid undefined values in the code
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### ভ্যারিয়েবলগুলি ইনিশিয়ালাইজ করার উপকারিতা
+
+ভ্যারিয়েবলগুলি ইনিশিয়ালাইজ করা প্রস্তুতি করা হয় কারণ এর নিচের সুবিধাগুলি থাকে,
+
+1. এটি সাফটি কোড তৈরি করে
+2. এটি ভ্যারিয়েবলগুলি ইনিশিয়ালাইজ করার জন্য একটি একক স্থান প্রদান করে
+3. কোডে অপরিজ্ঞানামূলক মান এডভান্স করার চেষ্টা করা হয়
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 147.  ### What are the recommendations to create new object
 
@@ -5293,6 +5712,20 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+### নতুন অবজেক্ট তৈরি করার জন্য সুপরিচিত প্রস্তাবনা
+
+`new Object()` ব্যবহার করে নতুন অবজেক্ট তৈরি করার দিকে পরিচিতি করা হয়না। তার বদলে, এর ধরণ অনুযায়ী মান ইনিশিয়ালাইজ করতে পারেন।
+
+1.  `new Object()` এর বদলে {} এসাইন করুন
+2.  `new String()` এর বদলে "" এসাইন করুন
+3.  `new Number()` এর বদলে 0 এসাইন করুন
+4.  `new Boolean()` এর বদলে false এসাইন করুন
+5.  `new Array()` এর বদলে [] এসাইন করুন
+6.  `new RegExp()` এর বদলে /()/ এসাইন করুন
+7.  `new Function()` এর বদলে function (){} এসাইন করুন
+
+এটি উদাহরণ হিসেবে ডিফাইন করতে পারেন,
+**[⬆ Back to Top](#table-of-contents)**
 
 148.  ### How do you define JSON arrays
 
@@ -5307,6 +5740,35 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+### JSON অ্যারে ডিফাইন করা
+
+JSON অ্যারে ডিফাইন করতে আপনি একটি অবজেক্ট ডিফাইন করতে পারেন যা অ্যারের মধ্যে অবস্থিত হবে। একটি JSON অ্যারে একটি অবজেক্টের একটি প্রপার্টি হিসেবে অ্যারে থাকতে পারে, যা আবার অন্য অবজেক্ট বা প্রিমিটিভ ভ্যালুগুলি থাকতে পারে।
+
+এটির একটি উদাহরণ দেখা যাক,
+
+```json
+{
+  "students": [
+    {
+      "name": "John",
+      "age": 25,
+      "grades": [90, 85, 92]
+    },
+    {
+      "name": "Alice",
+      "age": 22,
+      "grades": [88, 91, 89]
+    },
+    {
+      "name": "Bob",
+      "age": 23,
+      "grades": [75, 80, 78]
+    }
+  ]
+}
+```
+উদাহরণে, "students" একটি প্রপার্টি হিসেবে একটি অ্যারে রয়েছে যা তিনটি অবজেক্ট ধারণ করে এবং প্রতিটি অবজেক্টে "name", "age" এবং "grades" হিসেবে প্রপার্টি রয়েছে।
+**[⬆ Back to Top](#table-of-contents)**
 
 149.  ### How do you generate random integers
 
@@ -5321,6 +5783,20 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কিভাবে র‍্যান্ডম পূর্ণসংখ্যা তৈরি করবেন
+
+JavaScript-এ র‍্যান্ডম পূর্ণসংখ্যা তৈরি করতে আপনি `Math.random()` মেথড ব্যবহার করতে পারেন। এটি 0 (সংযুক্ত হতে পারে) থেকে 1 (সংযুক্ত হতে পারে না) এর মধ্যে একটি প্রচুর সংখ্যা ফেরত দেয়।
+
+যেহেতু এটি 0 এবং 1 এর মধ্যে ফেরত দেয়, আপনি এটি ইচ্ছামত পূর্ণসংখ্যা রেঞ্জে নিতে পারেন। একটি কনভারশন ব্যবহার করতে হবে যাতে আপনি ইচ্ছামত রেঞ্জের মধ্যে পূর্ণসংখ্যা পান। উদাহরণ:
+
+```javascript
+// 1 থেকে 10 পর্যন্ত একটি পূর্ণসংখ্যা তৈরি করুন
+const randomNumber = Math.floor(Math.random() * 10) + 1;
+console.log(randomNumber);
+```
+উপরের কোডে, Math.random() দ্বারা ফেরত পাওয়া প্রচুর সংখ্যাটি 0 থেকে 1 এর মধ্যে থাকতে পারে। এটি 10 দিয়ে গুণফল দিয়ে একটি সংখ্যা পেতে হয়, এবং তারপরে Math.floor() দ্বারা এটি একটি পূর্ণসংখ্যায় রূপান্তরিত হয়। এরপরে 1 যোগ করে এটি 1 থেকে 10 এর মধ্যে একটি পূর্ণসংখ্যা প্রাপ্ত করতে সক্ষম হয়।
+**[⬆ Back to Top](#table-of-contents)**
+
 150.  ### Can you write a random integers function to print integers with in a range
 
       Yes, you can create a proper random function to return a random number between min and max (both included)
@@ -5334,6 +5810,28 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### একটি র‍্যান্ডম পূর্ণসংখ্যা ফাংশন লেখা
+
+আপনি একটি র‍্যান্ডম পূর্ণসংখ্যা ফাংশন তৈরি করতে নিচের মডেলটি ব্যবহার করতে পারেন যা একটি ন্যাগেটিভ এবং পজিটিভ এর মধ্যে দেওয়া রেঞ্জের মধ্যে একটি পূর্ণসংখ্যা ফেরত দেয়।
+
+```javascript
+/**
+ * একটি ন্যাগেটিভ এবং পজিটিভ এর মধ্যে একটি র‍্যান্ডম পূর্ণসংখ্যা ফেরত দেয়
+ * @param {number} min - ন্যাগেটিভ রেঞ্জের সবচেয়ে ছোট সংখ্যা
+ * @param {number} max - পজিটিভ রেঞ্জের সবচেয়ে বড় সংখ্যা
+ * @returns {number} - র‍্যান্ডম পূর্ণসংখ্যা
+ */
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// এটি ব্যবহার করুন
+const randomNum = getRandomInteger(-10, 10);
+console.log(randomNum);
+```
+উপরের ফাংশনে, Math.random() দ্বারা ফেরত পাওয়া প্রচুর সংখ্যা তারপরে (max - min + 1) দ্বারা গুণিত করে সংখ্যাটি একটি ইন্টিজার এর মধ্যে নেওয়া হয়। এটি min এর সাথে যোগ করা হয় যাতে এটি ন্যাগেটিভ রেঞ্জের মধ্যে থাকতে পারে।
+**[⬆ Back to Top](#table-of-contents)**
 
 151.  ### What is tree shaking
 
@@ -5430,6 +5928,29 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### রেগুলার এক্সপ্রেশন প্যাটার্ন
+
+রেগুলার এক্সপ্রেশনগুলি আপনাকে ক্যারেক্টার ম্যাচ করার জন্য একটি প্যাটার্ন সরবরাহ করে। মূলত, এগুলি 3 ধরণে বিভক্ত করা হয়েছে,
+
+1. **ব্র‍্যাকেটসমূহ:** এগুলি একটি ক্যারেক্টার রেঞ্জ খুঁজে বের করতে ব্যবহৃত হয়।
+    উদাহরণস্বরূপ, কিছু ব্যবহারের ক্ষেত্রে,
+    1. [abc]: এই ব্র‍্যাকেটের মধ্যে ক্যারেক্টার(a,b,c) মধ্যে যে কোনওটি খুঁজা হয়
+    2. [0-9]: এই ব্র‍্যাকেটের মধ্যে যে কোনও সংখ্যা খুঁজা হয়
+    3. (a|b): | দ্বারা পৃথক করে রক্ষিত বিকল্প খুঁজা হয়
+2. **মেটাক্যার‍্যাক্টারসমূহ:** এগুলি বিশেষ অর্থসহ ক্যারেক্টার হয়
+    উদাহরণস্বরূপ, কিছু ব্যবহারের ক্ষেত্রে,
+    1. \d: একটি সংখ্যা খুঁজা হয়
+    2. \s: একটি শূন্যস্থান ক্যারেক্টার খুঁজা হয়
+    3. \b: একটি শব্দের শুরু বা শেষে ম্যাচ খুঁজা হয়
+3. **কোয়ান্টিফায়ারসমূহ:** এগুলি পরিমাণ নির্ধারণ করতে ব্যবহৃত হয়
+    উদাহরণস্বরূপ, কিছু ব্যবহারের ক্ষেত্রে,
+    1. n+: অবশ্যই একটি n অথবা তার চেয়ে বেশি স্ট্রিং খুঁজা হয়
+    2. n*: একটি n এর জন্য শূন্য বা তার চেয়ে বেশি সংখ্যক ম্যাচ খুঁজা হয়
+    3. n?: একটি n এর জন্য শূন্য বা তার জন্য একটি ম্যাচ খুঁজা হয়
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
+
 158.  ### What is a RegExp object
 
       RegExp object is a regular expression object with predefined properties and methods. Let's see the simple usage of RegExp object,
@@ -5509,6 +6030,12 @@ function redirectToNewPage() {
       You can set breakpoints in the javascript code once the debugger statement is executed and the debugger window pops up. At each breakpoint, javascript will stop executing, and let you examine the JavaScript values. After examining values, you can resume the execution of code using the play button.
 
       **[⬆ Back to Top](#table-of-contents)**
+### ডিবাগিংয়ার ব্রেকপয়েন্টের উদ্দেশ্য
+
+আপনি যখন debugger স্টেটমেন্ট এক্সিকিউট হয় এবং ডিবাগার উইন্ডোটি পপ আপ করে, তখন জাভাস্ক্রিপ্ট কোডে ব্রেকপয়েন্ট সেট করতে পারেন। প্রতি ব্রেকপয়েন্টে, জাভাস্ক্রিপ্ট এক্সিকিউট করা থামবে এবং আপনি জাভাস্ক্রিপ্ট মানগুলি পরীক্ষা করতে দিবে। মানগুলি পরীক্ষা করার পরে, আপনি প্লে বাটন ব্যবহার করে কোড এক্সিকিউশন পুনরায় শুরু করতে পারবেন।
+
+**[⬆ উপরে ফিরে যান](#table-of-contents)**
+
 
 165.  ### Can I use reserved words as identifiers
 
@@ -5596,6 +6123,41 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+### কিভাবে সমকালিন HTTP অনুরোধ করবেন
+
+সমকালিন HTTP অনুরোধ করতে, আপনি XMLHttpRequest বা Fetch API ব্যবহার করতে পারেন। যেমন:
+
+#### XMLHttpRequest ব্যবহার করে
+
+```javascript
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'আপনার_URL_এখানে', false); // সমকালিন (false) প্যারামিটার যোগ করুন
+xhr.send();
+
+if (xhr.status === 200) {
+  console.log(xhr.responseText);
+} else {
+  console.error('HTTP অনুরোধ ব্যর্থ হয়েছে');
+}
+```
+## Fetch API ব্যবহার করে
+```javascript
+fetch('আপনার_URL_এখানে')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('HTTP অনুরোধ ব্যর্থ হয়েছে');
+    }
+    return response.text();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error(error.message);
+  });
+```
+উভযই উদাহরণে, অনুরোধ সমকালিন (সিনক্রোনাস) হিসেবে হয়েছে কারণ আমরা অপেক্ষা করতেছি (স্বতন্ত্রভাবে কোড অব্জারভেশন বা প্রমাণ আপনার প্রোজেক্টের প্রয়োজনের অনুসারে বদলা যেতে পারে)।
+**[⬆ Back to Top](#table-of-contents)**
 
 170.  ### How do you make asynchronous HTTP request
 
@@ -5624,6 +6186,15 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কিভাবে জাভাস্ক্রিপ্টে তারিখকে অন্য টাইমজোনে রূপান্তর করবেন
+
+আপনি তারিখকে এক সময়ক্ষেত্র থেকে অন্য সময়ক্ষেত্রে রূপান্তর করতে toLocaleString() মেথড ব্যবহার করতে পারেন। উদাহরণস্বরূপ, বর্তমান তারিখকে ব্রিটিশ ইংলিশ সময়ক্ষেত্রে রূপান্তর করি,
+
+```javascript
+console.log(event.toLocaleString("en-GB", { timeZone: "UTC" })); //29/06/2019, 09:56:00
+```
+**[⬆ Back to Top](#table-of-contents)**
 
 172.  ### What are the properties used to get size of window
 
@@ -5656,6 +6227,17 @@ function redirectToNewPage() {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### জাভাস্ক্রিপ্টে শর্তমুক্ত অপারেটর কি
+
+শর্তমুক্ত অপারেটর (Conditional Operator) জাভাস্ক্রিপ্টে একটি টারনারি অপারেটর, যা সাধারিতভাবে একটি শর্ত চেক করে এবং শর্তটি সত্য হলে একটি মান প্রদান করে আর শর্তটি মিথ্যা হলে অন্য একটি মান প্রদান করে। 
+
+এর সাধারিত সিনট্যাকঃ
+
+```javascript
+(condition) ? true_expression : false_expression;
+```
+   **[⬆ Back to Top](#table-of-contents)**
+
 174.  ### Can you apply chaining on conditional operator
 
       Yes, you can apply chaining on conditional operators similar to if … else if … else if … else chain. The syntax is going to be as below,
@@ -5687,6 +6269,36 @@ function redirectToNewPage() {
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### শর্তমুক্ত অপারেটরে চেইনিং কিভাবে ব্যবহার করতে হয়
+
+হ্যাঁ, আপনি শর্তমুক্ত অপারেটরে চেইনিং অনুমোদন দিতে পারেন, এটি if … else if … else if … else চেইনের মতো। সিনট্যাক্সটি নিম্নের মতো হতে হবে,
+
+```javascript
+function traceValue(someParam) {
+  return condition1
+    ? value1
+    : condition2
+    ? value2
+    : condition3
+    ? value3
+    : value4;
+}
+
+// উপরের শর্তমুক্ত অপারেটরটি এটার সমতুল্য:
+
+function traceValue(someParam) {
+  if (condition1) {
+    return value1;
+  } else if (condition2) {
+    return value2;
+  } else if (condition3) {
+    return value3;
+  } else {
+    return value4;
+  }
+}
+```
 
 175.  ### What are the ways to execute javascript after page load
 
@@ -5731,6 +6343,15 @@ function redirectToNewPage() {
       | Usage      | Frequently used                                              | Rarely used                                                |
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### `proto` এবং `prototype` এর মধ্যে পার্থক্য
+
+`__proto__` অবজেক্টটি আসলে হল লুকআপ চেইনে মেথড, ইত্যাদি সমাধান করতে ব্যবহৃত হতে থাকে। সময় যখন আপনি `new` দিয়ে অবজেক্ট তৈরি করতেন, তখন `prototype` হল অবজেক্ট যা `__proto__` তৈরি করতে ব্যবহৃত হয়।
+
+```javascript
+new Employee().__proto__ === Employee.prototype;
+new Employee().prototype === undefined;
+```
 
 177.  ### Give an example where do you really need semicolon
 
