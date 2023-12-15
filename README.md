@@ -5983,6 +5983,17 @@ console.log(randomNum);
 
       **[⬆ Back to Top](#table-of-contents)**
 
+# RegExp অবজেক্ট
+
+`RegExp` অবজেক্ট হলো একটি পূর্বনির্ধারিত গুণাবলী এবং মেথড সহ একটি রেগুলার এক্সপ্রেশন অবজেক্ট। একটি `RegExp` অবজেক্ট তৈরির একটি সাধারিত ব্যবহার দেখা যাক,
+
+```javascript
+var regexp = new RegExp("\\w+");
+console.log(regexp);
+// প্রত্যাশিত আউটপুট: /\w+/
+```
+এই উদাহরণে, \\w+ প্যাটার্নের সাথে একটি নতুন RegExp অবজেক্ট তৈরি করা হয়েছে, যা এক বা একাধিক শব্দ ম্যাচ করে। ফলাফলটি কনসোলে লগ করা হয়।
+
 159.  ### How do you search a string for a pattern
 
       You can use the test() method of regular expression in order to search a string for a pattern, and return true or false depending on the result.
@@ -5994,6 +6005,15 @@ console.log(randomNum);
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### একটি প্যাটার্ন স্ট্রিংতে খোঁজা
+একটি স্ট্রিংতে একটি প্যাটার্ন খোঁজতে, আপনি একটি রেগুলার এক্সপ্রেশনের test() মেথড ব্যবহার করতে পারেন। এই মেথডটি স্ট্রিংতে প্যাটার্নটি পাওয়া যাবে কিনা তা নির্ভর করে true বা false রিটার্ন করবে।
+
+```javascript
+var pattern = /you/;
+console.log(pattern.test("How are you?")); // true
+```
+এই উদাহরণে, রেগুলার এক্সপ্রেশন /you/ ব্যবহৃত হয়েছে স্ট্রিং "How are you?" তে প্যাটার্ন "you" খোঁজার জন্য। test() মেথডটি true রিটার্ন করে কারণ স্ট্রিংটে প্যাটার্ন "you" পাওয়া গিয়েছে।
+
 160.  ### What is the purpose of exec method
 
       The purpose of exec method is similar to test method but it executes a search for a match in a specified string and returns a result array, or null instead of returning true/false.
@@ -6004,6 +6024,18 @@ console.log(randomNum);
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+# `exec` মেথডের উদ্দেশ্য
+
+`exec` মেথডের উদ্দেশ্য হলো `test` মেথডের মতো, কিন্তু এটি একটি নির্দিষ্ট স্ট্রিংতে একটি ম্যাচ খোঁজে এবং একটি ফলাফল অ্যারে বা `null` রিটার্ন করে, বুলিয়ান মান (`true`/`false`) রিটার্ন করে না।
+
+```javascript
+var pattern = /are/;
+var result = pattern.exec("How are you?");
+console.log(result);
+// আউটপুট: ["are", index: 4, input: "How are you?", groups: undefined]
+```
+এই উদাহরণে, exec মেথডটি ব্যবহৃত হয়েছে "How are you?" স্ট্রিংটে "are" প্যাটার্ন খোঁজার জন্য। ফলাফলটি হলো একটি অ্যারে ["are", index: 4, input: "How are you?", groups: undefined] বা null।
 
 161.  ### How do you change the style of a HTML element
 
@@ -6023,11 +6055,30 @@ console.log(randomNum);
 
       **[⬆ Back to Top](#table-of-contents)**
 
+## HTML এলিমেন্টের স্টাইল পরিবর্তন
+আপনি জাভাস্ক্রিপ্ট ব্যবহার করে একটি HTML এলিমেন্টের স্টাইল পরিবর্তন করতে পারেন, ইনলাইন স্টাইল বা ক্লাসনেম পরিবর্তন করে।
+
+## style প্রপার্টি ব্যবহার করা:
+আপনি ইনলাইন স্টাইল পরিবর্তন করতে পারেন style প্রপার্টি ব্যবহার করে।
+
+```javascript
+document.getElementById("title").style.fontSize = "30px";
+```
+## className প্রপার্টি ব্যবহার করা:
+এলিমেন্টের ক্লাস পরিবর্তন করা সহজ className প্রপার্টি ব্যবহার করে।
+
+```javascript
+document.getElementById("title").className = "custom-title";
+
+```
+
 162.  ### What would be the result of 1+2+'3'
 
       The output is going to be `33`. Since `1` and `2` are numeric values, the result of the first two digits is going to be a numeric value `3`. The next digit is a string type value because of that the addition of numeric value `3` and string type value `3` is just going to be a concatenation value `33`.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+**এটির আউটপুট হবে 33। কারণ 1 এবং 2 হচ্ছে সংখ্যার মান, এই দুইটি মানের যোগফল হবে সংখ্যার মান 3। পরবর্তী সংখ্যা হচ্ছে একটি স্ট্রিং ধরনের মান, এর জন্য সংখ্যার মান 3 এবং স্ট্রিং ধরনের মান 3 যোগফল হবে কেটেগরির মান 33।**
 
 163.  ### What is a debugger statement
 
@@ -6044,15 +6095,26 @@ console.log(randomNum);
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+**ডিবাগার স্টেটমেন্টটি যে কোনও উপলব্ধ ডিবাগিং কার্যকারিতা, উদাহরণস্বরূপ, ব্রেকপয়েন্ট সেট করতে প্রযোজ্য। যদি কোনও ডিবাগিং কার্যকারিতা প্রয়োজন না হয়, এই স্টেটমেন্টটির কোনও প্রভাব থাকে না। উদাহরণস্বরূপ, নিচের ফাংশনে একটি ডিবাগার স্টেটমেন্ট প্রবেশ করানো হয়েছে। তাই, এটির মাধ্যমে স্ক্রিপ্ট সোর্সে ব্রেকপয়েন্টের মতো ডিবাগার স্টেটমেন্টে কাজ হয়।**
+```javascript
+function getProfile() {
+  // কোড এখানে থাকে
+  debugger;
+  // কোড এখানে থাকে
+}
 
+```
 164.  ### What is the purpose of breakpoints in debugging
 
       You can set breakpoints in the javascript code once the debugger statement is executed and the debugger window pops up. At each breakpoint, javascript will stop executing, and let you examine the JavaScript values. After examining values, you can resume the execution of code using the play button.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+
+
 ### ডিবাগিংয়ার ব্রেকপয়েন্টের উদ্দেশ্য
 
-আপনি যখন debugger স্টেটমেন্ট এক্সিকিউট হয় এবং ডিবাগার উইন্ডোটি পপ আপ করে, তখন জাভাস্ক্রিপ্ট কোডে ব্রেকপয়েন্ট সেট করতে পারেন। প্রতি ব্রেকপয়েন্টে, জাভাস্ক্রিপ্ট এক্সিকিউট করা থামবে এবং আপনি জাভাস্ক্রিপ্ট মানগুলি পরীক্ষা করতে দিবে। মানগুলি পরীক্ষা করার পরে, আপনি প্লে বাটন ব্যবহার করে কোড এক্সিকিউশন পুনরায় শুরু করতে পারবেন।
+**ডিবাগিং সময়ে ডিবাগার স্টেটমেন্টটি একবার সচালিত হয় এবং ডিবাগার উইন্ডো পপআপ হয়, তারপরে জাভাস্ক্রিপ্ট কোডে ব্রেকপয়েন্ট সেট করতে পারেন। প্রতি ব্রেকপয়েন্টে, জাভাস্ক্রিপ্ট ব্রেকপয়েন্টে থামবে এবং আপনাকে জাভাস্ক্রিপ্ট মানগুলি পরীক্ষা করতে দেবে। মানগুলি পরীক্ষা করার পরে, আপনি প্লে বোতাম ব্যবহার করে কোডের সচালন পুনরায় শুরু করতে পারবেন।**
 
 **[⬆ উপরে ফিরে যান](#table-of-contents)**
 
@@ -6066,6 +6128,8 @@ console.log(randomNum);
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+**হ্যাঁ, আপনি রিজার্ভড ওয়ার্ডগুলি আইডেন্টিফায়ার (identifiers) হিসেবে ব্যবহার করতে পারবেন না। এটি জাভাস্ক্রিপ্টের সিনট্যাক্স নিয়ে একটি বিধান। রিজার্ভড ওয়ার্ডগুলি স্পেসিফিক ধরনের কাজ করে এবং তাদের অর্থ বোঝা যায় না যখন এটি আইডেন্টিফায়ার হিসেবে ব্যবহার হয়।**
 
 166.  ### How do you detect a mobile browser
 
@@ -6178,6 +6242,7 @@ fetch('আপনার_URL_এখানে')
 ```
 উভযই উদাহরণে, অনুরোধ সমকালিন (সিনক্রোনাস) হিসেবে হয়েছে কারণ আমরা অপেক্ষা করতেছি (স্বতন্ত্রভাবে কোড অব্জারভেশন বা প্রমাণ আপনার প্রোজেক্টের প্রয়োজনের অনুসারে বদলা যেতে পারে)।
 **[⬆ Back to Top](#table-of-contents)**
+
 
 170.  ### How do you make asynchronous HTTP request
 
@@ -6344,6 +6409,31 @@ function traceValue(someParam) {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### পৃষ্ঠা লোড হওয়ার পরে জাভাস্ক্রিপ্ট চালানোর বিভিন্ন উপায়
+
+পৃষ্ঠা লোড হওয়ার পরে জাভাস্ক্রিপ্ট চালাতে আপনি অনেকগুলি ভিন্ন উপায়ে ব্যবহার করতে পারেন:
+
+1. **window.onload:**
+
+    ```javascript
+    window.onload = function ...
+    ```
+
+2. **document.onload:**
+
+    ```javascript
+    document.onload = function ...
+    ```
+
+3. **body onload:**
+
+    ```javascript
+    <body onload="script();">
+    ```
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
+
 176.  ### What is the difference between proto and prototype
 
       The `__proto__` object is the actual object that is used in the lookup chain to resolve methods, etc. Whereas `prototype` is the object that is used to build `__proto__` when you create an object with new.
@@ -6364,6 +6454,7 @@ function traceValue(someParam) {
 
       **[⬆ Back to Top](#table-of-contents)**
 
+
 ### `proto` এবং `prototype` এর মধ্যে পার্থক্য
 
 `__proto__` অবজেক্টটি আসলে হল লুকআপ চেইনে মেথড, ইত্যাদি সমাধান করতে ব্যবহৃত হতে থাকে। সময় যখন আপনি `new` দিয়ে অবজেক্ট তৈরি করতেন, তখন `prototype` হল অবজেক্ট যা `__proto__` তৈরি করতে ব্যবহৃত হয়।
@@ -6372,6 +6463,17 @@ function traceValue(someParam) {
 new Employee().__proto__ === Employee.prototype;
 new Employee().prototype === undefined;
 ```
+### অতিরিক্ত পার্থক্য
+
+বৈশিষ্ট | প্রোটোটাইপ | প্রোটো
+---------- | ------------ | -----
+অ্যাক্সেস | সমস্ত ফাংশন কনস্ট্রাক্টরের প্রোটোটাইপ প্রপার্টি থাকে। | সমস্ত অবজেক্টের \_\_proto\_\_ প্রপার্টি থাকে
+উদ্দেশ্য | ফাংশনের একটি একক কপির সাথে মেমোরি স্পষ্ট করতে ব্যবহৃত হয়। | লুকাপ চেইনে মেথড, কনস্ট্রাক্টর ইত্যাদি রেজোল্ভ করতে ব্যবহৃত হয়।
+ইকমাস্ক্রিপ্ট | ES6 এ উত্পন্ন | ES5 এ উত্পন্ন
+ব্যবহার | প্রয়োজনীয় | দ্রুতি ব্যবহৃত হয়
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 
 177.  ### Give an example where do you really need semicolon
 
@@ -6404,6 +6506,25 @@ new Employee().prototype === undefined;
       In this case, we are passing the second function as an argument to the first function and then trying to call the result of the first function call as a function. Hence, the second function will fail with a "... is not a function" error at runtime.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কোথায় সেমিকোলন প্রয়োজন
+
+জাভাস্ক্রিপ্টে প্রতিটি স্টেটমেন্টের পরে সেমিকোলন ব্যবহার করা সুপরিসর। উদাহরণস্বরূপ, নীচের কেসে সেমিকোলন না থাকার জন্য রানটাইমে "..." একটি ত্রুটি ফেলে।
+
+```javascript
+// একটি ফাংশন সংজ্ঞায়িত করুন
+var fn = (function () {
+  //...
+})(
+  // এই লাইনে সেমিকোলন অনুপস্থিত
+
+  // তারপরে একটি ক্লোজার একটি কোড নিষ্পত্তি করুন
+  function () {
+    //...
+  }
+)();
+```
+এই ক্ষেত্রে, আমরা দ্বিতীয় ফাংশনকে প্রথম ফাংশনের একটি আর্গুমেন্ট হিসেবে পাস করছি এবং তারপরে প্রথম ফাংশন কলের ফল হিসেবে প্রথম ফাংশন কল করার চেষ্টা করছি। এইসব কারণে, রানটাইমে দ্বিতীয় ফাংশনটি "..." একটি ত্রুটির সাথে ব্যর্থ হবে।
 
 178.  ### What is a freeze method
 
@@ -6439,6 +6560,36 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### ফ্রিজ মেথড
+
+**freeze()** মেথডটি একটি অবজেক্টকে ফ্রিজ করার জন্য ব্যবহৃত হয়। একটি অবজেক্টকে ফ্রিজ করা হলে অবজেক্টে নতুন প্রপার্টি যোগ করা, প্রপার্টি মুছে ফেলা এবং বিদ্যমান প্রপার্টিগুলির এনুমারেবিলিটি, কনফিগারেবিলিটি বা রাইটেবিলিটি বদলাতে অনুমতি দেয় না। অর্থাৎ, এটি পাস করা অবজেক্ট ফিরিয়ে দেয় এবং একটি ফ্রিজ কপি তৈরি করে না।
+
+```javascript
+const obj = {
+  prop: 100,
+};
+
+Object.freeze(obj);
+obj.prop = 200; // ক্রুড় strict মোডে একটি ত্রুটি ফেলে
+
+console.log(obj.prop); // 100
+```
+মনে রাখা গুরুত্বপূর্ণ যে, ফ্রিজিং কেবল অবজেক্টের শীর্ষ-স্তরের প্রপার্টিতেই প্রযোজ্য, কিন্তু নেস্টেড অবজেক্টের জন্য প্রযোজ্য নয়। উদাহরণস্বরূপ, আসুন ব্যক্তি অবজেক্টটি ফ্রিজ করা যাক যা নেস্টেড অবজেক্ট হিসেবে চাকরির বিবরণ রয়েছে এবং তার অবজেক্টগুলির বিবরণ পরিবর্তন করা হয়েছে।
+
+```javascript
+const user = {
+  name: "John",
+  employment: {
+    department: "IT",
+  },
+};
+
+Object.freeze(user);
+user.employment.department = "HR";
+
+```
+লক্ষণীয়: এটি যদি প্রযোজ্য না হয় তবে এটি একটি টাইপএর ত্রুটি তৈরি করে।
+
 179.  ### What is the purpose of freeze method
 
       Below are the main benefits of using freeze method,
@@ -6448,11 +6599,31 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### ফ্রিজ মেথডের উদ্দেশ্য
+
+নীচে ফ্রিজ মেথড ব্যবহারের প্রধান সুবিধাগুলি উল্লেখ করা হয়েছে,
+
+1. **অবজেক্ট এবং অ্যারে ফ্রিজ করতে ব্যবহৃত হয়:**
+   এটি অবজেক্ট এবং অ্যারেগুলির ফ্রিজ করতে ব্যবহৃত হয়।
+
+2. **অবজেক্টকে অমুটেবল করতে ব্যবহৃত হয়:**
+   এটি অবজেক্টকে অমুটেবল বানাতে ব্যবহৃত হয়।
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
+
 180.  ### Why do I need to use freeze method
 
       In the Object-oriented paradigm, an existing API contains certain elements that are not intended to be extended, modified, or re-used outside of their current context. Hence it works as the `final` keyword which is used in various languages.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কেন আমার ফ্রিজ মেথড ব্যবহার করতে হবে
+
+অবজেক্ট-অরিয়েন্টেড প্যারাডাইমে, একটি বিদ্যমান API কিছু উপাদান ধারণ করে যা বাইরে তাদের বর্তমান পরিস্থিতিতে প্রসারিত, সম্পাদন বা পুনর্ব্যবহার করা হতে চায় না। এটি হয়তো তাদের বর্তমান প্রস্তুতির বাইরে ব্যবহার করার মনে করে কাজ করে। এটি যেমন `final` কীওয়ার্ড কিছু ভাষায় ব্যবহৃত হয়।
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 
 181.  ### How do you detect a browser language preference
 
@@ -6469,6 +6640,19 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কীভাবে আপনি ব্রাউজারের ভাষা পছন্দ নিরূপণ করতে পারবেন
+
+আপনি ব্রাউজারের ভাষা পছন্দ নিরূপণ করতে নোভিগেটর অবজেক্টটি ব্যবহার করতে পারেন নিচের মতো,
+
+```javascript
+var language =
+  (navigator.languages && navigator.languages[0]) || // Chrome / Firefox
+  navigator.language || // All browsers
+  navigator.userLanguage; // IE <= 10
+
+console.log(language);
+```
+
 182.  ### How to convert string to title case with javascript
 
       Title case means that the first letter of each word is capitalized. You can convert a string to title case using the below function,
@@ -6483,6 +6667,19 @@ new Employee().prototype === undefined;
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কিভাবে জাভাস্ক্রিপ্টে স্ট্রিংকে টাইটেল কেসে রূপান্তর করবেন
+
+টাইটেল কেস মানে হচ্ছে প্রতি শব্দের প্রথম অক্ষরটি বড় হয়ে যায়। আপনি একটি স্ট্রিংকে টাইটেল কেসে রূপান্তর করতে নিচের ফাংশনটি ব্যবহার করতে পারেন,
+
+```javascript
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+  });
+}
+toTitleCase("good morning john"); // Good Morning John
+```
 
 183.  ### How do you detect javascript disabled in the page
 
@@ -6499,6 +6696,19 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### পৃষ্ঠায় জাভাস্ক্রিপ্ট নিষ্ক্রিয় কিভাবে চেক করতে পারবেন
+
+আপনি `<noscript>` ট্যাগটি ব্যবহার করতে পারেন জাভাস্ক্রিপ্ট নিষ্ক্রিয় কিনা তা চেক করতে। `<noscript>` এর ভিতরের কোড ব্লকটি জাভাস্ক্রিপ্ট নিষ্ক্রিয় হলে কার্যকর হয় এবং এটি সাধারিত ব্যবহৃত হয় যেখানে পৃষ্ঠা জাভাস্ক্রিপ্টে তৈরি হয়।
+
+```html
+<script type="javascript">
+    // JS related code goes here
+</script>
+<noscript>
+    <a href="next_page.html?noJS=true">পৃষ্ঠায় জাভাস্ক্রিপ্ট নিষ্ক্রিয় হয়েছে। অনুগ্রহ করে পরবর্তী পৃষ্ঠাতে ক্লিক করুন</a>
+</noscript>
+```
+
 184.  ### What are various operators supported by javascript
 
       An operator is capable of manipulating(mathematical and logical computations) a certain value or operand. There are various operators supported by JavaScript as below,
@@ -6511,6 +6721,20 @@ new Employee().prototype === undefined;
       6.  **typeof Operator:** It uses to find type of variable. The syntax looks like `typeof variable`
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### জাভাস্ক্রিপ্ট দ্বারা সমর্থিত বিভিন্ন অপারেটর
+
+একটি অপারেটর একটি নির্দিষ্ট মান বা অপারেন্ড পরিবর্তন করতে সক্ষম। জাভাস্ক্রিপ্ট দ্বারা বিভিন্ন অপারেটরগুলি সমর্থিত যেগুলি নিম্নে দেওয়া হয়েছে,
+
+1. **অ্যারিথমেটিক অপারেটর:** এটি + (যোগ), – (বিয়োগ), \* (গুণ), / (ভাগ), % (ভাগশেষ), + + (ইনক্রিমেন্ট) এবং – – (ডিক্রিমেন্ট) ইনক্লুড করে
+2. **তুলনা অপারেটর:** = = (সমান), != (সমান নয়), === (ধরণসহ সমান), > (অধিক), > = (অধিক অথবা সমান), < (কম), < = (কম অথবা সমান)
+3. **লজিক্যাল অপারেটর:** && (লজিক্যাল এন্ড), || (লজিক্যাল OR), ! (লজিক্যাল NOT)
+4. **অ্যাসাইনমেন্ট অপারেটর:** = (অ্যাসাইনমেন্ট অপারেটর), + = (যোগ এবং অ্যাসাইনমেন্ট অপারেটর), – = (বিয়োগ এবং অ্যাসাইনমেন্ট অপারেটর), \*= (গুণ এবং অ্যাসাইনমেন্ট), /= (ভাগ এবং অ্যাসাইনমেন্ট), %= (মডুলাস এবং অ্যাসাইনমেন্ট)
+5. **টার্নারি অপারেটর:** এটি শর্তমুলক(: ?) অপারেটর ইনক্লুড করে
+6. **typeof অপারেটর:** এটি ভেরিয়েবলের ধরণ খোঁজার জন্য ব্যবহৃত হয়। সিনট্যাক্স টি দেখতে হয় `typeof ভেরিয়েবল`
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 
 185.  ### What is a rest parameter
 
@@ -6543,6 +6767,18 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কি হলো একটি রেস্ট প্যারামিটার
+
+রেস্ট প্যারামিটার হলো ফাংশন প্যারামিটারগুলি হ্যান্ডল করার একটি উন্নত উপায় যা আমাদেরকে একটি অসীম সংখ্যক আর্গুমেন্টকে একটি অ্যারের মধ্যে প্রদর্শন করতে দেয়। সিনট্যাক্স হয় নিম্নের মত,
+
+```javascript
+function f(a, b, ...theArgs) {
+  // ...
+}
+```
+উদাহরণস্বরূপ, একটি ডায়নামিক সংখ্যক প্যারামিটারে যোগফল হিসেবে একটি যোগফল উদাহরণ নিন,
+নোট: রেস্ট প্যারামিটারটি ES2015 বা ES6 তে যোগ করা হয়েছে
+
 186.  ### What happens if you do not use rest parameter as a last argument
 
       The rest parameter should be the last argument, as its job is to collect all the remaining arguments into an array. For example, if you define a function like below it doesn’t make any sense and will throw an error.
@@ -6555,6 +6791,17 @@ new Employee().prototype === undefined;
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### আপনি যদি রেস্ট প্যারামিটারকে শেষ আর্গুমেন্ট হিসেবে ব্যবহার না করেন তাহলে কি হয়
+
+রেস্ট প্যারামিটারটি শেষ আর্গুমেন্ট হতে হবে, কারণ এর কাজ হলো সব অবশিষ্ট আর্গুমেন্টগুলি একটি অ্যারেতে সংগ্রহ করা। উদাহরণস্বরূপ, নিম্নের মতো একটি ফাংশন সংজ্ঞায়িত করলে এটি কোনও মর্থহীন হবে এবং এটি একটি ত্রুটি ফেলবে।
+
+```javascript
+function someFunc(a, ...b, c) {
+  // আপনার কোড এখানে থাকতে হবে
+  return;
+}
+```
 
 187.  ### What are the bitwise operators available in javascript
 
@@ -6569,6 +6816,21 @@ new Employee().prototype === undefined;
       7.  Zero fill Right Shift ( >>> )
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### জাভাস্ক্রিপ্টে যে বিটওয়াইজ অপারেটরগুলি ব্যবহার করা হয়
+
+নীচে জাভাস্ক্রিপ্টে ব্যবহৃত হওয়া বিটওয়াইজ লজিক্যাল অপারেটরগুলির তালিকা রয়েছে
+
+1.  বিটওয়াইজ এন্ড ( & )
+2.  বিটওয়াইজ অর ( | )
+3.  বিটওয়াইজ এক্সওআর ( ^ )
+4.  বিটওয়াইজ নট ( ~ )
+5.  বাম শিফট ( << )
+6.  সাইন প্রোপাগেটিং রাইট শিফট ( >> )
+7.  জিরো ফিল রাইট শিফট ( >>> )
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 
 188.  ### What is a spread operator
 
@@ -6585,6 +6847,20 @@ new Employee().prototype === undefined;
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### স্প্রেড অপারেটর কি
+
+স্প্রেড অপারেটরটি ইটারেবলস (অ্যারে / অবজেক্ট / স্ট্রিং) কে একক আর্গুমেন্ট/এলিমেন্টে বিস্তৃত করার অনুমতি দেয়। এই বৈশিষ্ট্যটি দেখতে একটি উদাহরণ নিয়ে আসা হয়েছে,
+
+```javascript
+function calculateSum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+
+console.log(calculateSum(...numbers)); // 6
+```
 
 189.  ### How do you determine whether object is frozen or not
 
@@ -6605,6 +6881,23 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কিভাবে দেখবেন যে অবজেক্টটি ফ্রোজেন কিনা
+
+`Object.isFrozen()` মেথডটি ব্যবহার করা হয় একটি অবজেক্ট কি ফ্রোজেন কিনা তা নির্ধারণ করতে। একটি অবজেক্ট ফ্রোজেন হয় যদি সমস্ত নিম্নলিখিত শর্তগুলি সত্যি হয়,
+
+1. যদি এটি অতিরিক্ত হয়নি।
+2. যদি সমস্ত তার বৈশিষ্ট্যগুলি অ-কনফিগারেবল হয়।
+3. সমস্ত তার ডেটা প্রোপার্টিগুলি অ-রাইট্যাবল হয়।
+
+ব্যবহারকৃত হবে নিম্নলিখিত ভাবে,
+
+```javascript
+const object = {
+  property: "Welcome JS world",
+};
+Object.freeze(object);
+console.log(Object.isFrozen(object));
+```
 190.  ### How do you determine two values same or not using object
 
       The Object.is() method determines whether two values are the same value. For example, the usage with different types of values would be,
@@ -6629,6 +6922,29 @@ new Employee().prototype === undefined;
           both non-zero and both not NaN and both have the same value.
 
       **[⬆ Back to Top](#table-of-contents)**
+### কিভাবে দুইটি মান সমান কিনা তা নির্ধারণ করবেন অবজেক্ট ব্যবহার করে
+
+`Object.is()` মেথডটি দুইটি মান সমান হওয়া কি তা নির্ধারণ করে। উদাহরণস্বরূপ, ভিন্ন প্রকারের মানগুলির সাথে ব্যবহার করা হতে পারে,
+
+```javascript
+Object.is("hello", "hello"); // true
+Object.is(window, window); // true
+Object.is([], []); // false
+```
+একই হবে যদি:
+1. উভয়ই undefined
+2. উভয়ই null
+3. উভয়ই true অথবা উভয়ই false
+4. দৈর্ঘ্য এবং অক্ষরের সমান হবে এবং একই ক্রমে থাকবে স্ট্রিংগুলি
+5. একই অবজেক্ট (অর্থাৎ, উভয়ই একই রেফারেন্স থাকতে হবে)
+6. উভয়ই সংখ্যা এবং
+   - উভয়ই +0
+   - উভয়ই -0
+   - উভয়ই NaN
+   - উভয়ই নন-জিরো এবং উভয়ই NaN নয় এবং উভয়ই একই মান রাখে।
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 
 191.  ### What is the purpose of using object is method
 
@@ -6640,6 +6956,18 @@ new Employee().prototype === undefined;
       4.  It is used for comparison of two objects.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### Object.is মেথড ব্যবহারের উদ্দেশ্য
+
+অবজেক্ট এইস মেথডের কিছু অ্যাপ্লিকেশন সমৃদ্ধির মধ্যে নিম্নলিখিত রয়েছে:
+
+1. দুইটি স্ট্রিং তুলনা করার জন্য ব্যবহৃত হয়।
+2. দুইটি সংখ্যা তুলনা করার জন্য ব্যবহৃত হয়।
+3. দুইটি সংখ্যার ধারাবাহিকতা তুলনা করার জন্য ব্যবহৃত হয়।
+4. দুইটি অবজেক্ট তুলনা করার জন্য ব্যবহৃত হয়।
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 
 192.  ### How do you copy properties from one object to other
 
@@ -6666,6 +6994,25 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### একটি অবজেক্ট থেকে অন্যান্য অবজেক্টে প্রপার্টি কপি করতে কীভাবে
+
+আপনি Object.assign() মেথডটি ব্যবহার করতে পারেন যা একা বা একাধিক উৎস অবজেক্ট থেকে মান এবং প্রপার্টি কপি করতে ব্যবহৃত হয়। এটি একটি টার্গেট অবজেক্ট ফিরিয়ে দেয় যা উৎস অবজেক্ট থেকে মূল্য এবং প্রপার্টি কপি করে। সিনট্যাক্স হবে নিম্নলিখিত,
+
+```javascript
+Object.assign(target, ...sources);
+একটি উদাহরণ দেখা যাক একটি উৎস এবং একটি লক্ষ্য অবজেক্টের সাথে,
+const target = { a: 1, b: 2 };
+const source = { b: 3, c: 4 };
+
+const returnedTarget = Object.assign(target, source);
+
+console.log(target); // { a: 1, b: 3, c: 4 }
+
+console.log(returnedTarget); // { a: 1, b: 3, c: 4 }
+
+```
+উপরের কোডে দেখা গেছে যে, উৎস থেকে লক্ষ্যে একটি সাধারিত প্রপার্টি(b) আছে তাই এর মান ওভাররাইট হয়েছে।
+
 193.  ### What are the applications of assign method
 
       Below are the some of main applications of Object.assign() method,
@@ -6674,6 +7021,28 @@ new Employee().prototype === undefined;
       2.  It is used to merge objects with the same properties.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### `Object.assign()` মেথডের এপ্লিকেশন
+
+নীচে উল্লেখিত হল কিছু `Object.assign()` মেথডের প্রধান এপ্লিকেশনগুলি,
+
+1.  **একটি অবজেক্ট ক্লোন করার জন্য:**
+    ```javascript
+    const source = { a: 1, b: 2 };
+    const clone = Object.assign({}, source);
+    console.log(clone); // { a: 1, b: 2 }
+    ```
+
+2.  **একই প্রপার্টিসহ অবজেক্টগুলি মার্জ করার জন্য:**
+    ```javascript
+    const obj1 = { a: 1, b: 2 };
+    const obj2 = { b: 3, c: 4 };
+    const merged = Object.assign({}, obj1, obj2);
+    console.log(merged); // { a: 1, b: 3, c: 4 }
+    ```
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 
 194.  ### What is a proxy object
 
@@ -6704,6 +7073,31 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### প্রক্সি অবজেক্ট
+
+প্রক্সি অবজেক্টটি মৌলিক অপারেশনগুলির জন্য কাস্টম আচরণ সংজ্ঞায়িত করতে ব্যবহৃত হয়, যেমন প্রপার্টি লুকআপ, অ্যাসাইনমেন্ট, এনামারেশন, ফাংশন ইনভোকেশন ইত্যাদি। সিনট্যাক্স হবে নিম্নলিখিত,
+
+```javascript
+var p = new Proxy(target, handler);
+একটি প্রক্সি অবজেক্টের উদাহরণ দেখা যাক,
+var handler = {
+  get: function (obj, prop) {
+    return prop in obj ? obj[prop] : 100;
+  },
+};
+
+var p = new Proxy({}, handler);
+p.a = 10;
+p.b = null;
+
+console.log(p.a, p.b); // 10, null
+console.log("c" in p, p.c); // false, 100
+
+উপরের কোডে, এটি get হ্যান্ডলার ব্যবহার করে প্রক্সির উপর একটি অপারেশন পুনর্নির্ধারণ করার আচরণ সংজ্ঞায়িত করে
+```
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 195.  ### What is the purpose of seal method
 
       The **Object.seal()** method is used to seal an object, by preventing new properties from being added to it and marking all existing properties as non-configurable. But values of present properties can still be changed as long as they are writable. Let's see the below example to understand more about seal() method
@@ -6721,6 +7115,21 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### সীল মেথডের উদ্দেশ্য
+
+**Object.seal()** মেথডটি একটি অবজেক্ট সীল করতে ব্যবহৃত হয়, যার ফলে নতুন প্রপার্টিগুলি যোগ করা বন্ধ করা হয় এবং সমস্ত বর্তমান প্রপার্টিগুলি কে অকনফিগারেবল হিসেবে চিহ্নিত করা হয়। তবে বর্তমান প্রপার্টিগুলির মানগুলি এখনো লেখযোগ্য হতে পারে, যতটুকু তারা লেখযোগ্য হয়। আমরা এটি বোঝার জন্য নিচের উদাহরণটি দেখি
+
+```javascript
+const object = {
+  property: "Welcome JS world",
+};
+Object.seal(object);
+object.property = "Welcome to object world";
+console.log(Object.isSealed(object)); // true
+delete object.property; // আপনি যদি সীলকৃত অবজেক্ট মুছতে চান তবে আপনি মুছতে পারবেন না
+console.log(object.property); // Welcome to object world
+```
+
 196.  ### What are the applications of seal method
 
       Below are the main applications of Object.seal() method,
@@ -6730,11 +7139,28 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### সীল মেথডের অ্যাপ্লিকেশন
+
+কিছু প্রধান Object.seal() মেথডের অ্যাপ্লিকেশন হলো,
+
+1. এটি অবজেক্ট এবং অ্যারেগুলি সীল করতে ব্যবহৃত হয়।
+2. এটি একটি অবজেক্টকে অমুক্ত করার জন্য ব্যবহৃত হয়।
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
+
 197.  ### What are the differences between freeze and seal methods
 
       If an object is frozen using the Object.freeze() method then its properties become immutable and no changes can be made in them whereas if an object is sealed using the Object.seal() method then the changes can be made in the existing properties of the object.
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### ফ্রিজ এবং সীল মেথডের পার্থক্য
+
+যদি Object.freeze() মেথড ব্যবহৃত হয় তবে অবজেক্টটির প্রপার্টিগুলি অমুক্ত হয় এবং তাদের মধ্যে কোনও পরিবর্তন করা হতে পারে না, আবার Object.seal() মেথড ব্যবহৃত হলে অবজেক্টের বিদ্যমান প্রপার্টিগুলিতে পরিবর্তন করা যায়।
+
+**[⬆ উপরে ফিরুন](#table-of-contents)**
+
 
 198.  ### How do you determine if an object is sealed or not
 
@@ -6757,6 +7183,26 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### একটি অবজেক্ট কি সীল করা আছে কিনা তা কীভাবে নির্ধারণ করতে হয়
+
+আপনি এটি যাচাই করতে Object.isSealed() মেথড ব্যবহার করতে পারেন। একটি অবজেক্ট সীল হয় যদি সমস্ত নিম্নলিখিত শর্তগুলি সত্য হয়:
+
+1. এটি একটি extensible নয়।
+2. এটির সমস্ত প্রপার্টিগুলি non-configurable হয়ে থাকে।
+3. এটি অপরিসীম নয় (তবে অবশ্যই non-writable নয়)।
+
+এটির একটি উদাহরণ দেখা যাক:
+
+```javascript
+const object = {
+  property: "Hello, Good morning",
+};
+
+Object.seal(object); // seal() মেথড ব্যবহার করে অবজেক্ট সীল করা হয়েছে
+
+console.log(Object.isSealed(object)); // অবজেক্টটি সীল করা হয়েছে কিনা তা চেক করা হচ্ছে
+```
+
 199.  ### How do you get enumerable key and value pairs
 
       The Object.entries() method is used to return an array of a given object's own enumerable string-keyed property [key, value] pairs, in the same order as that provided by a for...in loop. Let's see the functionality of object.entries() method in an example,
@@ -6777,6 +7223,23 @@ new Employee().prototype === undefined;
 
       **[⬆ Back to Top](#table-of-contents)**
 
+### কীভাবে এনুমারেট করতে এবং মান দেখতে সক্রিয় কুনি এবং মান দেখতে হয়
+
+Object.entries() মেথডটি ব্যবহার করা হয় একটি প্রদত্ত অবজেক্টের নিজস্ব এনামারেবল স্ট্রিং-কীড প্রপার্টি [key, value] জোড়া দেওয়ার জন্য, for...in লুপ দ্বারা প্রদান করা মধ্যে। একটি উদাহরণে দেখা যাক:
+
+```javascript
+const object = {
+  a: "Good morning",
+  b: 100,
+};
+
+for (let [key, value] of Object.entries(object)) {
+  console.log(`${key}: ${value}`); // a: 'Good morning'
+  // b: 100
+}
+```
+Note: ক্রমটি অবজেক্ট ডিফাইন করা হয়নি তাই ক্রমটি নিশ্চিত নয়।
+
 200.  ### What is the main difference between Object.values and Object.entries method
 
       The Object.values() method's behavior is similar to Object.entries() method but it returns an array of values instead [key,value] pairs.
@@ -6794,6 +7257,21 @@ new Employee().prototype === undefined;
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+### Object.values এবং Object.entries মেথডের মুখ্য পার্থক্য কি
+
+Object.values() এর আচরণ Object.entries() এর মতো, কিন্তু এটি [key, value] জোড়ার বদলে মানগুলির একটি অ্যারে প্রদান করে।
+
+```javascript
+const object = {
+  a: "Good morning",
+  b: 100,
+};
+
+for (let value of Object.values(object)) {
+  console.log(`${value}`); // 'Good morning'
+  100;
+}
+```
 
 201.  ### How can you get the list of keys of any object
 
@@ -6810,6 +7288,20 @@ new Employee().prototype === undefined;
       ```
 
       **[⬆ Back to Top](#table-of-contents)**
+
+### কোনও অবজেক্টের কী গুলি পেতে কিভাবে করবেন
+
+আপনি `Object.keys()` মেথড ব্যবহার করতে পারেন, যা একটি নির্দিষ্ট অবজেক্টের নিজস্ব মালিক নেমগুলির একটি অ্যারে ফেরত দেয়, একই অর্ডারে যেভাবে সাধারিত লুপে পাওয়া যায়। উদাহরণস্বরূপ, আপনি একটি ব্যবহারকারী অবজেক্টের কীগুলি পেতে পারেন,
+
+```javascript
+const user = {
+  name: "John",
+  gender: "male",
+  age: 40,
+};
+
+console.log(Object.keys(user)); //['name', 'gender', 'age']
+```
 
 202.  ### How do you create an object with prototype
 
