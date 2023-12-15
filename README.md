@@ -5906,6 +5906,26 @@ console.log(randomNum);
 
       **[⬆ Back to Top](#table-of-contents)**
 
+## রেগুলার এক্সপ্রেশন মডিফায়ার
+রেগুলার এক্সপ্রেশনে মডিফায়ার ব্যবহার হয় বিশেষ ধরনের ম্যাচ বা সার্চ করতে। এটি রেগুলার এক্সপ্রেশনের আচরণ পরিবর্তন করতে সাহায্য করে। নিচে কিছু সাধারিত মডিফায়ার:
+
+      | মডিফায়ার | বর্ণনা                                             |
+      | -------- | ------------------------------------------------------- |
+      | i        | অবস্থান-অসমর্থিত ম্যাচিং করুন                       |
+      | g        | প্রথম ম্যাচে থামতে বদলে বাইরাধিক্যে ম্যাচিং করুন |
+      | m        | মাল্টিলাইন ম্যাচিং করুন                              |
+
+      আসুন একটি গ্লোবাল মডিফায়ারের উদাহরণ দেখি (g),
+      এই উদাহরণে, g মডিফায়ার সহ রেগুলার এক্সপ্রেশন ব্যবহার করা হয়েছে দেওয়া টেক্সটে "one" প্যাটার্নের জন্য একটি গ্লোবাল সার্চ করার জন্য।
+
+      ```javascript
+      var text = "Learn JS one by one";
+      var pattern = /one/g;
+      var result = text.match(pattern); // one,one
+      ```
+
+      **[⬆ Back to Top](#table-of-contents)**
+
 157.  ### What are regular expression patterns
 
       Regular Expressions provide a group of patterns in order to match characters. Basically they are categorized into 3 types,
